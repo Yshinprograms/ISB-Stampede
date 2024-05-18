@@ -7,6 +7,8 @@ public class PiperScript : MonoBehaviour
 {
     public float piperMoveSpeed = 1f;
 
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +24,7 @@ public class PiperScript : MonoBehaviour
 
 
     //Directions 0-8 indicate Not moving, N,NE,E,...,NW
+    // Diagonals first, if not will always execute NSEW only
     private int findDir()
     {
         int dir = 0; //Not moving
