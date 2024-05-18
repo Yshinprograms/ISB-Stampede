@@ -11,15 +11,15 @@ public class BollardScript : MonoBehaviour
     public float bollardSpeed = 0.7f;
 
     private Transform piperPosition;
+    private AudioSource bollardCollisionSFX;
 
-    // Start is called before the first frame update
     void Start()
     {
-        //gameObject.SetActive(true);
         piperPosition = GameObject.FindGameObjectWithTag("Player").transform;
+        bollardCollisionSFX = gameObject.GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         Vector3 directionToPiper = piperPosition.position - gameObject.transform.position; //Vector Addition
@@ -40,7 +40,7 @@ public class BollardScript : MonoBehaviour
                 bollardCollision();
             }
             //Play sound effect here
-            //EXPLOSION.Play();
+            bollardCollisionSFX.Play();
         }
     }
 }

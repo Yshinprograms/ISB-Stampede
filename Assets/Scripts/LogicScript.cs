@@ -9,22 +9,32 @@ public class LogicScript : MonoBehaviour
     public int piperHealth = 100;
     public Text healthbar;
 
-    // Start is called before the first frame update
+    // Bollard parameters
+    public static GameObject bollard;
+    public static float secondsBetweenBollardSpawn = 6f;
+
+
     void Start()
     {
+        // Bollard interaction and Spawns
         BollardScript.bollardCollision += bollardInflictDamage;
-        
+        bollard = GameObject.FindGameObjectWithTag("Bollard");
+        InvokeRepeating("spawnBollard", 0f, secondsBetweenBollardSpawn); // Calls spawnBollard every 6s from t=0
+
+        // Freshie interaction and Spawns + Future enemies
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        healthbar.text = piperHealth.ToString();
-    }
+
+    void Update() => healthbar.text = piperHealth.ToString();
 
     void bollardInflictDamage()
     {
         piperHealth -= 10;
+    }
+
+    void spawnBollard()
+    {
+        Instantiate(bollard, SpawnScript.generateSpawnPoint(), Quaternion.identity);
     }
 
     private void OnDestroy()
