@@ -6,13 +6,13 @@ using UnityEngine;
 public class PiperScript : MonoBehaviour
 {
     public float piperMoveSpeed = 1f;
-
+    public static Vector3 piperPosition;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        piperPosition = transform.position;
     }
 
     // Update is called once per frame
