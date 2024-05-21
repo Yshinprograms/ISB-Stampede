@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Fix Bollard Parent starting position?
 // Bollards given 10 health to start with
 
 public class BollardScript : MonoBehaviour
@@ -10,26 +9,33 @@ public class BollardScript : MonoBehaviour
     public delegate void BollardCollision();
     public static event BollardCollision bollardCollisionEvent;
     public float bollardSpeed = 0.7f;
-
-    //private Transform piperPosition;
-    private int bollardHealth = 10;
+    public int maxHealth = 10;
+    public int health;
 
     void Start()
     {
-        //piperPosition = GameObject.FindGameObjectWithTag("Player").transform;
+        health = maxHealth;
     }
 
-
+    private void OnEnable()
+    {
+        health = maxHealth;
+    }
     void Update()
     {
-        Vector3 directionToPiper = PiperScript.piperPosition - transform.position; // Vector Addition
-        moveToPiper(directionToPiper.normalized); // Normalize for constant speed in all directions
+        // Vector Addition
+        Vector3 directionToPiper = PiperScript.piperPosition - transform.position;
+
+        // Normalize for constant speed in all directions
+        moveToPiper(directionToPiper.normalized); 
 
         // Destroy Bollard when health <= 0
-        if (bollardHealth <= 0)
+        if (health <= 0)
         {
-            Destroy(gameObject);
+            ObjectPoolScript.returnObjectToPool(gameObject);
         }
+
+        Debug.DrawLine(transform.position, PiperScript.piperPosition, Color.red);
     }
 
     void moveToPiper(Vector3 directionToPiper)
@@ -50,7 +56,7 @@ public class BollardScript : MonoBehaviour
         // Figure out how to put this into the paperBall script instead
         if (collision.gameObject.layer == 7)
         {
-            bollardHealth -= 10;
+            health -= 10;
         }
     }
 }

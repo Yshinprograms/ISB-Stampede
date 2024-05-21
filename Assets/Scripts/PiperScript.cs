@@ -12,12 +12,13 @@ public class PiperScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        piperPosition = transform.position;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        piperPosition = transform.position;
         int dir = findDir(); //Find direction Piper needs to move based on WASD
         move(dir);
     }

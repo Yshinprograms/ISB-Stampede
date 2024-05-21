@@ -8,12 +8,6 @@ public static class SpawnScript
     private static readonly float yBound = 5.5f;
     private static readonly float xBound = 9.5f;
 
-    // Bollard parameters
-    public static float secondsBetweenBollardSpawn = 6f;
-
-    // Projectile parameters
-    public static float secondsBetweenPaperBallSpawn = 3f;
-
     // Spawn function to spawn enemy randomly around map perimeter
     public static Vector2 generateSpawnPoint()
     {

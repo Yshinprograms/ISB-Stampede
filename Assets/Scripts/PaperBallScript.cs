@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// USE OBJECT POOLING
-
 public class PaperBallScript : MonoBehaviour
 {
     public delegate void PaperBallCollision();
@@ -14,21 +12,19 @@ public class PaperBallScript : MonoBehaviour
 
     void Start()
     {
-        transform.position = PiperScript.piperPosition + Vector3.right;
-        findClosestEnemy();
+        targetEnemy = null;
     }
 
     void Update()
     {
+        findClosestEnemy();
+        // If enemy found, move to enemy
         if (targetEnemy != null)
         {
             Vector3 directionToEnemy = targetEnemy.transform.position - gameObject.transform.position; // Vector Addition
             moveToEnemy(directionToEnemy.normalized); // Normalize for constant speed in all directions
         }
-        else
-        {
-            findClosestEnemy();
-        }
+        // Otherwise keep finding
     }
 
     void moveToEnemy(Vector3 directionToEnemy)
@@ -72,7 +68,7 @@ public class PaperBallScript : MonoBehaviour
             paperBallCollisionEvent();
 
             // Destroy after a single collision
-            Destroy(gameObject);
+            ObjectPoolScript.returnObjectToPool(gameObject);
         }
     }
 }

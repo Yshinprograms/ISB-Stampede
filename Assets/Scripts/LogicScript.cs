@@ -15,21 +15,27 @@ public class LogicScript : MonoBehaviour
     public GameObject bollard;
     public GameObject paperBall;
 
+    // Spawn times
+    public float secondsBetweenPaperBallSpawn = 6f;
+    public float secondsBetweenBollardSpawn = 6f;
 
     void Start()
     {
         // Bollard interaction and Spawns
         BollardScript.bollardCollisionEvent += bollardInflictDamage;
-        InvokeRepeating("spawnBollard", 0f, SpawnScript.secondsBetweenBollardSpawn); // Calls spawnBollard every 6s from t=0
+        InvokeRepeating("spawnBollard", 0f, secondsBetweenBollardSpawn); // Calls spawnBollard every 6s from t=0
 
         // Piper's projectile interactions
-        InvokeRepeating("spawnPaperBall", 0f, SpawnScript.secondsBetweenPaperBallSpawn); // Calls spawnBollard every 6s from t=0
+        InvokeRepeating("spawnPaperBall", 0f, secondsBetweenPaperBallSpawn); // Calls spawnBollard every 3s from t=0
 
         // Freshie interaction and Spawns + Future enemies
     }
 
 
-    void Update() => healthbar.text = piperHealth.ToString();
+    void Update()
+    {
+        healthbar.text = piperHealth.ToString();
+    }
 
     // Damages
     void bollardInflictDamage()
@@ -40,20 +46,21 @@ public class LogicScript : MonoBehaviour
     // Spawn Enemies
     void spawnBollard()
     {
-        Instantiate(bollard, SpawnScript.generateSpawnPoint(), Quaternion.identity);
+        ObjectPoolScript.spawnObject(bollard, SpawnScript.generateSpawnPoint(), Quaternion.identity);
     }
 
     // Spawn Projectiles
     void spawnPaperBall()
     {
-        // Doesn't matter what spawn position, because PaperBallScript Start() position is to the right of Piper
-        Instantiate(paperBall, PiperScript.piperPosition, Quaternion.identity);
-        paperBall.SetActive(true);
+        // Spawn to the right of Piper
+        ObjectPoolScript.spawnObject(paperBall, PiperScript.piperPosition + Vector3.right, Quaternion.identity);
     }
 
     // Unsubscribe from Events
     private void OnDestroy()
     {
+        CancelInvoke("spawnBollard");
+        CancelInvoke("spawnPaperBall");
         BollardScript.bollardCollisionEvent -= bollardInflictDamage;
     }
 }
