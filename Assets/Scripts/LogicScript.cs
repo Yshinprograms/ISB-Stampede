@@ -11,6 +11,10 @@ public class LogicScript : MonoBehaviour
     public int piperHealth = 100;
     public Text healthbar;
 
+    // Import Game Manager Script & Game end conditions
+    public GameManagerScript gameManager;
+    private bool isDead = false;
+
     // Import GameObjects, drag and drop into Inspector
     public GameObject bollard;
     public GameObject paperBall;
@@ -34,7 +38,17 @@ public class LogicScript : MonoBehaviour
 
     void Update()
     {
+        // Set minimum health to 0
+        piperHealth = Mathf.Clamp(piperHealth, 0, 100);
         healthbar.text = piperHealth.ToString();
+
+        if (piperHealth <= 0 && !isDead)
+        {
+            isDead = true;
+            gameManager.gameOver();
+            Debug.Log("Dead");
+        }
+
     }
 
     // Damages
