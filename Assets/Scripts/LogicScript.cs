@@ -18,10 +18,12 @@ public class LogicScript : MonoBehaviour
     // Import GameObjects, drag and drop into Inspector
     public GameObject bollard;
     public GameObject paperBall;
+    public GameObject freshie;
 
     // Spawn times
     public float secondsBetweenPaperBallSpawn = 6f;
     public float secondsBetweenBollardSpawn = 6f;
+    public float secondsBetweenFreshieSpawn = 6f;
 
     void Start()
     {
@@ -33,6 +35,8 @@ public class LogicScript : MonoBehaviour
         InvokeRepeating("spawnPaperBall", 0f, secondsBetweenPaperBallSpawn); // Calls spawnBollard every 3s from t=0
 
         // Freshie interaction and Spawns + Future enemies
+        FreshieScript.freshieCollisionEvent += freshieInflictDamage;
+        InvokeRepeating("spawnFreshie", 0f, secondsBetweenFreshieSpawn); // Calls freshieBollard every 3s from t=0
     }
 
 
@@ -56,11 +60,19 @@ public class LogicScript : MonoBehaviour
     {
         piperHealth -= 10;
     }
+    void freshieInflictDamage()
+    {
+        piperHealth -= 20;
+    }
 
     // Spawn Enemies
     void spawnBollard()
     {
         ObjectPoolScript.spawnObject(bollard, SpawnScript.generateSpawnPoint(), Quaternion.identity);
+    }
+    void spawnFreshie()
+    {
+        ObjectPoolScript.spawnObject(freshie, SpawnScript.generateSpawnPoint(), Quaternion.identity);
     }
 
     // Spawn Projectiles
@@ -75,6 +87,9 @@ public class LogicScript : MonoBehaviour
     {
         CancelInvoke("spawnBollard");
         CancelInvoke("spawnPaperBall");
+        CancelInvoke("spawnFreshie");
         BollardScript.bollardCollisionEvent -= bollardInflictDamage;
+        FreshieScript.freshieCollisionEvent -= freshieInflictDamage;
+
     }
 }
