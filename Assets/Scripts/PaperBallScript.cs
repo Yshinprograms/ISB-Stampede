@@ -22,7 +22,7 @@ public class PaperBallScript : MonoBehaviour
     void Update()
     {
         // If enemy in range, lock onto targetEnemy and get its location
-        if (PiperScript.enemyInRange != null)
+        if (PiperScript.enemyInRange != null && targetEnemy == null)
         {
             findClosestEnemy();
             // Play throwing audio

@@ -8,8 +8,9 @@ using UnityEngine.SceneManagement;
 
 public class LogicScript : MonoBehaviour
 {
-    public int piperHealth = 100;
-    public Text healthbar;
+    public int piperMaxHealth = 100;
+    public int piperHealth;
+    public HealthbarScript healthbar;
 
     // Import GameObjects, drag and drop into Inspector
     public GameObject bollard;
@@ -28,7 +29,9 @@ public class LogicScript : MonoBehaviour
         BollardScript.bollardCollisionEvent += bollardInflictDamage;
         InvokeRepeating("spawnBollard", 0f, secondsBetweenBollardSpawn); // Calls spawnBollard every 6s from t=0
 
-        // Piper's projectile interactions
+        // Piper's parameters & projectile interactions
+        piperHealth = piperMaxHealth;
+        healthbar.setMaxHealth(piperMaxHealth);
         PaperBallScript.activePaperBalls = 0;
 
         // Freshie interaction and Spawns + Future enemies
@@ -37,7 +40,7 @@ public class LogicScript : MonoBehaviour
 
     void Update()
     {
-        healthbar.text = piperHealth.ToString();
+        healthbar.setHealth(piperHealth);
 
         // Piper's projectile interactions
         secondsBetweenPaperBallSpawn += Time.deltaTime;
