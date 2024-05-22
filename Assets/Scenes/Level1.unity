@@ -1030,6 +1030,7 @@ GameObject:
   - component: {fileID: 1310042462}
   - component: {fileID: 1310042461}
   - component: {fileID: 1310042465}
+  - component: {fileID: 1310042466}
   m_Layer: 3
   m_Name: Piper
   m_TagString: Player
@@ -1375,6 +1376,7 @@ GameObject:
   - component: {fileID: 1536683452}
   - component: {fileID: 1536683454}
   - component: {fileID: 1536683453}
+  - component: {fileID: 1536683457}
   - component: {fileID: 1536683451}
   - component: {fileID: 1536683455}
   - component: {fileID: 1536683456}
@@ -1627,6 +1629,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   paperBallCollisionSFX: {fileID: 1536683453}
   bollardCollisionSFX: {fileID: 1536683454}
+  paperBallThrownSFX: {fileID: 1536683457}
 --- !u!114 &1536683456
 MonoBehaviour:
   m_ObjectHideFlags: 0

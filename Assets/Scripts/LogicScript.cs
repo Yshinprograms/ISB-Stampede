@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-// Handles all UI and logic in game
+// Handles all UI, Spawning and logic in game
 
 public class LogicScript : MonoBehaviour
 {
@@ -21,8 +21,11 @@ public class LogicScript : MonoBehaviour
     public GameObject freshie;
 
     // Spawn times
-    public float secondsBetweenPaperBallSpawn = 6f;
+    public float secondsBetweenPaperBallSpawn;
     public float secondsBetweenBollardSpawn = 6f;
+
+    // Controls quantity of projectiles on map
+    public int maxActivePaperBalls = 1;
     public float secondsBetweenFreshieSpawn = 6f;
 
     void Start()
@@ -32,7 +35,7 @@ public class LogicScript : MonoBehaviour
         InvokeRepeating("spawnBollard", 0f, secondsBetweenBollardSpawn); // Calls spawnBollard every 6s from t=0
 
         // Piper's projectile interactions
-        InvokeRepeating("spawnPaperBall", 0f, secondsBetweenPaperBallSpawn); // Calls spawnBollard every 3s from t=0
+        PaperBallScript.activePaperBalls = 0;
 
         // Freshie interaction and Spawns + Future enemies
         FreshieScript.freshieCollisionEvent += freshieInflictDamage;
@@ -53,6 +56,15 @@ public class LogicScript : MonoBehaviour
             Debug.Log("Dead");
         }
 
+
+        // Piper's projectile interactions
+        secondsBetweenPaperBallSpawn += Time.deltaTime;
+        if (PaperBallScript.activePaperBalls < maxActivePaperBalls && secondsBetweenPaperBallSpawn > 1)
+        {
+            spawnPaperBall();
+            secondsBetweenPaperBallSpawn = 0;
+            PaperBallScript.activePaperBalls += 1;
+        }
     }
 
     // Damages
@@ -86,7 +98,6 @@ public class LogicScript : MonoBehaviour
     private void OnDestroy()
     {
         CancelInvoke("spawnBollard");
-        CancelInvoke("spawnPaperBall");
         CancelInvoke("spawnFreshie");
         BollardScript.bollardCollisionEvent -= bollardInflictDamage;
         FreshieScript.freshieCollisionEvent -= freshieInflictDamage;
