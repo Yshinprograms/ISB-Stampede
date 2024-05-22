@@ -17,7 +17,7 @@ public class BollardScript : MonoBehaviour
         health = maxHealth;
     }
 
-    private void OnEnable()
+    void OnEnable()
     {
         health = maxHealth;
     }
