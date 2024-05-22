@@ -8,8 +8,9 @@ using UnityEngine.SceneManagement;
 
 public class LogicScript : MonoBehaviour
 {
-    public int piperHealth = 100;
-    public Text healthbar;
+    public int piperMaxHealth = 100;
+    public int piperHealth;
+    public HealthbarScript healthbar;
 
     // Import Game Manager Script & Game end conditions
     public GameManagerScript gameManager;
@@ -34,7 +35,9 @@ public class LogicScript : MonoBehaviour
         BollardScript.bollardCollisionEvent += bollardInflictDamage;
         InvokeRepeating("spawnBollard", 0f, secondsBetweenBollardSpawn); // Calls spawnBollard every 6s from t=0
 
-        // Piper's projectile interactions
+        // Piper's parameters & projectile interactions
+        piperHealth = piperMaxHealth;
+        healthbar.setMaxHealth(piperMaxHealth);
         PaperBallScript.activePaperBalls = 0;
 
         // Freshie interaction and Spawns + Future enemies
@@ -47,7 +50,7 @@ public class LogicScript : MonoBehaviour
     {
         // Set minimum health to 0
         piperHealth = Mathf.Clamp(piperHealth, 0, 100);
-        healthbar.text = piperHealth.ToString();
+        healthbar.setHealth(piperHealth);
 
         if (piperHealth <= 0 && !isDead)
         {
