@@ -7,6 +7,7 @@ public class PiperScript : MonoBehaviour
 {
     public float piperMoveSpeed = 1f;
     public static Vector3 piperPosition;
+    public static Collider2D enemyInRange;
 
 
     // Start is called before the first frame update
@@ -19,12 +20,17 @@ public class PiperScript : MonoBehaviour
     void Update()
     {
         piperPosition = transform.position;
-        int dir = findDir(); //Find direction Piper needs to move based on WASD
+
+        //Find direction Piper needs to move based on WASD
+        int dir = findDir(); 
         move(dir);
+
+        // Checks if there are enemies in range of Piper's projectiles
+        enemyInRange = Physics2D.OverlapCircle(transform.position, 2f, LayerMask.GetMask("Enemy"));
     }
 
 
-    //Directions 0-8 indicate Not moving, N,NE,E,...,NW
+    // Directions 0-8 indicate Not moving, N,NE,E,...,NW
     // Diagonals first, if not will always execute NSEW only
     private int findDir()
     {

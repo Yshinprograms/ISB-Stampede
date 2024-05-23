@@ -4,27 +4,46 @@ using UnityEngine;
 
 public class PaperBallScript : MonoBehaviour
 {
-    public delegate void PaperBallCollision();
-    public static event PaperBallCollision paperBallCollisionEvent;
-    public float paperBallSpeed = 2f;
+    public static int activePaperBalls;
+    public delegate void PaperBallEvent();
+    public static event PaperBallEvent paperBallCollisionEvent;
+    public static event PaperBallEvent paperBallThrownEvent;
+    public static bool paperBallThrown;
+    public float paperBallSpeed = 4f;
 
     private GameObject targetEnemy;
 
     void Start()
     {
         targetEnemy = null;
+        paperBallThrown = false;
     }
 
     void Update()
     {
-        findClosestEnemy();
-        // If enemy found, move to enemy
+        // If enemy in range, lock onto targetEnemy and get its location
+        if (PiperScript.enemyInRange != null && targetEnemy == null)
+        {
+            findClosestEnemy();
+            // Play throwing audio
+            if (!paperBallThrown)
+            {
+                paperBallThrownEvent();
+                paperBallThrown = true;
+            }
+        }
+
+        // Move to enemy even if no longer within range
         if (targetEnemy != null)
         {
             Vector3 directionToEnemy = targetEnemy.transform.position - gameObject.transform.position; // Vector Addition
             moveToEnemy(directionToEnemy.normalized); // Normalize for constant speed in all directions
         }
-        // Otherwise keep finding
+        // Otherwise stay beside Piper & keep finding
+        else
+        {
+            transform.position = PiperScript.piperPosition + Vector3.right;
+        }
     }
 
     void moveToEnemy(Vector3 directionToEnemy)
@@ -67,8 +86,17 @@ public class PaperBallScript : MonoBehaviour
         {
             paperBallCollisionEvent();
 
-            // Destroy after a single collision
+            // Destroy after a single collision and clear targetEnemy
             ObjectPoolScript.returnObjectToPool(gameObject);
+
+            // Clear targetEnemy lockon when we reactivate from object pool
+            targetEnemy = null;
+
+            // Reset paperBall to not thrown when it reactivates
+            PaperBallScript.paperBallThrown = false;
+
+            // Reset paperBall count to zero for next throw on reactivation
+            activePaperBalls -= 1;
         }
     }
 }
