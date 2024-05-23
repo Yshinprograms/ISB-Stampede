@@ -49,8 +49,7 @@ public class LogicScript : MonoBehaviour
     void Update()
     {
         // Set minimum health to 0
-<<<<<<< Updated upstream
-        piperHealth = Mathf.Clamp(piperHealth, 0, 100);
+     
         healthbar.setHealth(piperHealth);
 
         if (piperHealth <= 0 && !isDead)
