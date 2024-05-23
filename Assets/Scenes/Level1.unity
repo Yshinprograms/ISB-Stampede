@@ -1354,8 +1354,10 @@ MonoBehaviour:
   bollard: {fileID: 8094103716569888245, guid: b8616b321ed9c284685ece1a17d3a6d7, type: 3}
   paperBall: {fileID: 7656084192474370632, guid: 89b5fc3fec2edf247ad89980e7c63c20, type: 3}
   freshie: {fileID: 6309368684267288309, guid: ef015081eb1929148a9a625d10a0c467, type: 3}
+  aunty: {fileID: 0}
   secondsBetweenPaperBallSpawn: 6
   secondsBetweenBollardSpawn: 6
+  secondsBetweenAuntySpawn: 6
   maxActivePaperBalls: 1
   secondsBetweenFreshieSpawn: 6
 --- !u!4 &1536683452
@@ -1580,6 +1582,7 @@ MonoBehaviour:
   paperBallCollisionSFX: {fileID: 1536683453}
   bollardCollisionSFX: {fileID: 1536683454}
   paperBallThrownSFX: {fileID: 1536683457}
+  handbagThrownSFX: {fileID: 0}
 --- !u!114 &1536683456
 MonoBehaviour:
   m_ObjectHideFlags: 0

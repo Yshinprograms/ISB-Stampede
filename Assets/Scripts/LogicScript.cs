@@ -20,10 +20,12 @@ public class LogicScript : MonoBehaviour
     public GameObject bollard;
     public GameObject paperBall;
     public GameObject freshie;
+    public GameObject aunty;
 
     // Spawn times
     public float secondsBetweenPaperBallSpawn;
     public float secondsBetweenBollardSpawn = 6f;
+    public float secondsBetweenAuntySpawn = 6f;
 
     // Controls quantity of projectiles on map
     public int maxActivePaperBalls = 1;
@@ -43,6 +45,9 @@ public class LogicScript : MonoBehaviour
         // Freshie interaction and Spawns + Future enemies
         FreshieScript.freshieCollisionEvent += freshieInflictDamage;
         InvokeRepeating("spawnFreshie", 0f, secondsBetweenFreshieSpawn); // Calls freshieBollard every 3s from t=0
+
+        // Aunty interactions and spawns
+        InvokeRepeating("spawnAunty", 0f, secondsBetweenAuntySpawn);
     }
 
 
@@ -89,6 +94,10 @@ public class LogicScript : MonoBehaviour
     {
         ObjectPoolScript.spawnObject(freshie, SpawnScript.generateSpawnPoint(), Quaternion.identity);
     }
+    void spawnAunty()
+    {
+        ObjectPoolScript.spawnObject(aunty, SpawnScript.generateSpawnPoint(), Quaternion.identity);
+    }
 
     // Spawn Projectiles
     void spawnPaperBall()
@@ -102,6 +111,7 @@ public class LogicScript : MonoBehaviour
     {
         CancelInvoke("spawnBollard");
         CancelInvoke("spawnFreshie");
+        CancelInvoke("spawnAunty");
         BollardScript.bollardCollisionEvent -= bollardInflictDamage;
         FreshieScript.freshieCollisionEvent -= freshieInflictDamage;
 

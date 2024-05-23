@@ -11,6 +11,7 @@ public class AudioManager : MonoBehaviour
     public AudioSource paperBallCollisionSFX;
     public AudioSource bollardCollisionSFX;
     public AudioSource paperBallThrownSFX;
+    public AudioSource handbagThrownSFX;
 
     void Start()
     {
