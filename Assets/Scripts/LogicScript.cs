@@ -14,7 +14,7 @@ public class LogicScript : MonoBehaviour
 
     // Import Game Manager Script & Game end conditions
     public GameManagerScript gameManager;
-    private bool isDead = false;
+    private bool isAlive;
 
     // Import GameObjects, drag and drop into Inspector
     public GameObject bollard;
@@ -25,11 +25,12 @@ public class LogicScript : MonoBehaviour
     // Spawn times
     public float secondsBetweenPaperBallSpawn;
     public float secondsBetweenBollardSpawn = 6f;
+    public float secondsBetweenFreshieSpawn = 6f;
     public float secondsBetweenAuntySpawn = 6f;
 
     // Controls quantity of projectiles on map
     public int maxActivePaperBalls = 1;
-    public float secondsBetweenFreshieSpawn = 6f;
+
 
     void Start()
     {
@@ -38,6 +39,7 @@ public class LogicScript : MonoBehaviour
         InvokeRepeating("spawnBollard", 0f, secondsBetweenBollardSpawn); // Calls spawnBollard every 6s from t=0
 
         // Piper's parameters & projectile interactions
+        isAlive = true;
         piperHealth = piperMaxHealth;
         healthbar.setMaxHealth(piperMaxHealth);
         PaperBallScript.activePaperBalls = 0;
@@ -47,6 +49,8 @@ public class LogicScript : MonoBehaviour
         InvokeRepeating("spawnFreshie", 0f, secondsBetweenFreshieSpawn); // Calls freshieBollard every 3s from t=0
 
         // Aunty interactions and spawns
+        AuntyScript.auntyCollisionEvent += auntyInflictDamage;
+        HandbagScript.handbagCollisionEvent += handbagInflictDamage;
         InvokeRepeating("spawnAunty", 0f, secondsBetweenAuntySpawn);
     }
 
@@ -54,12 +58,11 @@ public class LogicScript : MonoBehaviour
     void Update()
     {
         // Set minimum health to 0
-     
         healthbar.setHealth(piperHealth);
 
-        if (piperHealth <= 0 && !isDead)
+        if (piperHealth <= 0 && isAlive)
         {
-            isDead = true;
+            isAlive = false;
             gameManager.gameOver();
             Debug.Log("Dead");
         }
@@ -67,7 +70,7 @@ public class LogicScript : MonoBehaviour
 
         // Piper's projectile interactions
         secondsBetweenPaperBallSpawn += Time.deltaTime;
-        if (PaperBallScript.activePaperBalls < maxActivePaperBalls && secondsBetweenPaperBallSpawn > 1)
+        if ((PaperBallScript.activePaperBalls < maxActivePaperBalls) && (secondsBetweenPaperBallSpawn > 1))
         {
             spawnPaperBall();
             secondsBetweenPaperBallSpawn = 0;
@@ -83,6 +86,14 @@ public class LogicScript : MonoBehaviour
     void freshieInflictDamage()
     {
         piperHealth -= 20;
+    }
+    void auntyInflictDamage()
+    {
+        piperHealth -= 10;
+    }
+    void handbagInflictDamage()
+    {
+        piperHealth -= 10;
     }
 
     // Spawn Enemies
@@ -114,6 +125,7 @@ public class LogicScript : MonoBehaviour
         CancelInvoke("spawnAunty");
         BollardScript.bollardCollisionEvent -= bollardInflictDamage;
         FreshieScript.freshieCollisionEvent -= freshieInflictDamage;
-
+        AuntyScript.auntyCollisionEvent -= auntyInflictDamage;
+        HandbagScript.handbagCollisionEvent -= handbagInflictDamage;
     }
 }

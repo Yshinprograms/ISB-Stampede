@@ -11,6 +11,7 @@ public class AudioManager : MonoBehaviour
     public AudioSource paperBallCollisionSFX;
     public AudioSource bollardCollisionSFX;
     public AudioSource paperBallThrownSFX;
+    public AudioSource auntyCollisionSFX;
     public AudioSource handbagThrownSFX;
 
     void Start()
@@ -19,6 +20,8 @@ public class AudioManager : MonoBehaviour
         BollardScript.bollardCollisionEvent += bollardSounds;
         PaperBallScript.paperBallCollisionEvent += paperBallCollisionSounds;
         PaperBallScript.paperBallThrownEvent += paperBallThrownSounds;
+        AuntyScript.auntyCollisionEvent += auntyCollisionSounds;
+        AuntyScript.auntyThrowEvent += handbagThrownSounds;
     }
 
     void bollardSounds()
@@ -34,6 +37,14 @@ public class AudioManager : MonoBehaviour
     {
         paperBallThrownSFX.Play();
     }
+    void auntyCollisionSounds()
+    {
+        auntyCollisionSFX.Play();
+    }
+    void handbagThrownSounds()
+    {
+        handbagThrownSFX.Play();
+    }
 
     // Unsubscribe from events
     private void OnDestroy()
@@ -41,5 +52,7 @@ public class AudioManager : MonoBehaviour
         BollardScript.bollardCollisionEvent -= bollardSounds;
         PaperBallScript.paperBallCollisionEvent -= paperBallCollisionSounds;
         PaperBallScript.paperBallThrownEvent -= paperBallThrownSounds;
+        AuntyScript.auntyCollisionEvent -= auntyCollisionSounds;
+        AuntyScript.auntyThrowEvent -= handbagThrownSounds;
     }
 }

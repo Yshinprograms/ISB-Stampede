@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PaperBallScript : MonoBehaviour
 {
-    public static int activePaperBalls;
+    public static int activePaperBalls = 0;
     public delegate void PaperBallEvent();
     public static event PaperBallEvent paperBallCollisionEvent;
     public static event PaperBallEvent paperBallThrownEvent;
@@ -14,6 +14,12 @@ public class PaperBallScript : MonoBehaviour
     private GameObject targetEnemy;
 
     void Start()
+    {
+        targetEnemy = null;
+        paperBallThrown = false;
+    }
+
+    private void OnEnable()
     {
         targetEnemy = null;
         paperBallThrown = false;
@@ -36,6 +42,7 @@ public class PaperBallScript : MonoBehaviour
         // Move to enemy even if no longer within range
         if (targetEnemy != null)
         {
+            Debug.DrawLine(transform.position, targetEnemy.transform.position, Color.cyan);
             Vector3 directionToEnemy = targetEnemy.transform.position - gameObject.transform.position; // Vector Addition
             moveToEnemy(directionToEnemy.normalized); // Normalize for constant speed in all directions
         }
@@ -82,7 +89,7 @@ public class PaperBallScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.layer == 6)
+        if (collision.gameObject.CompareTag("Enemy"))
         {
             paperBallCollisionEvent();
 
@@ -93,7 +100,7 @@ public class PaperBallScript : MonoBehaviour
             targetEnemy = null;
 
             // Reset paperBall to not thrown when it reactivates
-            PaperBallScript.paperBallThrown = false;
+            paperBallThrown = false;
 
             // Reset paperBall count to zero for next throw on reactivation
             activePaperBalls -= 1;

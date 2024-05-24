@@ -7,42 +7,48 @@ using UnityEngine;
 public class AuntyScript : MonoBehaviour
 {
     public GameObject handbag;
-    public float handbagSpeed;
+    
     public delegate void AuntyEvent();
     public static event AuntyEvent auntyCollisionEvent;
-    public float auntySpeed = 0.7f;
+    public static event AuntyEvent auntyThrowEvent;
+    public float auntySpeed;
     public int maxHealth = 20;
     public int health;
 
     private float distToPiper;
     private float throwRange = 3f;
-    private Coroutine auntyThrowCoroutine;
+    private Vector3 directionToPiper;
+    private bool hasThrown;
 
     void Start()
     {
         health = maxHealth;
-        handbagSpeed = 4f;
+        auntySpeed = 0.7f;
+        hasThrown = false;
     }
 
     void OnEnable()
     {
         health = maxHealth;
-    }
+        auntySpeed = 0.7f;
+        hasThrown = false;
+}
     void Update()
     {
         // Find distance between Aunty and Piper
-        distToPiper = Vector2.Distance(transform.position, PiperScript.piperPosition);
+        distToPiper = Vector3.Distance(transform.position, PiperScript.piperPosition);
 
-        // Vector Addition to find direction of Piper from Aunty
-        Vector3 directionToPiper = PiperScript.piperPosition - transform.position;
+        // Direction of Piper from Aunty
+        directionToPiper = PiperScript.piperPosition - transform.position;
 
         // Normalize for constant speed in all directions
         moveToPiper(directionToPiper.normalized);
 
         // Trigger throw sequence when distance <= 3
-        if (distToPiper - throwRange <= 0)
+        if (distToPiper - throwRange <= 0 && !hasThrown)
         {
-            auntyThrowCoroutine = StartCoroutine(auntyThrowSequence());
+            hasThrown = true;
+            StartCoroutine(auntyThrowSequence());
         }
 
         // Return Aunty to objectPool when health <= 0
@@ -52,37 +58,25 @@ public class AuntyScript : MonoBehaviour
         }
     }
 
-    /* Aunty Throw Sequence:
-     * Stop
-     * Spawn Handbag
-     * Wait 1s
-     * Lockon to piperPosition and set flag to true
-     * Fire handbag
-     * Wait 1s
-     * Exit Coroutine
-     */
     private IEnumerator auntyThrowSequence()
     {
-        float loadDelay = 1f;
+        float throwDelay = 1f;
         float moveDelay = 1f;
 
         // 1. Stop moving
         auntySpeed = 0f;
 
-        // 2. Spawn Handbag 
-        ObjectPoolScript.spawnObject(handbag, transform.position, Quaternion.identity);
+        // 2. Spawn Handbag to the right of the Aunty, both Aunty handbagScript waits for 1s before locking on and throwing
+        ObjectPoolScript.spawnObject(handbag, transform.position + Vector3.right, Quaternion.identity);
+        auntyThrowEvent();
+        hasThrown = true;
+        yield return new WaitForSeconds(throwDelay);
 
-        // 3. Wait for the specified delay
-        yield return new WaitForSeconds(loadDelay);
-
-        // 4. Lock onto Piper's position and fire
-        Vector3 direction = (PiperScript.piperPosition - transform.position).normalized;
-        handbag.GetComponent<Rigidbody2D>().velocity = direction * handbagSpeed;
-
-        // 5. Wait again before resuming movement
+        // 3. After handbag thrown, wait 1s before resuming movement
         yield return new WaitForSeconds(moveDelay);
 
-        // 6. Resume movement
+        // 4. Resume movement
+        hasThrown = false;
         auntySpeed = 0.7f;
     }
 
@@ -93,7 +87,7 @@ public class AuntyScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.layer == 3)
+        if (collision.gameObject.CompareTag("Player"))
         {
             if (auntyCollisionEvent != null)
             {

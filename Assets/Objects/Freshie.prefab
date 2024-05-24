@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 2865809678480084509}
   - component: {fileID: 5534299455609635680}
   - component: {fileID: 6934515342304738442}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Freshie
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
