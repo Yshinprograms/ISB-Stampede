@@ -21,22 +21,20 @@ public class LogicScript : MonoBehaviour
     public GameObject paperBall;
     public GameObject freshie;
     public GameObject aunty;
+    public GameObject cleaner;
 
     // Spawn times
     public float secondsBetweenPaperBallSpawn;
     public float secondsBetweenBollardSpawn = 6f;
     public float secondsBetweenFreshieSpawn = 6f;
     public float secondsBetweenAuntySpawn = 6f;
+    public float secondsBetweenCleanerSpawn = 5f;
 
     // Controls quantity of projectiles on map
     public int maxActivePaperBalls = 1;
 
-
     void Start()
     {
-        // Bollard interaction and Spawns
-        BollardScript.bollardCollisionEvent += bollardInflictDamage;
-        InvokeRepeating("spawnBollard", 0f, secondsBetweenBollardSpawn); // Calls spawnBollard every 6s from t=0
 
         // Piper's parameters & projectile interactions
         isAlive = true;
@@ -44,14 +42,22 @@ public class LogicScript : MonoBehaviour
         healthbar.setMaxHealth(piperMaxHealth);
         PaperBallScript.activePaperBalls = 0;
 
-        // Freshie interaction and Spawns + Future enemies
+        // Bollard interaction and Spawns
+        BollardScript.bollardCollisionEvent += bollardInflictDamage;
+        InvokeRepeating("spawnBollard", 0f, secondsBetweenBollardSpawn);
+
+        // Freshie interaction and Spawns
         FreshieScript.freshieCollisionEvent += freshieInflictDamage;
-        InvokeRepeating("spawnFreshie", 0f, secondsBetweenFreshieSpawn); // Calls freshieBollard every 3s from t=0
+        InvokeRepeating("spawnFreshie", 1110f, secondsBetweenFreshieSpawn);
 
         // Aunty interactions and spawns
         AuntyScript.auntyCollisionEvent += auntyInflictDamage;
         HandbagScript.handbagCollisionEvent += handbagInflictDamage;
         InvokeRepeating("spawnAunty", 0f, secondsBetweenAuntySpawn);
+
+        // Cleaner interaction and Spawns
+        CleanerScript.cleanerCollisionEvent += cleanerInflictDamage;
+        InvokeRepeating("spawnCleaner", 0f, secondsBetweenFreshieSpawn);
     }
 
 
@@ -91,6 +97,10 @@ public class LogicScript : MonoBehaviour
     {
         piperHealth -= 10;
     }
+    void cleanerInflictDamage()
+    {
+        piperHealth -= 20;
+    }
     void handbagInflictDamage()
     {
         piperHealth -= 10;
@@ -109,6 +119,10 @@ public class LogicScript : MonoBehaviour
     {
         ObjectPoolScript.spawnObject(aunty, SpawnScript.generateSpawnPoint(), Quaternion.identity);
     }
+    void spawnCleaner()
+    {
+        ObjectPoolScript.spawnObject(cleaner, SpawnScript.generateSpawnPoint(), Quaternion.identity);
+    }
 
     // Spawn Projectiles
     void spawnPaperBall()
@@ -123,9 +137,11 @@ public class LogicScript : MonoBehaviour
         CancelInvoke("spawnBollard");
         CancelInvoke("spawnFreshie");
         CancelInvoke("spawnAunty");
+        CancelInvoke("spawnCleaner");
         BollardScript.bollardCollisionEvent -= bollardInflictDamage;
         FreshieScript.freshieCollisionEvent -= freshieInflictDamage;
         AuntyScript.auntyCollisionEvent -= auntyInflictDamage;
         HandbagScript.handbagCollisionEvent -= handbagInflictDamage;
+        CleanerScript.cleanerCollisionEvent -= cleanerInflictDamage;
     }
 }

@@ -6,8 +6,8 @@ using UnityEngine;
 
 public class BollardScript : MonoBehaviour
 {
-    public delegate void BollardCollision();
-    public static event BollardCollision bollardCollisionEvent;
+    public delegate void BollardEvent();
+    public static event BollardEvent bollardCollisionEvent;
     public float bollardSpeed = 0.7f;
     public int maxHealth = 10;
     public int health;

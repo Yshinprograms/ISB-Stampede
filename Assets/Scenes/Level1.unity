@@ -1061,6 +1061,7 @@ GameObject:
   - component: {fileID: 1310042462}
   - component: {fileID: 1310042461}
   - component: {fileID: 1310042465}
+  - component: {fileID: 1310042466}
   m_Layer: 3
   m_Name: Piper
   m_TagString: Player
@@ -1193,6 +1194,33 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.21, y: 0.44}
   m_EdgeRadius: 0
+--- !u!50 &1310042466
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1310042460}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1 &1390394344
 GameObject:
   m_ObjectHideFlags: 0
@@ -1349,7 +1377,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa48f7185b7b37b468527508fbb7f57f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  piperMaxHealth: 100
+  piperMaxHealth: 10000
   piperHealth: 100
   healthbar: {fileID: 1690778420}
   gameManager: {fileID: 1455414616}
@@ -1357,10 +1385,12 @@ MonoBehaviour:
   paperBall: {fileID: 7656084192474370632, guid: 89b5fc3fec2edf247ad89980e7c63c20, type: 3}
   freshie: {fileID: 6309368684267288309, guid: ef015081eb1929148a9a625d10a0c467, type: 3}
   aunty: {fileID: 7685507806953484925, guid: 819da12d229e2cd48906de82e2d926db, type: 3}
-  secondsBetweenPaperBallSpawn: 6
+  cleaner: {fileID: 4595520701919560262, guid: de06c16569ca9334d837a42c679097a5, type: 3}
+  secondsBetweenPaperBallSpawn: 800
   secondsBetweenBollardSpawn: 6
   secondsBetweenFreshieSpawn: 6
   secondsBetweenAuntySpawn: 6
+  secondsBetweenCleanerSpawn: 5
   maxActivePaperBalls: 1
 --- !u!4 &1536683452
 Transform:
