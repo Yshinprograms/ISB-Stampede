@@ -16,6 +16,7 @@ public class CleanerScript : MonoBehaviour
 {
     public delegate void CleanerEvent();
     public static event CleanerEvent cleanerCollisionEvent;
+    public static event CleanerEvent cleanerEnrageEvent;
     public float cleanerSpeed;
     // Cleaner's aim line when charging towards Piper, adjust accordingly in coroutines
     public LineRenderer aimingLine;
@@ -87,6 +88,7 @@ public class CleanerScript : MonoBehaviour
 
     public IEnumerator enterEnragedMode()
     {
+        cleanerEnrageEvent();
         // Get angry and charge up for 2s, then get Piper position and direction
         yield return new WaitForSeconds(2);
         Vector3 targetPosition = PiperScript.piperPosition;
