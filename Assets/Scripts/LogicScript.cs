@@ -12,6 +12,8 @@ public class LogicScript : MonoBehaviour
     public int piperHealth;
     public HealthbarScript healthbar;
 
+    public GameObject pauseMenu;
+
     // Import Game Manager Script & Game end conditions
     public GameManagerScript gameManager;
     private bool isDead = false;
@@ -48,8 +50,13 @@ public class LogicScript : MonoBehaviour
 
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.Escape)) 
+        {
+            pauseMenu.SetActive(true);
+            Time.timeScale = 0;
+        }
+
         // Set minimum health to 0
-     
         healthbar.setHealth(piperHealth);
 
         if (piperHealth <= 0 && !isDead)
