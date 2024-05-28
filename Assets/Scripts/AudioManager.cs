@@ -11,6 +11,7 @@ public class AudioManager : MonoBehaviour
     public AudioSource paperBallCollisionSFX;
     public AudioSource bollardCollisionSFX;
     public AudioSource paperBallThrownSFX;
+    public AudioSource freshieCollisionSFX;
 
     void Start()
     {
@@ -18,6 +19,12 @@ public class AudioManager : MonoBehaviour
         BollardScript.bollardCollisionEvent += bollardSounds;
         PaperBallScript.paperBallCollisionEvent += paperBallCollisionSounds;
         PaperBallScript.paperBallThrownEvent += paperBallThrownSounds;
+        FreshieScript.freshieCollisionEvent += freshieSounds;
+    }
+
+    void freshieSounds()
+    {
+        freshieCollisionSFX.Play();
     }
 
     void bollardSounds()
@@ -38,7 +45,9 @@ public class AudioManager : MonoBehaviour
     private void OnDestroy()
     {
         BollardScript.bollardCollisionEvent -= bollardSounds;
+        FreshieScript.freshieCollisionEvent -= freshieSounds;
         PaperBallScript.paperBallCollisionEvent -= paperBallCollisionSounds;
         PaperBallScript.paperBallThrownEvent -= paperBallThrownSounds;
+        
     }
 }
