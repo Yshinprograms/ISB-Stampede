@@ -12,7 +12,9 @@ public class LogicScript : MonoBehaviour
     public int piperHealth;
     public HealthbarScript healthbar;
 
+    // Import Pause Menu Game Object and create boolean variable named GameIsPaused
     public GameObject pauseMenu;
+    public static bool GameIsPaused = false;
 
     // Import Game Manager Script & Game end conditions
     public GameManagerScript gameManager;
@@ -52,8 +54,18 @@ public class LogicScript : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Escape)) 
         {
-            pauseMenu.SetActive(true);
-            Time.timeScale = 0;
+            if (GameIsPaused)
+            {
+                pauseMenu.SetActive(false);
+                Time.timeScale = 1;
+                GameIsPaused = false;
+
+            } else
+            {
+                pauseMenu.SetActive(true);
+                Time.timeScale = 0;
+                GameIsPaused = true;
+            }
         }
 
         // Set minimum health to 0
