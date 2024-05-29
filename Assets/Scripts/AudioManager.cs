@@ -1,20 +1,29 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UIElements;
 
 // Handles all audio in game, uses UI game object
 
 public class AudioManager : MonoBehaviour
 {
-    // Just drag and drop wav files into Audio Sources in inspector
-    // Then drag the audio source into Audio Manager script in inspector
+    [Header("---------- Audio Source ----------")]
+    [SerializeField] AudioSource musicSource;
     public AudioSource paperBallCollisionSFX;
     public AudioSource bollardCollisionSFX;
     public AudioSource paperBallThrownSFX;
     public AudioSource freshieCollisionSFX;
 
+    [Header("---------- Audio Clip ----------")]
+    // Just drag and drop wav files into Audio Sources in inspector
+    // Then drag the audio source into Audio Manager script in inspector
+    public AudioClip background;
+
     void Start()
     {
+        musicSource.clip = background;
+        musicSource.Play();
+
         // Subscribe to events
         BollardScript.bollardCollisionEvent += bollardSounds;
         PaperBallScript.paperBallCollisionEvent += paperBallCollisionSounds;
