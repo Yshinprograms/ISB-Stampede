@@ -23,6 +23,7 @@ public class AudioManager : MonoBehaviour
     public AudioSource auntyCollisionSFX;
     public AudioSource handbagThrownSFX;
     public AudioSource cleanerEnrageSFX;
+    public AudioSource enginKidGatheredSFX;
 
     void Start()
     {
@@ -33,6 +34,7 @@ public class AudioManager : MonoBehaviour
         AuntyScript.auntyCollisionEvent += auntyCollisionSounds;
         AuntyScript.auntyThrowEvent += handbagThrownSounds;
         CleanerScript.cleanerEnrageEvent += cleanerEnrageSounds;
+        LogicScript.enginKidGatheredEvent += enginKidGatheredSounds;
     }
 
     void bollardSounds()
@@ -60,6 +62,10 @@ public class AudioManager : MonoBehaviour
     {
         cleanerEnrageSFX.Play();
     }
+    void enginKidGatheredSounds()
+    {
+        enginKidGatheredSFX.Play();
+    }
 
     // Unsubscribe from events
     private void OnDestroy()
@@ -70,5 +76,6 @@ public class AudioManager : MonoBehaviour
         AuntyScript.auntyCollisionEvent -= auntyCollisionSounds;
         AuntyScript.auntyThrowEvent -= handbagThrownSounds;
         CleanerScript.cleanerEnrageEvent -= cleanerEnrageSounds;
+        LogicScript.enginKidGatheredEvent -= enginKidGatheredSounds;
     }
 }

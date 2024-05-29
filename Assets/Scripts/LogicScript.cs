@@ -5,11 +5,13 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 // Handles all UI, Spawning and logic in game
+// Use a coroutine to handle spawning of enginKid every 3 seconds --> cluster attacks in 9s
+// Activate coroutine when no of enginKids == 0
 
 public class LogicScript : MonoBehaviour
 {
     public int piperMaxHealth = 100;
-    public int piperHealth;
+    public static int piperHealth;
     public HealthbarScript healthbar;
 
     // Import Game Manager Script & Game end conditions
@@ -22,6 +24,7 @@ public class LogicScript : MonoBehaviour
     public GameObject freshie;
     public GameObject aunty;
     public GameObject cleaner;
+    public GameObject enginKid;
 
     // Spawn times
     public float secondsBetweenPaperBallSpawn;
@@ -29,9 +32,17 @@ public class LogicScript : MonoBehaviour
     public float secondsBetweenFreshieSpawn = 6f;
     public float secondsBetweenAuntySpawn = 6f;
     public float secondsBetweenCleanerSpawn = 5f;
+    public float secondsBetweenEnginKidSpawn = 5f;
 
     // Controls quantity of projectiles on map
     public int maxActivePaperBalls = 1;
+
+    // EnginKid Logic
+    public static bool enginKidClusterActive;
+    public static Vector3 enginKidGatheringCorner;
+    private Coroutine enginKidClusterCoroutine;
+    public delegate void EnginEvent();
+    public static event EnginEvent enginKidGatheredEvent;
 
     void Start()
     {
@@ -44,7 +55,7 @@ public class LogicScript : MonoBehaviour
 
         // Bollard interaction and Spawns
         BollardScript.bollardCollisionEvent += bollardInflictDamage;
-        InvokeRepeating("spawnBollard", 0f, secondsBetweenBollardSpawn);
+        InvokeRepeating("spawnBollard", 1110f, secondsBetweenBollardSpawn);
 
         // Freshie interaction and Spawns
         FreshieScript.freshieCollisionEvent += freshieInflictDamage;
@@ -53,11 +64,15 @@ public class LogicScript : MonoBehaviour
         // Aunty interactions and spawns
         AuntyScript.auntyCollisionEvent += auntyInflictDamage;
         HandbagScript.handbagCollisionEvent += handbagInflictDamage;
-        InvokeRepeating("spawnAunty", 0f, secondsBetweenAuntySpawn);
+        InvokeRepeating("spawnAunty", 1110f, secondsBetweenAuntySpawn);
 
         // Cleaner interaction and Spawns
         CleanerScript.cleanerCollisionEvent += cleanerInflictDamage;
-        InvokeRepeating("spawnCleaner", 0f, secondsBetweenFreshieSpawn);
+        InvokeRepeating("spawnCleaner", 1110f, secondsBetweenFreshieSpawn);
+
+        // EnginKid interaction and Spawns
+        EnginKidScript.enginKidDeathEvent += stopEnginKidClusterCoroutine;
+        enginKidClusterActive = false;
     }
 
 
@@ -73,7 +88,6 @@ public class LogicScript : MonoBehaviour
             Debug.Log("Dead");
         }
 
-
         // Piper's projectile interactions
         secondsBetweenPaperBallSpawn += Time.deltaTime;
         if ((PaperBallScript.activePaperBalls < maxActivePaperBalls) && (secondsBetweenPaperBallSpawn > 1))
@@ -82,6 +96,15 @@ public class LogicScript : MonoBehaviour
             secondsBetweenPaperBallSpawn = 0;
             PaperBallScript.activePaperBalls += 1;
         }
+
+        // EnginKid Clustering Logic
+        // Cluster spawning coroutine only starts if there are no clusters && enginKids are not in attack phase
+        if (!enginKidClusterActive && !EnginKidScript.attackPhase)
+        {
+            enginKidClusterCoroutine = StartCoroutine(spawnEnginKidCluster());
+        }
+
+        //Debug.Log(EnginKidScript.enginKidCount.ToString());
     }
 
     // Damages
@@ -123,6 +146,19 @@ public class LogicScript : MonoBehaviour
     {
         ObjectPoolScript.spawnObject(cleaner, SpawnScript.generateSpawnPoint(), Quaternion.identity);
     }
+    void spawnEnginKid()
+    {
+        ObjectPoolScript.spawnObject(enginKid, SpawnScript.generateSpawnPoint(), Quaternion.identity);
+        EnginKidScript.enginKidCount += 1;
+    }
+    void stopEnginKidClusterCoroutine()
+    {
+        if (enginKidClusterCoroutine != null)
+        {
+            StopCoroutine(enginKidClusterCoroutine);
+            enginKidClusterCoroutine = null;
+        }
+    }
 
     // Spawn Projectiles
     void spawnPaperBall()
@@ -143,5 +179,44 @@ public class LogicScript : MonoBehaviour
         AuntyScript.auntyCollisionEvent -= auntyInflictDamage;
         HandbagScript.handbagCollisionEvent -= handbagInflictDamage;
         CleanerScript.cleanerCollisionEvent -= cleanerInflictDamage;
+        EnginKidScript.enginKidDeathEvent -= stopEnginKidClusterCoroutine;
+    }
+
+    // Coroutine to spawn 3 EnginKids every 3 seconds
+    private IEnumerator spawnEnginKidCluster()
+    {
+        Debug.Log("Start spawnEnginKidCluster Coroutine");
+        enginKidClusterActive = true;
+        GameObject lastEnginKid;
+
+        // Randomly generate a corner for the cluster to congregate at
+        enginKidGatheringCorner = SpawnScript.generateEnginKidGatheringCorner();
+
+        // Spawn an enginKid every 3s
+        spawnEnginKid();
+        yield return new WaitForSeconds(3);
+
+        spawnEnginKid();
+        yield return new WaitForSeconds(3);
+
+        // Manually spawn an enginKid from pool because we want to
+        // assign it to a gameObject to keep track of its distance to gathering point to trigger attackPhase
+        lastEnginKid = ObjectPoolScript.spawnObject(enginKid, SpawnScript.generateSpawnPoint(), Quaternion.identity);
+        EnginKidScript.enginKidCount += 1;
+        
+        // Wait for the last enginKid to gather
+        while (lastEnginKid.activeInHierarchy)
+        {
+            // Activate attack phase when everybody has gathered
+            if (Vector3.Distance(enginKidGatheringCorner, lastEnginKid.transform.position) < 0.6f)
+            {
+                EnginKidScript.attackPhase = true;
+                // Activate group cluster boost
+                EnginKidScript.gatheredSuccessfully = true;
+                enginKidGatheredEvent();
+            }
+            yield return null;
+        }
+        Debug.Log("End spawnEnginKidCluster Coroutine");
     }
 }
