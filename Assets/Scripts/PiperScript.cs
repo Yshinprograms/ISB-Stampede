@@ -28,6 +28,9 @@ public class PiperScript : MonoBehaviour
 
         // Checks if there are enemies in range of Piper's projectiles
         enemyInRange = Physics2D.OverlapCircle(transform.position, 2f, LayerMask.GetMask("Enemy"));
+
+        // Make sure Piper remains upright after colliding into other objects
+        transform.rotation = Quaternion.Euler(0, 0, 0);
     }
 
 

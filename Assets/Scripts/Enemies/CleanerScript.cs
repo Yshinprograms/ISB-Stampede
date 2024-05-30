@@ -1,0 +1,171 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+/* 1. Cleaner spawns from any of the 4 corners as usual
+ * 2. Cleaner moves to random points all over the map, sweeping the floor 
+ *     - does not engage piper automatically & does not take damage in this mode
+ * 3. Once hit by one of Piper's projectiles, engage enraged mode:
+ *     - Gets angry and "charges" up for 2s - Invincible in this state + animation & SFX
+ *     - Charge towards Piper's position at the end of 2s - Furious sweeping animation
+ * 4. If Cleaner is still alive, continue to charge towards Piper's position every 3s
+ *     
+ * Parameters: 20HP, 20DMG, 0.7 Speed, Does not take damage on first hit --> 5 Speed when charging */
+
+public class CleanerScript : MonoBehaviour
+{
+    public delegate void CleanerEvent();
+    public static event CleanerEvent cleanerCollisionEvent;
+    public static event CleanerEvent cleanerEnrageEvent;
+    public float cleanerSpeed;
+    // Cleaner's aim line when charging towards Piper, adjust accordingly in coroutines
+    public LineRenderer aimingLine;
+
+    private int maxHealth = 20;
+    private int health;
+    private bool enraged;
+    private int projectileHitCount;
+    private Vector3 randomMapPosition;
+    private bool isCharging;
+    private bool completedEnrage;
+
+    void Start()
+    {
+        randomMapPosition = Vector3.zero;
+        cleanerSpeed = 0.7f;
+        health = maxHealth;
+        projectileHitCount = 0;
+        enraged = false;
+        completedEnrage = false;
+        isCharging = false;
+        aimingLine.enabled = false;
+    }
+
+    void OnEnable()
+    {
+        randomMapPosition = Vector3.zero;
+        cleanerSpeed = 0.7f;
+        health = maxHealth;
+        projectileHitCount = 0;
+        enraged = false;
+        completedEnrage = false;
+        isCharging = false;
+        aimingLine.enabled = false;
+    }
+    void Update()
+    {
+        // regular movement when not enraged
+        if (!enraged)
+        {
+            // Either generate first randomPos or generate new randomPos after reaching the previous one
+            if ((randomMapPosition == Vector3.zero) || (Vector3.Distance(transform.position, randomMapPosition) < 0.1f))
+            {
+                randomMapPosition = SpawnScript.generateMapPosition();
+            }
+            Vector3 directionToPosition = randomMapPosition - transform.position;
+            transform.position = Vector3.MoveTowards(transform.position, randomMapPosition, cleanerSpeed * Time.deltaTime);
+        }
+
+        // Enraged movement pattern
+        if (projectileHitCount == 1 && !enraged)
+        {
+            StartCoroutine(enterEnragedMode());
+            enraged = true;
+        }
+        // Charging pattern after 1st charge
+        else if (!isCharging && enraged && completedEnrage)
+        {
+            isCharging = true;
+            StartCoroutine(continueCharge());
+        }
+
+        // Destroy Bollard when health <= 0
+        if (health <= 0)
+        {
+            ObjectPoolScript.returnObjectToPool(gameObject);
+        }
+    }
+
+    public IEnumerator enterEnragedMode()
+    {
+        cleanerEnrageEvent();
+        // Get angry and charge up for 2s, then get Piper position and direction
+        yield return new WaitForSeconds(2);
+        Vector3 targetPosition = PiperScript.piperPosition;
+        aimingLine.enabled = true;
+
+        // Charge towards Piper's position
+        cleanerSpeed = 5f;
+        Vector3 directionToPiper = (targetPosition - transform.position).normalized;
+        while (Vector3.Distance(transform.position, targetPosition) > 0.1f)
+        {
+            UpdateAimingLine(targetPosition);
+            transform.position += cleanerSpeed * Time.deltaTime * directionToPiper;
+            yield return null;
+        }
+
+        // Stop, wait for next charge, completedEnrage sequence
+        cleanerSpeed = 0;
+        completedEnrage = true;
+        aimingLine.enabled = false; // Hide the aiming line after charging
+    }
+
+    public IEnumerator continueCharge()
+    {
+        // Delay 3s in between each charge
+        yield return new WaitForSeconds(3);
+
+        // Get Piper position and direction
+        cleanerSpeed = 5f;
+        Vector3 targetPosition = PiperScript.piperPosition;
+        Vector3 directionToPiper = (targetPosition - transform.position).normalized;
+        aimingLine.enabled = true;
+
+        // Charge towards Piper's position
+        while (Vector3.Distance(transform.position, targetPosition) > 0.1f)
+        //while (transform.position != targetPosition)
+        {
+            UpdateAimingLine(targetPosition);
+            transform.position += cleanerSpeed * Time.deltaTime * directionToPiper;
+            yield return null;
+        }
+
+        // Stop after reaching and reset coroutine
+        cleanerSpeed = 0;
+        isCharging = false;
+        aimingLine.enabled = false; // Hide the aiming line after charging
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            if (cleanerCollisionEvent != null)
+            {
+                cleanerCollisionEvent();
+            }
+        }
+
+        // Figure out how to put this into the paperBall script instead
+        if (collision.gameObject.CompareTag("PaperBall"))
+        {
+            projectileHitCount += 1;
+            // Does not take damage on first hit
+            if (projectileHitCount > 1)
+            { 
+                health -= 10; 
+            }
+        }
+    }
+
+    // Function to update the aiming line renderer
+    private void UpdateAimingLine(Vector3 targetPosition)
+    {
+        // Calculate the direction to the target
+        Vector3 directionToPiper = (targetPosition - transform.position).normalized;
+
+        // Set the aiming line's position
+        aimingLine.SetPosition(0, transform.position);
+        aimingLine.SetPosition(1, transform.position + (directionToPiper * Vector3.Distance(transform.position, targetPosition) ) );
+    }
+}
