@@ -13,6 +13,8 @@ public class AudioManager : MonoBehaviour
     public AudioSource bollardCollisionSFX;
     public AudioSource paperBallThrownSFX;
     public AudioSource freshieCollisionSFX;
+    public AudioSource csMuggerCollisionSFX;
+    public AudioSource csMuggerCodeCollisionSFX;
 
     [Header("---------- Audio Clip ----------")]
     // Just drag and drop wav files into Audio Sources in inspector
@@ -21,6 +23,7 @@ public class AudioManager : MonoBehaviour
 
     void Start()
     {
+        // Plays background Music for Level 1
         musicSource.clip = background;
         musicSource.Play();
 
@@ -29,6 +32,8 @@ public class AudioManager : MonoBehaviour
         PaperBallScript.paperBallCollisionEvent += paperBallCollisionSounds;
         PaperBallScript.paperBallThrownEvent += paperBallThrownSounds;
         FreshieScript.freshieCollisionEvent += freshieSounds;
+        CSMuggerScript.csMuggerCollisionEvent += csMuggerSounds;
+        csMuggerCodeSpawnScript.csMuggerCodeCollisionEvent += csMuggerCodeSounds;
     }
 
     void freshieSounds()
@@ -50,6 +55,16 @@ public class AudioManager : MonoBehaviour
         paperBallThrownSFX.Play();
     }
 
+    void csMuggerSounds()
+    {
+        csMuggerCollisionSFX.Play();
+    }
+
+    void csMuggerCodeSounds()
+    {
+        csMuggerCodeCollisionSFX.Play();
+    }
+
     // Unsubscribe from events
     private void OnDestroy()
     {
@@ -57,6 +72,8 @@ public class AudioManager : MonoBehaviour
         FreshieScript.freshieCollisionEvent -= freshieSounds;
         PaperBallScript.paperBallCollisionEvent -= paperBallCollisionSounds;
         PaperBallScript.paperBallThrownEvent -= paperBallThrownSounds;
+        CSMuggerScript.csMuggerCollisionEvent -= csMuggerSounds;
+        csMuggerCodeSpawnScript.csMuggerCodeCollisionEvent -= csMuggerCodeSounds;
         
     }
 }

@@ -2449,10 +2449,12 @@ MonoBehaviour:
   bollard: {fileID: 8094103716569888245, guid: b8616b321ed9c284685ece1a17d3a6d7, type: 3}
   paperBall: {fileID: 7656084192474370632, guid: 89b5fc3fec2edf247ad89980e7c63c20, type: 3}
   freshie: {fileID: 6957121572706495131, guid: 273620347d7271d41a912b713372997c, type: 3}
+  csMugger: {fileID: 6796602512780793279, guid: 8c1b6d875bb29864b87578665728568e, type: 3}
   secondsBetweenPaperBallSpawn: 6
   secondsBetweenBollardSpawn: 6
+  secondsBetweenFreshieSpawn: 5
+  secondsBetweenCSMuggerSpawn: 5
   maxActivePaperBalls: 1
-  secondsBetweenFreshieSpawn: 6
 --- !u!4 &1536683452
 Transform:
   m_ObjectHideFlags: 0

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using Unity.VisualScripting;
 
 // Handles all UI, Spawning and logic in game
 
@@ -24,14 +25,18 @@ public class LogicScript : MonoBehaviour
     public GameObject bollard;
     public GameObject paperBall;
     public GameObject freshie;
+    public GameObject csMugger;
+    public GameObject csMuggerCodeSpawn;
 
     // Spawn times
     public float secondsBetweenPaperBallSpawn;
     public float secondsBetweenBollardSpawn = 6f;
+    public float secondsBetweenFreshieSpawn = 5f;
+    public float secondsBetweenCSMuggerSpawn = 6f;
 
     // Controls quantity of projectiles on map
     public int maxActivePaperBalls = 1;
-    public float secondsBetweenFreshieSpawn = 6f;
+    
 
     void Start()
     {
@@ -39,14 +44,21 @@ public class LogicScript : MonoBehaviour
         BollardScript.bollardCollisionEvent += bollardInflictDamage;
         InvokeRepeating("spawnBollard", 0f, secondsBetweenBollardSpawn); // Calls spawnBollard every 6s from t=0
 
+        // Freshie interaction and Spawns 
+        FreshieScript.freshieCollisionEvent += freshieInflictDamage;
+        InvokeRepeating("spawnFreshie", 0f, secondsBetweenFreshieSpawn); // Calls freshieBollard every 5s from t=0
+
+        // CSMugger interaction and Spawns + Future enemies
+        CSMuggerScript.csMuggerCollisionEvent += csMuggerInflictDamage;
+        InvokeRepeating("spawnCSMugger", 0f, secondsBetweenCSMuggerSpawn);
+        csMuggerCodeSpawnScript.csMuggerCodeCollisionEvent += csMuggerCodeInflictDamage;
+
         // Piper's parameters & projectile interactions
         piperHealth = piperMaxHealth;
         healthbar.setMaxHealth(piperMaxHealth);
         PaperBallScript.activePaperBalls = 0;
 
-        // Freshie interaction and Spawns + Future enemies
-        FreshieScript.freshieCollisionEvent += freshieInflictDamage;
-        InvokeRepeating("spawnFreshie", 0f, secondsBetweenFreshieSpawn); // Calls freshieBollard every 3s from t=0
+        
     }
 
 
@@ -99,6 +111,16 @@ public class LogicScript : MonoBehaviour
         piperHealth -= 20;
     }
 
+    void csMuggerInflictDamage()
+    {
+        piperHealth -= 15;
+    }
+
+    void csMuggerCodeInflictDamage()
+    {
+        piperHealth -= 5;
+    }
+
     // Spawn Enemies
     void spawnBollard()
     {
@@ -107,6 +129,11 @@ public class LogicScript : MonoBehaviour
     void spawnFreshie()
     {
         ObjectPoolScript.spawnObject(freshie, SpawnScript.generateSpawnPoint(), Quaternion.identity);
+    }
+
+    void spawnCSMugger()
+    {
+        ObjectPoolScript.spawnObject(csMugger, SpawnScript.generateSpawnPoint(), Quaternion.identity);
     }
 
     // Spawn Projectiles
@@ -121,8 +148,10 @@ public class LogicScript : MonoBehaviour
     {
         CancelInvoke("spawnBollard");
         CancelInvoke("spawnFreshie");
+        CancelInvoke("spawnCSMugger");
         BollardScript.bollardCollisionEvent -= bollardInflictDamage;
         FreshieScript.freshieCollisionEvent -= freshieInflictDamage;
+        CSMuggerScript.csMuggerCollisionEvent -= csMuggerInflictDamage;
 
     }
 }
