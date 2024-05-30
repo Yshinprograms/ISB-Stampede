@@ -5,8 +5,12 @@ using UnityEngine;
 public static class SpawnScript
 {
     // Map parameters
-    private static readonly float yBound = 5.5f;
     private static readonly float xBound = 9.5f;
+    private static readonly float yBound = 5.5f;
+    private static readonly float xInternalBound = 8.6f;
+    private static readonly float yInternalBound = 4.7f;
+    private static readonly float xEnginGatheringCorner = 8f;
+    private static readonly float yEnginGatheringCorner = 4f;
 
     // Spawn function to spawn enemy randomly around map perimeter
     public static Vector2 generateSpawnPoint()
@@ -36,6 +40,41 @@ public static class SpawnScript
         }
 
         return spawnPoint;
+    }
+
+    public static Vector2 generateMapPosition()
+    {
+        Vector2 mapPosition = Vector2.zero;
+        mapPosition.x = Random.Range(-xInternalBound, xInternalBound);
+        mapPosition.y = Random.Range(-yInternalBound, yInternalBound);
+
+        return mapPosition;
+    }
+
+    public static Vector2 generateEnginKidGatheringCorner()
+    {
+        Vector2 mapPosition = Vector2.zero;
+        int corner = Random.Range(1, 5);
+        switch (corner)
+        {
+            case 1: // Top
+                mapPosition = new Vector3(xEnginGatheringCorner, yEnginGatheringCorner);
+                break;
+            case 2: // Right
+                mapPosition = new Vector3(xEnginGatheringCorner, -yEnginGatheringCorner);
+                break;
+            case 3: // Bottom
+                mapPosition = new Vector3(-xEnginGatheringCorner, yEnginGatheringCorner);
+                break;
+            case 4: // Left
+                mapPosition = new Vector3(-xEnginGatheringCorner, -yEnginGatheringCorner);
+                break;
+            default:
+                Debug.LogError("Invalid side value in generateSpawnPoint()");
+                break;
+        }
+
+        return mapPosition;
     }
 
 }
