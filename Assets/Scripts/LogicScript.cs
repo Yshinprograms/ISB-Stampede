@@ -38,11 +38,6 @@ public class LogicScript : MonoBehaviour
     public float secondsBetweenBollardSpawn = 6f;
     public float secondsBetweenFreshieSpawn = 5f;
     public float secondsBetweenCSMuggerSpawn = 6f;
-
-    // Controls quantity of projectiles on map
-    public int maxActivePaperBalls = 1;
-    
-    public float secondsBetweenFreshieSpawn = 6f;
     public float secondsBetweenAuntySpawn = 6f;
     public float secondsBetweenCleanerSpawn = 5f;
     public float secondsBetweenEnginKidSpawn = 5f;
@@ -64,27 +59,23 @@ public class LogicScript : MonoBehaviour
         FreshieScript.freshieCollisionEvent += freshieInflictDamage;
         InvokeRepeating("spawnFreshie", 0f, secondsBetweenFreshieSpawn); // Calls freshieBollard every 5s from t=0
 
-        // CSMugger interaction and Spawns + Future enemies
+        // CSMugger interaction and Spawns
         CSMuggerScript.csMuggerCollisionEvent += csMuggerInflictDamage;
         InvokeRepeating("spawnCSMugger", 0f, secondsBetweenCSMuggerSpawn);
         csMuggerCodeSpawnScript.csMuggerCodeCollisionEvent += csMuggerCodeInflictDamage;
 
         // Bollard interaction and Spawns
         BollardScript.bollardCollisionEvent += bollardInflictDamage;
-        InvokeRepeating("spawnBollard", 1110f, secondsBetweenBollardSpawn);
-
-        // Freshie interaction and Spawns
-        FreshieScript.freshieCollisionEvent += freshieInflictDamage;
-        InvokeRepeating("spawnFreshie", 1110f, secondsBetweenFreshieSpawn);
+        InvokeRepeating("spawnBollard", 0f, secondsBetweenBollardSpawn);
 
         // Aunty interactions and spawns
         AuntyScript.auntyCollisionEvent += auntyInflictDamage;
         HandbagScript.handbagCollisionEvent += handbagInflictDamage;
-        InvokeRepeating("spawnAunty", 1110f, secondsBetweenAuntySpawn);
+        InvokeRepeating("spawnAunty", 0f, secondsBetweenAuntySpawn);
 
         // Cleaner interaction and Spawns
         CleanerScript.cleanerCollisionEvent += cleanerInflictDamage;
-        InvokeRepeating("spawnCleaner", 1110f, secondsBetweenFreshieSpawn);
+        InvokeRepeating("spawnCleaner", 0f, secondsBetweenFreshieSpawn);
 
         // EnginKid interaction and Spawns
         EnginKidScript.enginKidDeathEvent += stopEnginKidClusterCoroutine;
