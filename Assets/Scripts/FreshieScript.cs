@@ -55,6 +55,8 @@ public class FreshieScript : MonoBehaviour
         {
             ObjectPoolScript.returnObjectToPool(gameObject);
         }
+
+        Debug.DrawLine(transform.position, PiperScript.piperPosition, Color.red);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
