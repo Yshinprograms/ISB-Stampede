@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Freshie given 10 health to start with
+// Freshie given 20 health to start with
 public class FreshieScript : MonoBehaviour
 {
     public delegate void FreshieCollision();

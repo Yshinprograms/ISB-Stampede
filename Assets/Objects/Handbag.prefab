@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7263832325146078763}
   - component: {fileID: 7540792720352675739}
   - component: {fileID: 3146080441333942678}
-  m_Layer: 8
+  m_Layer: 9
   m_Name: Handbag
   m_TagString: Untagged
   m_Icon: {fileID: 0}

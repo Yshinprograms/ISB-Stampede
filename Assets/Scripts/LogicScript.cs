@@ -35,12 +35,14 @@ public class LogicScript : MonoBehaviour
 
     // Spawn times
     public float secondsBetweenPaperBallSpawn;
-    public float secondsBetweenBollardSpawn = 6f;
-    public float secondsBetweenFreshieSpawn = 5f;
-    public float secondsBetweenCSMuggerSpawn = 6f;
+
+    public float secondsBetweenBollardSpawn = 4f;
+    public float secondsBetweenFreshieSpawn = 6f;
     public float secondsBetweenAuntySpawn = 6f;
-    public float secondsBetweenCleanerSpawn = 5f;
+
+    public float secondsBetweenCleanerSpawn = 6f;
     public float secondsBetweenEnginKidSpawn = 5f;
+    public float secondsBetweenCSMuggerSpawn = 10f;
 
     // Controls quantity of projectiles on map
     public int maxActivePaperBalls = 1;
@@ -51,42 +53,42 @@ public class LogicScript : MonoBehaviour
     private Coroutine enginKidClusterCoroutine;
     public delegate void EnginEvent();
     public static event EnginEvent enginKidGatheredEvent;
+    private float timer = 0;
 
     void Start()
     {
-
-        // Freshie interaction and Spawns 
-        FreshieScript.freshieCollisionEvent += freshieInflictDamage;
-        InvokeRepeating("spawnFreshie", 0f, secondsBetweenFreshieSpawn); // Calls freshieBollard every 5s from t=0
-
-        // CSMugger interaction and Spawns
-        CSMuggerScript.csMuggerCollisionEvent += csMuggerInflictDamage;
-        InvokeRepeating("spawnCSMugger", 0f, secondsBetweenCSMuggerSpawn);
-        csMuggerCodeSpawnScript.csMuggerCodeCollisionEvent += csMuggerCodeInflictDamage;
 
         // Bollard interaction and Spawns
         BollardScript.bollardCollisionEvent += bollardInflictDamage;
         InvokeRepeating("spawnBollard", 0f, secondsBetweenBollardSpawn);
 
+        // Freshie interaction and Spawns 
+        FreshieScript.freshieCollisionEvent += freshieInflictDamage;
+        InvokeRepeating("spawnFreshie", 20f, secondsBetweenFreshieSpawn); // Calls freshieBollard every 5s from t=0
+
         // Aunty interactions and spawns
         AuntyScript.auntyCollisionEvent += auntyInflictDamage;
         HandbagScript.handbagCollisionEvent += handbagInflictDamage;
-        InvokeRepeating("spawnAunty", 0f, secondsBetweenAuntySpawn);
+        InvokeRepeating("spawnAunty", 40f, secondsBetweenAuntySpawn);
 
         // Cleaner interaction and Spawns
         CleanerScript.cleanerCollisionEvent += cleanerInflictDamage;
-        InvokeRepeating("spawnCleaner", 0f, secondsBetweenFreshieSpawn);
+        InvokeRepeating("spawnCleaner", 60f, secondsBetweenFreshieSpawn);
 
         // EnginKid interaction and Spawns
         EnginKidScript.enginKidDeathEvent += stopEnginKidClusterCoroutine;
         enginKidClusterActive = false;
+
+        // CSMugger interaction and Spawns
+        CSMuggerScript.csMuggerCollisionEvent += csMuggerInflictDamage;
+        InvokeRepeating("spawnCSMugger", 100f, secondsBetweenCSMuggerSpawn);
+        csMuggerCodeSpawnScript.csMuggerCodeCollisionEvent += csMuggerCodeInflictDamage;
 
         // Piper's parameters & projectile interactions
         isAlive = true;
         piperHealth = piperMaxHealth;
         healthbar.setMaxHealth(piperMaxHealth);
         PaperBallScript.activePaperBalls = 0;
-
 
     }
 
@@ -130,11 +132,23 @@ public class LogicScript : MonoBehaviour
 
         // EnginKid Clustering Logic
         // Cluster spawning coroutine only starts if there are no clusters && enginKids are not in attack phase
-        if (!enginKidClusterActive && !EnginKidScript.attackPhase)
+        if (timer > 80)
         {
-            enginKidClusterCoroutine = StartCoroutine(spawnEnginKidCluster());
+            if (!enginKidClusterActive && !EnginKidScript.attackPhase)
+            {
+                enginKidClusterCoroutine = StartCoroutine(spawnEnginKidCluster());
+            }
         }
+        if (timer > 50)
+        {
+            CancelInvoke("spawnBollard");
+            CancelInvoke("spawnFreshie");
+            CancelInvoke("spawnAunty");
+        }
+        
 
+
+        timer += Time.deltaTime;
         //Debug.Log(EnginKidScript.enginKidCount.ToString());
     }
 

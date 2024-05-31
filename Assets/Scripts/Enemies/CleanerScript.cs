@@ -10,7 +10,7 @@ using UnityEngine;
  *     - Charge towards Piper's position at the end of 2s - Furious sweeping animation
  * 4. If Cleaner is still alive, continue to charge towards Piper's position every 3s
  *     
- * Parameters: 20HP, 20DMG, 0.7 Speed, Does not take damage on first hit --> 5 Speed when charging */
+ * Parameters: 10HP, 20DMG, 0.7 Speed, Does not take damage on first hit --> 5 Speed when charging */
 
 public class CleanerScript : MonoBehaviour
 {
@@ -21,7 +21,7 @@ public class CleanerScript : MonoBehaviour
     // Cleaner's aim line when charging towards Piper, adjust accordingly in coroutines
     public LineRenderer aimingLine;
 
-    private int maxHealth = 20;
+    private int maxHealth = 10;
     private int health;
     private bool enraged;
     private int projectileHitCount;

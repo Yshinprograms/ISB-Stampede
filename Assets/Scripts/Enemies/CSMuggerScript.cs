@@ -8,8 +8,8 @@ public class CSMuggerScript : MonoBehaviour
 {
     public delegate void CSMuggerCollision();
     public static event CSMuggerCollision csMuggerCollisionEvent;
-    public float csMuggerSpeed = 1f;
-    public int maxHealth = 30;
+    public float csMuggerSpeed = 0.7f;
+    public int maxHealth = 20;
     public int health;
 
     private float timeBtwShots;
