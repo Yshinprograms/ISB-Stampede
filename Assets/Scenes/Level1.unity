@@ -1029,7 +1029,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &832138198
 Transform:
   m_ObjectHideFlags: 0
@@ -2280,11 +2280,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fa48f7185b7b37b468527508fbb7f57f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  piperMaxHealth: 10000
+  piperMaxHealth: 200
   healthbar: {fileID: 1690778420}
   pauseMenu: {fileID: 30914577}
   gameManager: {fileID: 1455414616}
-  bollard: {fileID: 8094103716569888245, guid: b8616b321ed9c284685ece1a17d3a6d7, type: 3}
+  bollard: {fileID: 1047622227527236566, guid: e1c32e5401282b047bd2009dbbc71176, type: 3}
   paperBall: {fileID: 7656084192474370632, guid: 89b5fc3fec2edf247ad89980e7c63c20, type: 3}
   freshie: {fileID: 6957121572706495131, guid: 273620347d7271d41a912b713372997c, type: 3}
   csMugger: {fileID: 4994354537569844616, guid: bdaeca230f1417943a26bf3b9754a3bc, type: 3}
@@ -2293,10 +2293,10 @@ MonoBehaviour:
   cleaner: {fileID: 4595520701919560262, guid: de06c16569ca9334d837a42c679097a5, type: 3}
   enginKid: {fileID: 5774840321483290054, guid: 36c4afd386cbda244b222fd412207f69, type: 3}
   secondsBetweenPaperBallSpawn: 6
-  secondsBetweenBollardSpawn: 6
-  secondsBetweenFreshieSpawn: 5
+  secondsBetweenBollardSpawn: 4
+  secondsBetweenFreshieSpawn: 6
   secondsBetweenAuntySpawn: 6
-  secondsBetweenCleanerSpawn: 5
+  secondsBetweenCleanerSpawn: 6
   secondsBetweenEnginKidSpawn: 5
   secondsBetweenCSMuggerSpawn: 6
   maxActivePaperBalls: 1

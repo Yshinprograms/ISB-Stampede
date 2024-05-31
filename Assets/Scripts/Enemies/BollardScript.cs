@@ -6,8 +6,8 @@ using UnityEngine;
 
 public class BollardScript : MonoBehaviour
 {
-    public delegate void BollardEvent();
-    public static event BollardEvent bollardCollisionEvent;
+    public delegate void BollardCollision();
+    public static event BollardCollision bollardCollisionEvent;
     public float bollardSpeed = 0.7f;
     public int maxHealth = 10;
     public int health;
@@ -34,6 +34,8 @@ public class BollardScript : MonoBehaviour
         {
             ObjectPoolScript.returnObjectToPool(gameObject);
         }
+
+        Debug.DrawLine(transform.position, PiperScript.piperPosition, Color.red);
     }
 
     void moveToPiper(Vector3 directionToPiper)

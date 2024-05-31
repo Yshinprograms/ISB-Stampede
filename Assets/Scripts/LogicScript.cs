@@ -57,31 +57,30 @@ public class LogicScript : MonoBehaviour
 
     void Start()
     {
-
-        // Bollard interaction and Spawns
+        // Bollard interaction and Spawns ; time 0s
         BollardScript.bollardCollisionEvent += bollardInflictDamage;
         InvokeRepeating("spawnBollard", 0f, secondsBetweenBollardSpawn);
 
-        // Freshie interaction and Spawns 
+        // Freshie interaction and Spawns ; time 60s
         FreshieScript.freshieCollisionEvent += freshieInflictDamage;
-        InvokeRepeating("spawnFreshie", 20f, secondsBetweenFreshieSpawn); // Calls freshieBollard every 5s from t=0
+        InvokeRepeating("spawnFreshie", 60f, secondsBetweenFreshieSpawn); // Calls freshieBollard every 5s from t=0
 
-        // Aunty interactions and spawns
+        // Aunty interactions and spawns ; time 120s
         AuntyScript.auntyCollisionEvent += auntyInflictDamage;
         HandbagScript.handbagCollisionEvent += handbagInflictDamage;
-        InvokeRepeating("spawnAunty", 40f, secondsBetweenAuntySpawn);
+        InvokeRepeating("spawnAunty", 120f, secondsBetweenAuntySpawn);
 
-        // Cleaner interaction and Spawns
+        // Cleaner interaction and Spawns ; time 180s
         CleanerScript.cleanerCollisionEvent += cleanerInflictDamage;
-        InvokeRepeating("spawnCleaner", 60f, secondsBetweenFreshieSpawn);
+        InvokeRepeating("spawnCleaner", 180f, secondsBetweenFreshieSpawn);
 
         // EnginKid interaction and Spawns
         EnginKidScript.enginKidDeathEvent += stopEnginKidClusterCoroutine;
         enginKidClusterActive = false;
 
-        // CSMugger interaction and Spawns
+        // CSMugger interaction and Spawns ; time 300s
         CSMuggerScript.csMuggerCollisionEvent += csMuggerInflictDamage;
-        InvokeRepeating("spawnCSMugger", 100f, secondsBetweenCSMuggerSpawn);
+        InvokeRepeating("spawnCSMugger", 300f, secondsBetweenCSMuggerSpawn);
         csMuggerCodeSpawnScript.csMuggerCodeCollisionEvent += csMuggerCodeInflictDamage;
 
         // Piper's parameters & projectile interactions
@@ -132,14 +131,14 @@ public class LogicScript : MonoBehaviour
 
         // EnginKid Clustering Logic
         // Cluster spawning coroutine only starts if there are no clusters && enginKids are not in attack phase
-        if (timer > 80)
+        if (timer > 240)
         {
             if (!enginKidClusterActive && !EnginKidScript.attackPhase)
             {
                 enginKidClusterCoroutine = StartCoroutine(spawnEnginKidCluster());
             }
         }
-        if (timer > 50)
+        if (timer > 150) // At 2min 30s stop wave 1
         {
             CancelInvoke("spawnBollard");
             CancelInvoke("spawnFreshie");

@@ -144,7 +144,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   csMuggerSpeed: 1
-  maxHealth: 50
+  maxHealth: 20
   health: 0
-  startTimeBtwShots: 10
+  startTimeBtwCode: 5
   csMuggerProjectile: {fileID: 2425603647604418709, guid: 4f2017313fa89a741825a185ae8e79aa, type: 3}

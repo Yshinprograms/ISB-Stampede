@@ -9,53 +9,84 @@ public class FreshieScript : MonoBehaviour
     public static event FreshieCollision freshieCollisionEvent;
     
     // Movement speed of freshie enemy
-    public float freshieSpeed = 1f;
-
-    public float zigzagFrequency = 1f;   // Frequency of the zigzag (how fast it zigzags)
-    public float zigzagAmplitude = 1f;   // Amplitude of the zigzag (how wide it zigzags)
-
+    public float freshieLinearSpeed = 1.5f;
+    public float freshieDiagonalSpeed = 1f;
+    public float moveDuration = 1f;  
+    public float stopDuration = 1f;
+    private bool isMoving = true;
 
     // Health of Freshie
     public int maxHealth = 20;
     public int health;
 
     // Start is called before the first frame update
-    void Start()
-    {
-        health = maxHealth;
-    }
-
     private void OnEnable()
     {
         health = maxHealth;
+        StartCoroutine(FreshieZigzagMovement());
+    }
+
+    void Start()
+    {
+        health = maxHealth;
+        //StartCoroutine(FreshieZigzagMovement());
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Vector Addition
-        Vector3 directionToPiper = PiperScript.piperPosition - transform.position;
-        
-        // Calculate the perpendicular direction for the zigzag effect
-        Vector3 perpendicularDirection = Vector3.Cross(directionToPiper, Vector3.one);
-
-        // Create a zigzag effect using a sine wave
-        float zigzag = Mathf.Sin(Time.time * zigzagFrequency) * zigzagAmplitude;
-
-        // Calculate the new position with the zigzag effect
-        Vector3 movement = directionToPiper * freshieSpeed * Time.deltaTime;
-        Vector3 zigzagMovement = perpendicularDirection * zigzag * Time.deltaTime;
-
-        // Move the character towards Piper with the zigzag effect applied
-        transform.position += movement + zigzagMovement;
-
-
         // Destroy Freshie when health <= 0
         if (health <= 0)
         {
             ObjectPoolScript.returnObjectToPool(gameObject);
         }
     }
+
+
+    // coroutine of freshie
+    IEnumerator FreshieZigzagMovement()
+    {
+        while (true)
+        {
+            // Move towards player horizontally for moveDuration
+            yield return MoveTowardsPiper(Vector2.right * (PiperScript.piperPosition.x <= transform.position.x ? -1 : 1), moveDuration, freshieLinearSpeed);
+
+            // Stop for stopDuration
+            isMoving = false;
+            yield return new WaitForSeconds(stopDuration);
+            isMoving = true;
+
+            // Move diagonally for moveDuration
+            Vector2 diagonalDirection = new Vector2(
+                PiperScript.piperPosition.x <= transform.position.x ? 1 : -1,
+                PiperScript.piperPosition.y <= transform.position.y ? -1 : 1
+            );
+
+            yield return MoveTowardsPiper(diagonalDirection, moveDuration, freshieDiagonalSpeed);
+
+            // Stop for stopDuration
+            isMoving = false;
+            yield return new WaitForSeconds(stopDuration);
+            isMoving = true;
+        }
+    }
+
+    IEnumerator MoveTowardsPiper(Vector2 direction, float duration, float speed)
+    {
+        float elapsedTime = 0f;
+        while (elapsedTime < duration)
+        {
+            if (isMoving)
+            {
+                transform.Translate(direction * speed * Time.deltaTime);
+            }
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+    }
+
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

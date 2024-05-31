@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8094103716569888245
+--- !u!1 &1047622227527236566
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,10 +8,11 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8690816090400102205}
-  - component: {fileID: 7227044051808018855}
-  - component: {fileID: 7744169834993751746}
-  - component: {fileID: 5178780684501460403}
+  - component: {fileID: 1921828058385162971}
+  - component: {fileID: 1338564583758241322}
+  - component: {fileID: 6673149320110953281}
+  - component: {fileID: 7533438394535395387}
+  - component: {fileID: 5856034027557904089}
   m_Layer: 6
   m_Name: Bollard
   m_TagString: Enemy
@@ -19,13 +20,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8690816090400102205
+--- !u!4 &1921828058385162971
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8094103716569888245}
+  m_GameObject: {fileID: 1047622227527236566}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7.85, y: -9.32, z: 0.026601983}
@@ -34,13 +35,13 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &7227044051808018855
+--- !u!212 &1338564583758241322
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8094103716569888245}
+  m_GameObject: {fileID: 1047622227527236566}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -86,28 +87,13 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &7744169834993751746
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8094103716569888245}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7405046086525e94db93bc23ebb8951e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bollardSpeed: 0.7
-  maxHealth: 10
-  health: 0
---- !u!61 &5178780684501460403
+--- !u!61 &6673149320110953281
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8094103716569888245}
+  m_GameObject: {fileID: 1047622227527236566}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -146,3 +132,45 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.17, y: 0.78}
   m_EdgeRadius: 0
+--- !u!50 &7533438394535395387
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1047622227527236566}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
+--- !u!114 &5856034027557904089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1047622227527236566}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7405046086525e94db93bc23ebb8951e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bollardSpeed: 0.7
+  maxHealth: 10
+  health: 0

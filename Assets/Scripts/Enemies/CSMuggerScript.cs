@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// CSMugger starts with 30 Health
+// CSMugger starts with 20 Health
 
 public class CSMuggerScript : MonoBehaviour
 {
@@ -12,14 +12,15 @@ public class CSMuggerScript : MonoBehaviour
     public int maxHealth = 20;
     public int health;
 
-    private float timeBtwShots;
-    public float startTimeBtwShots;
+    private float timeBtwCode;
+    public float startTimeBtwCode = 10;
+    private float codeCount = 0;
 
     public GameObject csMuggerProjectile;
     void Start()
     {
         health = maxHealth;
-        timeBtwShots = startTimeBtwShots;
+        timeBtwCode = startTimeBtwCode;
     }
 
     void OnEnable()
@@ -34,14 +35,19 @@ public class CSMuggerScript : MonoBehaviour
         // Normalize for constant speed in all directions
         moveToPiper(directionToPiper.normalized);
 
-        // Set up projectile frequency
-        if (timeBtwShots <= 0)
+        // Set up code frequency
+        if (codeCount < 3)
         {
-            Instantiate(csMuggerProjectile, transform.position, Quaternion.identity);
-            timeBtwShots = startTimeBtwShots;
-        } else
-        {
-            timeBtwShots -= Time.deltaTime;
+            if (timeBtwCode <= 0)
+            {
+                Instantiate(csMuggerProjectile, transform.position, Quaternion.identity);
+                timeBtwCode = startTimeBtwCode;
+                codeCount += 1;
+            }
+            else
+            {
+                timeBtwCode -= Time.deltaTime;
+            }
         }
 
         // Destroy CS Mugger when health <= 0
