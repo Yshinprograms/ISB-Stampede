@@ -23,7 +23,7 @@ public class csMuggerCodeSpawnScript : MonoBehaviour
         // Destroy CS Mugger Projectile when health <= 0
         if (health <= 0)
         {
-            Destroy(gameObject);
+            ObjectPoolScript.returnObjectToPool(gameObject);
         }
 
     }

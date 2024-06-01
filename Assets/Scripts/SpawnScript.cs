@@ -5,12 +5,12 @@ using UnityEngine;
 public static class SpawnScript
 {
     // Position outside the map, so +0.5f as margin
-    /*private static readonly float xBound = 9.5f;
+    private static readonly float xBound = 9.5f;
     private static readonly float yUpperBound = 10.7f;
-    private static readonly float yLowerBound = -6f;*/
-    private static readonly float xBound = 8f;
+    private static readonly float yLowerBound = -6f;
+    /*private static readonly float xBound = 8f;
     private static readonly float yUpperBound = 10f;
-    private static readonly float yLowerBound = -1f;
+    private static readonly float yLowerBound = -1f;*/
 
     // Position within the map
     private static readonly float xInternalBound = 8.4f;

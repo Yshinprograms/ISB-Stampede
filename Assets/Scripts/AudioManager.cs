@@ -18,6 +18,9 @@ using UnityEngine.UIElements;
 
 public class AudioManager : MonoBehaviour
 {
+    // Singleton instance
+    public static AudioManager Instance { get; private set; }
+
     [Header("---------- Audio Source ----------")]
     [SerializeField] AudioSource musicSource;
     public AudioSource paperBallCollisionSFX;
@@ -36,6 +39,22 @@ public class AudioManager : MonoBehaviour
     // Then drag the audio source into Audio Manager script in inspector
     public AudioClip background;
 
+    void Awake()
+    {
+        // Ensure only one instance exists
+        if (Instance != null && Instance != this)
+        {
+            Destroy(this);
+            return;
+        }
+        else
+        {
+            Instance = this;
+        }
+
+        // Make sure the AudioManager persists between scenes
+        DontDestroyOnLoad(gameObject);
+    }
 
     void Start()
     {

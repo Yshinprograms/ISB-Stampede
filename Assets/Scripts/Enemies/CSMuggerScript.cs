@@ -40,7 +40,7 @@ public class CSMuggerScript : MonoBehaviour
         {
             if (timeBtwCode <= 0)
             {
-                Instantiate(csMuggerProjectile, transform.position, Quaternion.identity);
+                ObjectPoolScript.spawnObject(csMuggerProjectile, transform.position, Quaternion.identity);
                 timeBtwCode = startTimeBtwCode;
                 codeCount += 1;
             }

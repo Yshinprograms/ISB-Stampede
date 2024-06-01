@@ -6,13 +6,12 @@ using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
 
 // Handles all UI, Spawning and logic in game
-// Use a coroutine to handle spawning of enginKid every 3 seconds --> cluster attacks in 9s
-// Activate coroutine when no of enginKids == 0
+// Don't need static variables in here since the script is static
 
 public class LogicScript : MonoBehaviour
 {
     public int piperMaxHealth = 100;
-    public static int piperHealth;
+    public int piperHealth; 
     public HealthbarScript healthbar;
 
     // Import Pause Menu Game Object and create boolean variable named GameIsPaused
@@ -35,11 +34,9 @@ public class LogicScript : MonoBehaviour
 
     // Spawn times
     public float secondsBetweenPaperBallSpawn;
-
     public float secondsBetweenBollardSpawn = 4f;
     public float secondsBetweenFreshieSpawn = 6f;
     public float secondsBetweenAuntySpawn = 6f;
-
     public float secondsBetweenCleanerSpawn = 6f;
     public float secondsBetweenEnginKidSpawn = 5f;
     public float secondsBetweenCSMuggerSpawn = 10f;
@@ -48,22 +45,50 @@ public class LogicScript : MonoBehaviour
     public int maxActivePaperBalls = 1;
 
     // EnginKid Logic
-    public static bool enginKidClusterActive;
-    public static Vector3 enginKidGatheringCorner;
+    public bool enginKidClusterActive; // No longer static 
+    public Vector3 enginKidGatheringCorner; // No longer static
     private Coroutine enginKidClusterCoroutine;
     public delegate void EnginEvent();
     public static event EnginEvent enginKidGatheredEvent;
     private float timer = 0;
 
-    void Start()
+    // Singleton Implementation
+    private static LogicScript instance;
+    public static LogicScript Instance
     {
+        get
+        {
+            if (instance == null)
+            {
+                instance = FindObjectOfType<LogicScript>();
+                if (instance == null)
+                {
+                    GameObject go = new GameObject("LogicManager");
+                    instance = go.AddComponent<LogicScript>();
+                }
+            }
+            return instance;
+        }
+    }
+
+    void Awake()
+    {
+        // Ensure only one instance exists
+        if (instance != null && instance != this)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        instance = this;
+        DontDestroyOnLoad(this.gameObject);
+
         // Bollard interaction and Spawns ; time 0s
         BollardScript.bollardCollisionEvent += bollardInflictDamage;
         InvokeRepeating("spawnBollard", 0f, secondsBetweenBollardSpawn);
 
         // Freshie interaction and Spawns ; time 60s
         FreshieScript.freshieCollisionEvent += freshieInflictDamage;
-        InvokeRepeating("spawnFreshie", 60f, secondsBetweenFreshieSpawn); // Calls freshieBollard every 5s from t=0
+        InvokeRepeating("spawnFreshie", 60f, secondsBetweenFreshieSpawn);
 
         // Aunty interactions and spawns ; time 120s
         AuntyScript.auntyCollisionEvent += auntyInflictDamage;
@@ -88,7 +113,6 @@ public class LogicScript : MonoBehaviour
         piperHealth = piperMaxHealth;
         healthbar.setMaxHealth(piperMaxHealth);
         PaperBallScript.activePaperBalls = 0;
-
     }
 
 
@@ -144,11 +168,8 @@ public class LogicScript : MonoBehaviour
             CancelInvoke("spawnFreshie");
             CancelInvoke("spawnAunty");
         }
-        
-
 
         timer += Time.deltaTime;
-        //Debug.Log(EnginKidScript.enginKidCount.ToString());
     }
 
     // Damages

@@ -55,9 +55,9 @@ public class EnginKidScript : MonoBehaviour
         // Go to the gathering corner until we get a cluster of 3 enginKids
         if (!attackPhase && !reachedGatheringCorner)
         {
-            transform.position = Vector3.MoveTowards(transform.position, LogicScript.enginKidGatheringCorner, enginSpeed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, LogicScript.Instance.enginKidGatheringCorner, enginSpeed * Time.deltaTime);
 
-            if (Vector3.Distance(transform.position, LogicScript.enginKidGatheringCorner) < 0.6f)
+            if (Vector3.Distance(transform.position, LogicScript.Instance.enginKidGatheringCorner) < 0.6f)
             {
                 reachedGatheringCorner = true;
             }
@@ -76,7 +76,7 @@ public class EnginKidScript : MonoBehaviour
             if (enginKidCount == 0 )
             {
                 enginKidDeathEvent();
-                LogicScript.enginKidClusterActive = false;
+                LogicScript.Instance.enginKidClusterActive = false;
                 attackPhase = false;
             }
             // If any one of the enginKid dies before all 3 assemble, stop spawning(coroutine) and the other enginKids enter attack phase
@@ -94,7 +94,7 @@ public class EnginKidScript : MonoBehaviour
          */
         if (piperInAuraRange && (Time.time - lastDamageTime >= 1f))
         {
-            LogicScript.piperHealth -= 10;
+            LogicScript.Instance.piperHealth -= 10;
             lastDamageTime = Time.time;
         }
 
