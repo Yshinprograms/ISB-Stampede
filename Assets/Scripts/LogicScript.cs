@@ -170,8 +170,8 @@ public class LogicScript : MonoBehaviour
             CancelInvoke("spawnAunty");
         }
 
-        // if timer more than 600s Game is completed  
-        if (timer > 600)
+        // if timer more than 360s Game is completed  
+        if (timer > 360)
         {
             gameScreenManager.GameCompleted();
         }

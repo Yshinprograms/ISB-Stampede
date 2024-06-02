@@ -2935,11 +2935,11 @@ MonoBehaviour:
   cleaner: {fileID: 4595520701919560262, guid: de06c16569ca9334d837a42c679097a5, type: 3}
   enginKid: {fileID: 5774840321483290054, guid: 36c4afd386cbda244b222fd412207f69, type: 3}
   secondsBetweenPaperBallSpawn: 6
-  secondsBetweenBollardSpawn: 4
-  secondsBetweenFreshieSpawn: 6
+  secondsBetweenBollardSpawn: 2
+  secondsBetweenFreshieSpawn: 4
   secondsBetweenAuntySpawn: 6
-  secondsBetweenCleanerSpawn: 6
-  secondsBetweenEnginKidSpawn: 5
+  secondsBetweenCleanerSpawn: 3
+  secondsBetweenEnginKidSpawn: 4
   secondsBetweenCSMuggerSpawn: 6
   maxActivePaperBalls: 1
   enginKidClusterActive: 0
