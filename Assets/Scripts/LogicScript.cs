@@ -6,21 +6,20 @@ using UnityEngine.SceneManagement;
 using Unity.VisualScripting;
 
 // Handles all UI, Spawning and logic in game
-// Use a coroutine to handle spawning of enginKid every 3 seconds --> cluster attacks in 9s
-// Activate coroutine when no of enginKids == 0
+// Don't need static variables in here since the script is static
 
 public class LogicScript : MonoBehaviour
 {
     public int piperMaxHealth = 100;
-    public static int piperHealth;
+    public int piperHealth; 
     public HealthbarScript healthbar;
 
     // Import Pause Menu Game Object and create boolean variable named GameIsPaused
     public GameObject pauseMenu;
-    public static bool GameIsPaused = false;
+    public static bool gameIsPaused = false;
 
     // Import Game Manager Script & Game end conditions
-    public GameManagerScript gameManager;
+    public GameScreenManager gameScreenManager;
     private bool isAlive;
 
     // Import GameObjects, drag and drop into Inspector
@@ -28,84 +27,111 @@ public class LogicScript : MonoBehaviour
     public GameObject paperBall;
     public GameObject freshie;
     public GameObject csMugger;
-    public GameObject csMuggerCodeSpawn;
+    public GameObject csMuggerCode;
     public GameObject aunty;
     public GameObject cleaner;
     public GameObject enginKid;
 
     // Spawn times
     public float secondsBetweenPaperBallSpawn;
-    public float secondsBetweenBollardSpawn = 6f;
-    public float secondsBetweenFreshieSpawn = 5f;
-    public float secondsBetweenCSMuggerSpawn = 6f;
+    public float secondsBetweenBollardSpawn = 4f;
+    public float secondsBetweenFreshieSpawn = 6f;
     public float secondsBetweenAuntySpawn = 6f;
-    public float secondsBetweenCleanerSpawn = 5f;
+    public float secondsBetweenCleanerSpawn = 6f;
     public float secondsBetweenEnginKidSpawn = 5f;
+    public float secondsBetweenCSMuggerSpawn = 10f;
 
     // Controls quantity of projectiles on map
     public int maxActivePaperBalls = 1;
 
     // EnginKid Logic
-    public static bool enginKidClusterActive;
-    public static Vector3 enginKidGatheringCorner;
+    public bool enginKidClusterActive; // No longer static 
+    public Vector3 enginKidGatheringCorner; // No longer static
     private Coroutine enginKidClusterCoroutine;
     public delegate void EnginEvent();
     public static event EnginEvent enginKidGatheredEvent;
+    private float timer = 0;
 
-    void Start()
+    // Singleton Implementation
+    private static LogicScript instance;
+    public static LogicScript Instance
     {
+        get
+        {
+            if (instance == null)
+            {
+                instance = FindObjectOfType<LogicScript>();
+                if (instance == null)
+                {
+                    GameObject go = new GameObject("LogicManager");
+                    instance = go.AddComponent<LogicScript>();
+                }
+            }
+            return instance;
+        }
+    }
 
-        // Freshie interaction and Spawns 
-        FreshieScript.freshieCollisionEvent += freshieInflictDamage;
-        InvokeRepeating("spawnFreshie", 0f, secondsBetweenFreshieSpawn); // Calls freshieBollard every 5s from t=0
+    void Awake()
+    {
+        // Ensure only one instance exists
+        /*if (instance != null && instance != this)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        instance = this;
+        DontDestroyOnLoad(this.gameObject);*/ 
 
-        // CSMugger interaction and Spawns
-        CSMuggerScript.csMuggerCollisionEvent += csMuggerInflictDamage;
-        InvokeRepeating("spawnCSMugger", 0f, secondsBetweenCSMuggerSpawn);
-        csMuggerCodeSpawnScript.csMuggerCodeCollisionEvent += csMuggerCodeInflictDamage;
-
-        // Bollard interaction and Spawns
-        BollardScript.bollardCollisionEvent += bollardInflictDamage;
+        // Bollard interaction and Spawns ; time 0s
+        Bollard.bollardCollisionEvent += bollardInflictDamage;
         InvokeRepeating("spawnBollard", 0f, secondsBetweenBollardSpawn);
 
-        // Aunty interactions and spawns
-        AuntyScript.auntyCollisionEvent += auntyInflictDamage;
-        HandbagScript.handbagCollisionEvent += handbagInflictDamage;
-        InvokeRepeating("spawnAunty", 0f, secondsBetweenAuntySpawn);
+        // Freshie interaction and Spawns ; time 60s
+        Freshie.freshieCollisionEvent += freshieInflictDamage;
+        InvokeRepeating("spawnFreshie", 60f, secondsBetweenFreshieSpawn);
 
-        // Cleaner interaction and Spawns
-        CleanerScript.cleanerCollisionEvent += cleanerInflictDamage;
-        InvokeRepeating("spawnCleaner", 0f, secondsBetweenFreshieSpawn);
+        // Aunty interactions and spawns ; time 120s
+        Aunty.auntyCollisionEvent += auntyInflictDamage;
+        Handbag.handbagCollisionEvent += handbagInflictDamage;
+        InvokeRepeating("spawnAunty", 120f, secondsBetweenAuntySpawn);
+
+        // Cleaner interaction and Spawns ; time 180s
+        Cleaner.cleanerCollisionEvent += cleanerInflictDamage;
+        InvokeRepeating("spawnCleaner", 180f, secondsBetweenCleanerSpawn);
 
         // EnginKid interaction and Spawns
-        EnginKidScript.enginKidDeathEvent += stopEnginKidClusterCoroutine;
+        EnginKid.enginKidDeathEvent += stopEnginKidClusterCoroutine;
         enginKidClusterActive = false;
+
+        // CSMugger interaction and Spawns ; time 300s
+        CSMugger.csMuggerCollisionEvent += csMuggerInflictDamage;
+        CSMuggerCode.csMuggerCodeCollisionEvent += csMuggerCodeInflictDamage;
+        InvokeRepeating("spawnCSMugger", 300f, secondsBetweenCSMuggerSpawn);
 
         // Piper's parameters & projectile interactions
         isAlive = true;
         piperHealth = piperMaxHealth;
         healthbar.setMaxHealth(piperMaxHealth);
         PaperBallScript.activePaperBalls = 0;
-
-
     }
+
 
 
     void Update()
     {
         if(Input.GetKeyDown(KeyCode.Escape)) 
         {
-            if (GameIsPaused)
+            if (gameIsPaused)
             {
                 pauseMenu.SetActive(false);
                 Time.timeScale = 1;
-                GameIsPaused = false;
+                gameIsPaused = false;
 
             } else
             {
                 pauseMenu.SetActive(true);
                 Time.timeScale = 0;
-                GameIsPaused = true;
+                gameIsPaused = true;
             }
         }
 
@@ -115,7 +141,7 @@ public class LogicScript : MonoBehaviour
         if (piperHealth <= 0 && isAlive)
         {
             isAlive = false;
-            gameManager.gameOver();
+            gameScreenManager.gameOver();
             Debug.Log("Dead");
         }
 
@@ -130,12 +156,27 @@ public class LogicScript : MonoBehaviour
 
         // EnginKid Clustering Logic
         // Cluster spawning coroutine only starts if there are no clusters && enginKids are not in attack phase
-        if (!enginKidClusterActive && !EnginKidScript.attackPhase)
+        if (timer > 240)
         {
-            enginKidClusterCoroutine = StartCoroutine(spawnEnginKidCluster());
+            if (!enginKidClusterActive && !EnginKid.attackPhase)
+            {
+                enginKidClusterCoroutine = StartCoroutine(spawnEnginKidCluster());
+            }
+        }
+        if (timer > 150) // At 2min 30s stop wave 1
+        {
+            CancelInvoke("spawnBollard");
+            CancelInvoke("spawnFreshie");
+            CancelInvoke("spawnAunty");
         }
 
-        //Debug.Log(EnginKidScript.enginKidCount.ToString());
+        // if timer more than 360s Game is completed  
+        if (timer > 360)
+        {
+            gameScreenManager.GameCompleted();
+        }
+
+        timer += Time.deltaTime;
     }
 
     // Damages
@@ -170,6 +211,7 @@ public class LogicScript : MonoBehaviour
         piperHealth -= 5;
     }
 
+
     // Spawn Enemies
     void spawnBollard()
     {
@@ -190,7 +232,7 @@ public class LogicScript : MonoBehaviour
     void spawnEnginKid()
     {
         ObjectPoolScript.spawnObject(enginKid, SpawnScript.generateSpawnPoint(), Quaternion.identity);
-        EnginKidScript.enginKidCount += 1;
+        EnginKid.enginKidCount += 1;
     }
     void stopEnginKidClusterCoroutine()
     {
@@ -221,13 +263,13 @@ public class LogicScript : MonoBehaviour
         CancelInvoke("spawnCSMugger");
         CancelInvoke("spawnAunty");
         CancelInvoke("spawnCleaner");
-        BollardScript.bollardCollisionEvent -= bollardInflictDamage;
-        FreshieScript.freshieCollisionEvent -= freshieInflictDamage;
-        CSMuggerScript.csMuggerCollisionEvent -= csMuggerInflictDamage;
-        AuntyScript.auntyCollisionEvent -= auntyInflictDamage;
-        HandbagScript.handbagCollisionEvent -= handbagInflictDamage;
-        CleanerScript.cleanerCollisionEvent -= cleanerInflictDamage;
-        EnginKidScript.enginKidDeathEvent -= stopEnginKidClusterCoroutine;
+        Bollard.bollardCollisionEvent -= bollardInflictDamage;
+        Freshie.freshieCollisionEvent -= freshieInflictDamage;
+        CSMugger.csMuggerCollisionEvent -= csMuggerInflictDamage;
+        Aunty.auntyCollisionEvent -= auntyInflictDamage;
+        Handbag.handbagCollisionEvent -= handbagInflictDamage;
+        Cleaner.cleanerCollisionEvent -= cleanerInflictDamage;
+        EnginKid.enginKidDeathEvent -= stopEnginKidClusterCoroutine;
     }
 
     // Coroutine to spawn 3 EnginKids every 3 seconds
@@ -250,7 +292,7 @@ public class LogicScript : MonoBehaviour
         // Manually spawn an enginKid from pool because we want to
         // assign it to a gameObject to keep track of its distance to gathering point to trigger attackPhase
         lastEnginKid = ObjectPoolScript.spawnObject(enginKid, SpawnScript.generateSpawnPoint(), Quaternion.identity);
-        EnginKidScript.enginKidCount += 1;
+        EnginKid.enginKidCount += 1;
         
         // Wait for the last enginKid to gather
         while (lastEnginKid.activeInHierarchy)
@@ -258,9 +300,9 @@ public class LogicScript : MonoBehaviour
             // Activate attack phase when everybody has gathered
             if (Vector3.Distance(enginKidGatheringCorner, lastEnginKid.transform.position) < 0.6f)
             {
-                EnginKidScript.attackPhase = true;
+                EnginKid.attackPhase = true;
                 // Activate group cluster boost
-                EnginKidScript.gatheredSuccessfully = true;
+                EnginKid.gatheredSuccessfully = true;
                 enginKidGatheredEvent();
             }
             yield return null;

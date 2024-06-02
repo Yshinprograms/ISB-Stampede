@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HandbagScript : MonoBehaviour
+public class Handbag : MonoBehaviour
 {
     public float handbagSpeed;
     public delegate void HandBagEvent();
@@ -52,7 +52,7 @@ public class HandbagScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.layer == 3)
+        if (collision.gameObject.CompareTag("Player"))
         {
             if (handbagCollisionEvent != null)
             {
