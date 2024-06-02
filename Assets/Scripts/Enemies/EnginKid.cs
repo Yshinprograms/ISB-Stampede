@@ -28,12 +28,24 @@ public class EnginKid : Enemy
     private bool piperInAuraRange;
     private ParticleSystem aura;
 
+    private void OnEnable()
+    {
+        health = maxHealth;
+        reachedGatheringCorner = false;
+        moveSpeed = 2.5f;
+        gatheredSuccessfully = false;
+    }
     void Start()
     {
         aura = GetComponent<ParticleSystem>();
     }
 
-    protected override void Move()
+    protected override void TurnDirection()
+    {
+
+    }
+
+    void Update()
     {
         // Constantly check if Piper is in range of the damaging aura
         piperInAuraRange = isInRange();

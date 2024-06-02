@@ -30,6 +30,13 @@ public class Cleaner : Enemy
 
     void OnEnable()
     {
+        randomMapPosition = Vector3.zero;
+        moveSpeed = 0.7f;
+        health = maxHealth;
+        projectileHitCount = 0;
+        enraged = false;
+        completedEnrage = false;
+        isCharging = false;
         aimingLine.enabled = false;
     }
 

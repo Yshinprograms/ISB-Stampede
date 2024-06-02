@@ -2938,7 +2938,7 @@ MonoBehaviour:
   secondsBetweenBollardSpawn: 4
   secondsBetweenFreshieSpawn: 6
   secondsBetweenAuntySpawn: 6
-  secondsBetweenCleanerSpawn: 3
+  secondsBetweenCleanerSpawn: 6
   secondsBetweenEnginKidSpawn: 5
   secondsBetweenCSMuggerSpawn: 6
   maxActivePaperBalls: 1

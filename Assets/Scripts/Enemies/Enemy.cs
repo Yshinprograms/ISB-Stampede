@@ -8,7 +8,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private string enemyName;
     [SerializeField] protected float moveSpeed;
     protected float health;
-    [SerializeField] private float maxHealth;
+    [SerializeField] public float maxHealth;
     [SerializeField] private float distance;
     private SpriteRenderer sp;
 
@@ -52,7 +52,7 @@ public class Enemy : MonoBehaviour
        
     }
 
-    private void TurnDirection()
+    protected virtual void TurnDirection()
     {
         if (transform.position.x > PiperScript.piperPosition.x)
         {
@@ -66,6 +66,7 @@ public class Enemy : MonoBehaviour
 
     protected virtual void Death()
     {
+        //Destroy(gameObject);
         ObjectPoolScript.returnObjectToPool(gameObject);
     }
 

@@ -16,6 +16,7 @@ public class CSMugger : Enemy
 
     void OnEnable()
     {
+        health = maxHealth;
         timeBtwCode = startTimeBtwCode;
     }
 

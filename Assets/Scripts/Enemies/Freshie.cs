@@ -12,12 +12,13 @@ public class Freshie : Enemy
     // Movement speed of freshie enemy
     private float freshieDiagonalSpeed = 1f;
     private float moveDuration = 1f;  
-    private float stopDuration = 0.3f;
+    private float stopDuration = 0f;
     private bool isMoving = true;
 
 
     private void OnEnable()
     {
+        health =  maxHealth;
         StartCoroutine(FreshieZigzagMovement());
     } 
 

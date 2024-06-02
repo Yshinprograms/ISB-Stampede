@@ -16,6 +16,13 @@ public class Aunty : Enemy
     private float throwRange = 3f;
     private bool hasThrown = false;
 
+    private void OnEnable()
+    {
+        health = maxHealth;
+        moveSpeed = 0.7f;
+        hasThrown = false;
+    }
+
     protected override void Move()
     {
         base.Move();
