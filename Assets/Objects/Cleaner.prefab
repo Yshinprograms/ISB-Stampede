@@ -136,7 +136,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Cleaner
   moveSpeed: 0.7
-  maxHealth: 15
+  maxHealth: 10
   distance: 99999
   aimingLine: {fileID: -8891031018290897041}
 --- !u!120 &-8891031018290897041
