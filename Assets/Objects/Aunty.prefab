@@ -133,7 +133,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab3fdf083481ce34eb9c4fa8576a993b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  handbag: {fileID: 5163083607597799280, guid: 031d4ce01c9adcd429d4645ccfa468ee, type: 3}
-  auntySpeed: 0.7
+  enemyName: Aunty
+  moveSpeed: 0.7
   maxHealth: 20
-  health: 0
+  distance: 99999
+  handbag: {fileID: 5163083607597799280, guid: 031d4ce01c9adcd429d4645ccfa468ee, type: 3}

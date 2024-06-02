@@ -12,47 +12,28 @@ using UnityEngine;
  *     
  * Parameters: 10HP, 20DMG, 0.7 Speed, Does not take damage on first hit --> 5 Speed when charging */
 
-public class CleanerScript : MonoBehaviour
+public class Cleaner : Enemy
 {
     public delegate void CleanerEvent();
     public static event CleanerEvent cleanerCollisionEvent;
     public static event CleanerEvent cleanerEnrageEvent;
-    public float cleanerSpeed;
+    
     // Cleaner's aim line when charging towards Piper, adjust accordingly in coroutines
     public LineRenderer aimingLine;
 
-    private int maxHealth = 10;
-    private int health;
-    private bool enraged;
-    private int projectileHitCount;
-    private Vector3 randomMapPosition;
-    private bool isCharging;
-    private bool completedEnrage;
+    private bool enraged = false;
+    private int projectileHitCount = 0;
+    private Vector3 randomMapPosition = Vector3.zero;
+    private bool isCharging = false;
+    private bool completedEnrage = false;
 
-    void Start()
-    {
-        randomMapPosition = Vector3.zero;
-        cleanerSpeed = 0.7f;
-        health = maxHealth;
-        projectileHitCount = 0;
-        enraged = false;
-        completedEnrage = false;
-        isCharging = false;
-        aimingLine.enabled = false;
-    }
 
     void OnEnable()
     {
-        randomMapPosition = Vector3.zero;
-        cleanerSpeed = 0.7f;
-        health = maxHealth;
-        projectileHitCount = 0;
-        enraged = false;
-        completedEnrage = false;
-        isCharging = false;
         aimingLine.enabled = false;
     }
-    void Update()
+
+    protected override void Move()
     {
         // regular movement when not enraged
         if (!enraged)
@@ -63,7 +44,7 @@ public class CleanerScript : MonoBehaviour
                 randomMapPosition = SpawnScript.generateMapPosition();
             }
             Vector3 directionToPosition = randomMapPosition - transform.position;
-            transform.position = Vector3.MoveTowards(transform.position, randomMapPosition, cleanerSpeed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, randomMapPosition, moveSpeed * Time.deltaTime);
         }
 
         // Enraged movement pattern
@@ -79,11 +60,6 @@ public class CleanerScript : MonoBehaviour
             StartCoroutine(continueCharge());
         }
 
-        // Destroy Bollard when health <= 0
-        if (health <= 0)
-        {
-            ObjectPoolScript.returnObjectToPool(gameObject);
-        }
     }
 
     public IEnumerator enterEnragedMode()
@@ -95,17 +71,17 @@ public class CleanerScript : MonoBehaviour
         aimingLine.enabled = true;
 
         // Charge towards Piper's position
-        cleanerSpeed = 5f;
+        moveSpeed = 5f;
         Vector3 directionToPiper = (targetPosition - transform.position).normalized;
         while (Vector3.Distance(transform.position, targetPosition) > 0.1f)
         {
             UpdateAimingLine(targetPosition);
-            transform.position += cleanerSpeed * Time.deltaTime * directionToPiper;
+            transform.position += moveSpeed * Time.deltaTime * directionToPiper;
             yield return null;
         }
 
         // Stop, wait for next charge, completedEnrage sequence
-        cleanerSpeed = 0;
+        moveSpeed = 0;
         completedEnrage = true;
         aimingLine.enabled = false; // Hide the aiming line after charging
     }
@@ -116,7 +92,7 @@ public class CleanerScript : MonoBehaviour
         yield return new WaitForSeconds(3);
 
         // Get Piper position and direction
-        cleanerSpeed = 5f;
+        moveSpeed = 5f;
         Vector3 targetPosition = PiperScript.piperPosition;
         Vector3 directionToPiper = (targetPosition - transform.position).normalized;
         aimingLine.enabled = true;
@@ -126,12 +102,12 @@ public class CleanerScript : MonoBehaviour
         //while (transform.position != targetPosition)
         {
             UpdateAimingLine(targetPosition);
-            transform.position += cleanerSpeed * Time.deltaTime * directionToPiper;
+            transform.position += moveSpeed * Time.deltaTime * directionToPiper;
             yield return null;
         }
 
         // Stop after reaching and reset coroutine
-        cleanerSpeed = 0;
+        moveSpeed = 0;
         isCharging = false;
         aimingLine.enabled = false; // Hide the aiming line after charging
     }

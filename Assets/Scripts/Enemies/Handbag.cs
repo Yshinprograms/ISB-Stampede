@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HandbagScript : MonoBehaviour
+public class Handbag : MonoBehaviour
 {
     public float handbagSpeed;
     public delegate void HandBagEvent();

@@ -53,7 +53,7 @@ public class AudioManager : MonoBehaviour
         }
 
         // Make sure the AudioManager persists between scenes
-        DontDestroyOnLoad(gameObject);
+        //DontDestroyOnLoad(gameObject);
     }
 
     void Start()
@@ -63,22 +63,21 @@ public class AudioManager : MonoBehaviour
         musicSource.Play();
 
         // Subscribe to events
-        BollardScript.bollardCollisionEvent += bollardSounds;
+        Bollard.bollardCollisionEvent += bollardSounds;
         PaperBallScript.paperBallCollisionEvent += paperBallCollisionSounds;
         PaperBallScript.paperBallThrownEvent += paperBallThrownSounds;
-        FreshieScript.freshieCollisionEvent += freshieSounds;
-        CSMuggerScript.csMuggerCollisionEvent += csMuggerSounds;
-        csMuggerCodeSpawnScript.csMuggerCodeCollisionEvent += csMuggerCodeSounds;
-        AuntyScript.auntyCollisionEvent += auntyCollisionSounds;
-        AuntyScript.auntyThrowEvent += handbagThrownSounds;
-        CleanerScript.cleanerEnrageEvent += cleanerEnrageSounds;
+        Freshie.freshieCollisionEvent += freshieSounds;
+        CSMugger.csMuggerCollisionEvent += csMuggerSounds;
+        CSMuggerCode.csMuggerCodeCollisionEvent += csMuggerCodeSounds;
+        Aunty.auntyCollisionEvent += auntyCollisionSounds;
+        Aunty.auntyThrowEvent += handbagThrownSounds;
+        Cleaner.cleanerEnrageEvent += cleanerEnrageSounds;
         LogicScript.enginKidGatheredEvent += enginKidGatheredSounds;
     }
 
     void freshieSounds()
     {
         freshieCollisionSFX.Play();
-
     }
 
     void bollardSounds()
@@ -124,15 +123,15 @@ public class AudioManager : MonoBehaviour
     // Unsubscribe from events
     private void OnDestroy()
     {
-        BollardScript.bollardCollisionEvent -= bollardSounds;
-        FreshieScript.freshieCollisionEvent -= freshieSounds;
+        Bollard.bollardCollisionEvent -= bollardSounds;
+        Freshie.freshieCollisionEvent -= freshieSounds;
         PaperBallScript.paperBallCollisionEvent -= paperBallCollisionSounds;
         PaperBallScript.paperBallThrownEvent -= paperBallThrownSounds;
-        CSMuggerScript.csMuggerCollisionEvent -= csMuggerSounds;
-        csMuggerCodeSpawnScript.csMuggerCodeCollisionEvent -= csMuggerCodeSounds;
-        AuntyScript.auntyCollisionEvent -= auntyCollisionSounds;
-        AuntyScript.auntyThrowEvent -= handbagThrownSounds;
-        CleanerScript.cleanerEnrageEvent -= cleanerEnrageSounds;
+        CSMugger.csMuggerCollisionEvent -= csMuggerSounds;
+        CSMuggerCode.csMuggerCodeCollisionEvent -= csMuggerCodeSounds;
+        Aunty.auntyCollisionEvent -= auntyCollisionSounds;
+        Aunty.auntyThrowEvent -= handbagThrownSounds;
+        Cleaner.cleanerEnrageEvent -= cleanerEnrageSounds;
         LogicScript.enginKidGatheredEvent -= enginKidGatheredSounds;
     }
 }

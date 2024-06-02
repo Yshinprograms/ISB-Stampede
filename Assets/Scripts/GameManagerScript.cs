@@ -3,43 +3,46 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManagerScript : MonoBehaviour
+// This script consists of the functions used for the Game Over and Pause Script. 
+
+public class GameScreenManager : MonoBehaviour
 {
     public GameObject gameOverUI;
+    public GameObject pauseMenu;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    // Functions call GameOverScreen
+    // Game Over Screen will display 
     public void gameOver()
     {
         gameOverUI.SetActive(true);
     }
 
-    public void restart()
+    public void restartGame()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
-        Debug.Log("Restart");
+        Time.timeScale = 1;
     }
 
     public void mainMenu()
     {
         SceneManager.LoadScene("MainMenu");
-        Debug.Log("Main Menu");
+        Time.timeScale = 1;
     }
 
-    public void quit()
+    public void quitGame()
     {
         Application.Quit();
-        Debug.Log("Quit");
     }
+
+    public void pauseGame()
+    {
+        pauseMenu.SetActive(true);
+        Time.timeScale = 0;
+    }
+
+    public void resumeGame()
+    {
+        pauseMenu.SetActive(false);
+        Time.timeScale = 1;
+    }
+
 }

@@ -14,40 +14,26 @@ using UnityEngine;
  * Parameters: 20HP, 10DMG/s, 2.5 Speed
  */
 
-public class EnginKidScript : MonoBehaviour
+public class EnginKid : Enemy
 {
     public static float auraDistance;
     public static bool attackPhase = false;
     public static int enginKidCount = 0;
-    public static bool gatheredSuccessfully;
+    public static bool gatheredSuccessfully = false;
     public delegate void EnginEvent();
     public static event EnginEvent enginKidDeathEvent;
-    public float enginSpeed;
-    public int maxHealth = 20;
-    public int health;
 
-    private bool reachedGatheringCorner;
+    private bool reachedGatheringCorner = false;
     private float lastDamageTime = 0;
     private bool piperInAuraRange;
     private ParticleSystem aura;
 
     void Start()
     {
-        health = maxHealth;
-        reachedGatheringCorner = false;
-        enginSpeed = 2.5f;      
-        gatheredSuccessfully = false;
         aura = GetComponent<ParticleSystem>();
     }
 
-    void OnEnable()
-    {
-        health = maxHealth;
-        reachedGatheringCorner = false;
-        enginSpeed = 2.5f;
-        gatheredSuccessfully = false;
-    }
-    void Update()
+    protected override void Move()
     {
         // Constantly check if Piper is in range of the damaging aura
         piperInAuraRange = isInRange();
@@ -55,7 +41,7 @@ public class EnginKidScript : MonoBehaviour
         // Go to the gathering corner until we get a cluster of 3 enginKids
         if (!attackPhase && !reachedGatheringCorner)
         {
-            transform.position = Vector3.MoveTowards(transform.position, LogicScript.Instance.enginKidGatheringCorner, enginSpeed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, LogicScript.Instance.enginKidGatheringCorner, moveSpeed * Time.deltaTime);
 
             if (Vector3.Distance(transform.position, LogicScript.Instance.enginKidGatheringCorner) < 0.6f)
             {
@@ -65,7 +51,7 @@ public class EnginKidScript : MonoBehaviour
         // Go into attackPhase when the cluster of 3 is formed i.e. all 3 reached position
         else if (attackPhase)
         {
-            transform.position = Vector3.MoveTowards(transform.position, PiperScript.piperPosition, enginSpeed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, piper.position, moveSpeed * Time.deltaTime);
         }
 
         if (health <= 0)
@@ -73,7 +59,7 @@ public class EnginKidScript : MonoBehaviour
             ObjectPoolScript.returnObjectToPool(gameObject);
             enginKidCount -= 1;
             // Only triggers checking whether no enginKids exist on map whenever one is returned to pool
-            if (enginKidCount == 0 )
+            if (enginKidCount == 0)
             {
                 enginKidDeathEvent();
                 LogicScript.Instance.enginKidClusterActive = false;
@@ -117,10 +103,6 @@ public class EnginKidScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
-        {
-
-        }
 
         if (collision.gameObject.layer == 7)
         {

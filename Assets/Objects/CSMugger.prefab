@@ -143,8 +143,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f42a68458b90ff4293669124f827531, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  csMuggerSpeed: 1
+  enemyName: CS Mugger
+  moveSpeed: 0.7
   maxHealth: 20
-  health: 0
-  startTimeBtwCode: 5
-  csMuggerProjectile: {fileID: 2425603647604418709, guid: 4f2017313fa89a741825a185ae8e79aa, type: 3}
+  distance: 99999
+  startTimeBtwCode: 3
+  csMuggerCode: {fileID: 2425603647604418709, guid: 4f2017313fa89a741825a185ae8e79aa, type: 3}

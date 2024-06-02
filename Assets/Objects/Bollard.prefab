@@ -143,6 +143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7405046086525e94db93bc23ebb8951e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bollardSpeed: 0.7
+  enemyName: Bollard
+  moveSpeed: 0.7
   maxHealth: 10
-  health: 0
+  distance: 9999999

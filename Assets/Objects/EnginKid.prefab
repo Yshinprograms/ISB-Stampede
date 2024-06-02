@@ -135,9 +135,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1537eb5e6018d65408296048ddfdd74b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enginSpeed: 3
+  enemyName: Engine Kid
+  moveSpeed: 2.5
   maxHealth: 20
-  health: 0
+  distance: 99999
 --- !u!198 &6293620501190753943
 ParticleSystem:
   m_ObjectHideFlags: 0
