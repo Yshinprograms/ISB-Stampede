@@ -9,12 +9,11 @@ public class PiperScript : MonoBehaviour
     public float piperMoveSpeed = 1f;
     public static Vector3 piperPosition;
     public static Collider2D enemyInRange;
+    private SpriteRenderer sp;
 
-
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
+        sp = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -47,10 +46,13 @@ public class PiperScript : MonoBehaviour
         else if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D))
         {
             dir = 4; //SE
+            sp.flipX = true;
+
         }
         else if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A))
         {
             dir = 6; //SW
+            sp.flipX = false;
         }
         else if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.W))
         {
@@ -63,6 +65,7 @@ public class PiperScript : MonoBehaviour
         else if (Input.GetKey(KeyCode.D))
         {
             dir = 3; //E
+            sp.flipX = true;
         }
         else if (Input.GetKey(KeyCode.S))
         {
@@ -71,6 +74,7 @@ public class PiperScript : MonoBehaviour
         else if (Input.GetKey(KeyCode.A))
         {
             dir = 7; //W
+            sp.flipX = false;
         }
 
         return dir;

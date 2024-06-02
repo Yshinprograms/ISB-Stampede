@@ -18,7 +18,6 @@ public class Enemy : MonoBehaviour
     void OnEnable()
     {
         health = maxHealth;
-        piper = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         sp = GetComponent<SpriteRenderer>();
         gameObject.tag = "Enemy";
         gameObject.layer = 6;
@@ -27,7 +26,6 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         health = maxHealth;
-        piper = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         sp = GetComponent<SpriteRenderer>();
         gameObject.tag = "Enemy";
         gameObject.layer = 6;
@@ -47,16 +45,16 @@ public class Enemy : MonoBehaviour
     protected virtual void Move()
     {
         // If the piper is within distance range, enemy will follow piper
-        if (Vector2.Distance(transform.position, piper.position) < distance)
+        if (Vector2.Distance(transform.position, PiperScript.piperPosition) < distance)
         {
-            transform.position = Vector2.MoveTowards(transform.position, piper.position, moveSpeed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, PiperScript.piperPosition, moveSpeed * Time.deltaTime);
         }
        
     }
 
     private void TurnDirection()
     {
-        if (transform.position.x > piper.position.x)
+        if (transform.position.x > PiperScript.piperPosition.x)
         {
             sp.flipX = true;
         }
@@ -68,7 +66,7 @@ public class Enemy : MonoBehaviour
 
     protected virtual void Death()
     {
-        Destroy(gameObject);
+        ObjectPoolScript.returnObjectToPool(gameObject);
     }
 
 }

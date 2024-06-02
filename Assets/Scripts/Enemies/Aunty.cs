@@ -20,7 +20,7 @@ public class Aunty : Enemy
     {
         base.Move();
         // Find distance between Aunty and Piper
-        distToPiper = Vector3.Distance(transform.position, piper.position);
+        distToPiper = Vector3.Distance(transform.position, PiperScript.piperPosition);
 
         // Trigger throw sequence when distance <= 3
         if (distToPiper - throwRange <= 0 && !hasThrown)

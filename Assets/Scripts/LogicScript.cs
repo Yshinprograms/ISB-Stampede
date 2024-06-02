@@ -16,7 +16,7 @@ public class LogicScript : MonoBehaviour
 
     // Import Pause Menu Game Object and create boolean variable named GameIsPaused
     public GameObject pauseMenu;
-    public static bool GameIsPaused = false;
+    public static bool gameIsPaused = false;
 
     // Import Game Manager Script & Game end conditions
     public GameScreenManager gameScreenManager;
@@ -97,7 +97,7 @@ public class LogicScript : MonoBehaviour
 
         // Cleaner interaction and Spawns ; time 180s
         Cleaner.cleanerCollisionEvent += cleanerInflictDamage;
-        InvokeRepeating("spawnCleaner", 180f, secondsBetweenFreshieSpawn);
+        InvokeRepeating("spawnCleaner", 180f, secondsBetweenCleanerSpawn);
 
         // EnginKid interaction and Spawns
         EnginKid.enginKidDeathEvent += stopEnginKidClusterCoroutine;
@@ -121,17 +121,17 @@ public class LogicScript : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.Escape)) 
         {
-            if (GameIsPaused)
+            if (gameIsPaused)
             {
                 pauseMenu.SetActive(false);
                 Time.timeScale = 1;
-                GameIsPaused = false;
+                gameIsPaused = false;
 
             } else
             {
                 pauseMenu.SetActive(true);
                 Time.timeScale = 0;
-                GameIsPaused = true;
+                gameIsPaused = true;
             }
         }
 
@@ -168,6 +168,12 @@ public class LogicScript : MonoBehaviour
             CancelInvoke("spawnBollard");
             CancelInvoke("spawnFreshie");
             CancelInvoke("spawnAunty");
+        }
+
+        // if timer more than 600s Game is completed  
+        if (timer > 600)
+        {
+            gameScreenManager.GameCompleted();
         }
 
         timer += Time.deltaTime;

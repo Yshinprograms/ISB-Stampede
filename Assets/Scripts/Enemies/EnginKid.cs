@@ -51,7 +51,7 @@ public class EnginKid : Enemy
         // Go into attackPhase when the cluster of 3 is formed i.e. all 3 reached position
         else if (attackPhase)
         {
-            transform.position = Vector3.MoveTowards(transform.position, piper.position, moveSpeed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, PiperScript.piperPosition, moveSpeed * Time.deltaTime);
         }
 
         if (health <= 0)

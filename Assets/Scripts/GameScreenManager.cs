@@ -9,11 +9,13 @@ public class GameScreenManager : MonoBehaviour
 {
     public GameObject gameOverUI;
     public GameObject pauseMenu;
+    public GameObject gameCompletedUI;
 
     // Game Over Screen will display 
     public void gameOver()
     {
         gameOverUI.SetActive(true);
+        Time.timeScale = 0;
     }
 
     public void restartGame()
@@ -43,6 +45,12 @@ public class GameScreenManager : MonoBehaviour
     {
         pauseMenu.SetActive(false);
         Time.timeScale = 1;
+    }
+
+    public void GameCompleted()
+    {
+        gameCompletedUI.SetActive(true);
+        Time.timeScale = 0;
     }
 
 }
