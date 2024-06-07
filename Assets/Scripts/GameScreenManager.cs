@@ -24,6 +24,12 @@ public class GameScreenManager : MonoBehaviour
         Time.timeScale = 1;
     }
 
+    public void GoToLevel2()
+    {
+        SceneManager.LoadScene("Level2");
+        Time.timeScale = 1;
+    }
+
     public void mainMenu()
     {
         SceneManager.LoadScene("MainMenu");

@@ -92,7 +92,7 @@ public class EnginKid : Enemy
          */
         if (piperInAuraRange && (Time.time - lastDamageTime >= 1f))
         {
-            LogicScript.Instance.piperHealth -= 10;
+            PiperScript.piperHealth -= 10;
             lastDamageTime = Time.time;
         }
 

@@ -10,8 +10,8 @@ using Unity.VisualScripting;
 
 public class LogicScript : MonoBehaviour
 {
-    public int piperMaxHealth = 100;
-    public int piperHealth; 
+    /*public int piperMaxHealth = 100;
+    public int piperHealth; */
     public HealthbarScript healthbar;
 
     // Import Pause Menu Game Object and create boolean variable named GameIsPaused
@@ -110,8 +110,8 @@ public class LogicScript : MonoBehaviour
 
         // Piper's parameters & projectile interactions
         isAlive = true;
-        piperHealth = piperMaxHealth;
-        healthbar.setMaxHealth(piperMaxHealth);
+        PiperScript.piperHealth = PiperScript.piperMaxHealth;
+        healthbar.setMaxHealth(PiperScript.piperMaxHealth);
         PaperBallScript.activePaperBalls = 0;
     }
 
@@ -136,9 +136,9 @@ public class LogicScript : MonoBehaviour
         }
 
         // Set minimum health to 0
-        healthbar.setHealth(piperHealth);
+        healthbar.setHealth(PiperScript.piperHealth);
 
-        if (piperHealth <= 0 && isAlive)
+        if (PiperScript.piperHealth <= 0 && isAlive)
         {
             isAlive = false;
             gameScreenManager.gameOver();
@@ -171,9 +171,10 @@ public class LogicScript : MonoBehaviour
         }
 
         // if timer more than 360s Game is completed  
-        if (timer > 360)
+        if (timer > 10)
         {
-            gameScreenManager.GameCompleted();
+            gameScreenManager.GoToLevel2();
+            //gameScreenManager.GameCompleted();
         }
 
         timer += Time.deltaTime;
@@ -182,33 +183,33 @@ public class LogicScript : MonoBehaviour
     // Damages
     void bollardInflictDamage()
     {
-        piperHealth -= 10;
+        PiperScript.piperHealth -= 10;
     }
     void freshieInflictDamage()
     {
-        piperHealth -= 20;
+        PiperScript.piperHealth -= 20;
     }
     void auntyInflictDamage()
     {
-        piperHealth -= 10;
+        PiperScript.piperHealth -= 10;
     }
     void cleanerInflictDamage()
     {
-        piperHealth -= 20;
+        PiperScript.piperHealth -= 20;
     }
     void handbagInflictDamage()
     {
-        piperHealth -= 10;
+        PiperScript.piperHealth -= 10;
     }
 
     void csMuggerInflictDamage()
     {
-        piperHealth -= 15;
+        PiperScript.piperHealth -= 15;
     }
 
     void csMuggerCodeInflictDamage()
     {
-        piperHealth -= 5;
+        PiperScript.piperHealth -= 5;
     }
 
 

@@ -5,7 +5,10 @@ using UnityEngine;
 
 public class PiperScript : MonoBehaviour
 {
-    
+    // Health settings
+    public static int piperMaxHealth = 100;
+    public static int piperHealth;
+
     public float piperMoveSpeed = 1f;
     public static Vector3 piperPosition;
     public static Collider2D enemyInRange;
@@ -13,8 +16,15 @@ public class PiperScript : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log("Start");
         sp = GetComponent<SpriteRenderer>();
     }
+
+    void Awake()
+    {
+        DontDestroyOnLoad(gameObject);
+    }
+
 
     // Update is called once per frame
     void Update()
@@ -112,7 +122,7 @@ public class PiperScript : MonoBehaviour
         }
         if (dir == 8) //NW
         {
-            transform.position += new Vector3(-1, 1, 0).normalized * piperMoveSpeed * Time.deltaTime; 
+            transform.position += new Vector3(-1, 1, 0).normalized * piperMoveSpeed * Time.deltaTime;
         }
     }
 }
