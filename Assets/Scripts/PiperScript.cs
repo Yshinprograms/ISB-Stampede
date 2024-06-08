@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class PiperScript : MonoBehaviour
 {
+    // Piper's projectile range is 2f
     // Health settings
     public static int piperMaxHealth = 100;
     public static int piperHealth;

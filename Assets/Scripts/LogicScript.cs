@@ -12,7 +12,7 @@ public class LogicScript : MonoBehaviour
 {
     /*public int piperMaxHealth = 100;
     public int piperHealth; */
-    public HealthbarScript healthbar;
+    //public HealthbarScript healthbar;
 
     // Import Pause Menu Game Object and create boolean variable named GameIsPaused
     public GameObject pauseMenu;
@@ -110,8 +110,8 @@ public class LogicScript : MonoBehaviour
 
         // Piper's parameters & projectile interactions
         isAlive = true;
-        PiperScript.piperHealth = PiperScript.piperMaxHealth;
-        healthbar.setMaxHealth(PiperScript.piperMaxHealth);
+        //PiperScript.piperHealth = PiperScript.piperMaxHealth;
+        //healthbar.setMaxHealth(PiperScript.piperMaxHealth);
         PaperBallScript.activePaperBalls = 0;
     }
 
@@ -136,7 +136,7 @@ public class LogicScript : MonoBehaviour
         }
 
         // Set minimum health to 0
-        healthbar.setHealth(PiperScript.piperHealth);
+        //healthbar.setHealth(PiperScript.piperHealth);
 
         if (PiperScript.piperHealth <= 0 && isAlive)
         {
@@ -171,7 +171,7 @@ public class LogicScript : MonoBehaviour
         }
 
         // if timer more than 360s Game is completed  
-        if (timer > 10)
+        if (timer > 100)
         {
             gameScreenManager.GoToLevel2();
             //gameScreenManager.GameCompleted();
