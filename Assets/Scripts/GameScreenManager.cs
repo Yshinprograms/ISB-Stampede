@@ -30,6 +30,11 @@ public class GameScreenManager : MonoBehaviour
         Time.timeScale = 1;
     }
 
+    public void GoToLevel3()
+    {
+        SceneManager.LoadScene("Level3");
+    }
+
     public void mainMenu()
     {
         SceneManager.LoadScene("MainMenu");

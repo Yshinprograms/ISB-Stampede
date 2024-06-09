@@ -86,21 +86,15 @@ public class PaperBallScript : MonoBehaviour
             targetEnemy = closestEnemy;
         }
     }
-
+    //PiperScript.allEnemyMask
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.layer == 6 || collision.gameObject.layer == 11)
         {
             paperBallCollisionEvent();
 
             // Destroy after a single collision and clear targetEnemy
             ObjectPoolScript.returnObjectToPool(gameObject);
-
-            // Clear targetEnemy lockon when we reactivate from object pool
-            targetEnemy = null;
-
-            // Reset paperBall to not thrown when it reactivates
-            paperBallThrown = false;
 
             // Reset paperBall count to zero for next throw on reactivation
             activePaperBalls -= 1;

@@ -15,7 +15,7 @@ public class L3LogicScript : MonoBehaviour
                 instance = FindObjectOfType<L3LogicScript>();
                 if (instance == null)
                 {
-                    GameObject go = new GameObject("L3LogicManager");
+                    GameObject go = new("L3LogicManager");
                     instance = go.AddComponent<L3LogicScript>();
                 }
             }
@@ -25,6 +25,7 @@ public class L3LogicScript : MonoBehaviour
 
     // Import GameObjects, drag and drop into Inspector
     public GameObject chineseTourist;
+    public GameObject landmark;
     public GameObject med;
     public GameObject bizSnake;
     public GameObject paperBall;
@@ -32,7 +33,7 @@ public class L3LogicScript : MonoBehaviour
     // Spawn times
     public float secondsBetweenPaperBallSpawn;
     public float secondsBetweenChineseTouristSpawn = 5f;
-    public float secondsBetweenLandmarks;
+    public float secondsBetweenLandmarks = 7;
     //public float secondsBetweenMedStudentSpawn = 5f;
     public float secondsBetweenBizSnakeSpawn = 8f;
 
@@ -41,6 +42,8 @@ public class L3LogicScript : MonoBehaviour
 
     void Awake()
     {
+        Instantiate(landmark, ChineseTourist.landmark, transform.rotation);
+
         // Ensure only 1 instance exists
         if (instance != null && instance != this)
         {
@@ -51,12 +54,7 @@ public class L3LogicScript : MonoBehaviour
 
 
         // Start spawning
-        //Bollard.bollardCollisionEvent += bollardInflictDamage;
         InvokeRepeating(nameof(SpawnChineseTourists), 0f, secondsBetweenChineseTouristSpawn);
-
-        //// Freshie interaction and Spawns ; time 60s
-        //Freshie.freshieCollisionEvent += freshieInflictDamage;
-        //InvokeRepeating("spawnFreshie", 60f, secondsBetweenFreshieSpawn);
 
         PaperBallScript.activePaperBalls = 0;
     }
@@ -79,15 +77,14 @@ public class L3LogicScript : MonoBehaviour
             ChineseTourist.landmark = SpawnScript.generateMapPosition();
             secondsBetweenLandmarks = 0;
         }
-        Debug.Log(ChineseTourist.touristCount.ToString());
     }
 
-    void bizProjectileInflictDamage()
+    void BizProjectileInflictDamage()
     {
         PiperScript.piperHealth -= 10;
     }
 
-    // Spawn 2 ChineseTourists at a time, max 6 tourists, potentially 10s or more between spawns
+    // Spawn 2 ChineseTourists every 5s, max 6 tourists
     void SpawnChineseTourists()
     {
         if (ChineseTourist.touristCount < 6)

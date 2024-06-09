@@ -9,16 +9,22 @@ public class PiperScript : MonoBehaviour
     // Health settings
     public static int piperMaxHealth = 100;
     public static int piperHealth;
+    public static int allEnemyMask;
 
-    public float piperMoveSpeed = 1f;
+    public static float piperMoveSpeed = 5f;
     public static Vector3 piperPosition;
     public static Collider2D enemyInRange;
     private SpriteRenderer sp;
+    private float piperStunTimer = 0f;
 
     private void Start()
     {
-        Debug.Log("Start");
         sp = GetComponent<SpriteRenderer>();
+        ChineseTourist.PhotoEvent += PiperStunned;
+        
+        // Add future enemy layers here as needed, bitmasking; Note the int size in C#(32 bits / Max layers)
+        // physics2d takes layermask as argument
+        allEnemyMask = LayerMask.GetMask("Enemy") | LayerMask.GetMask("ChineseTourist");
     }
 
     void Awake()
@@ -32,15 +38,22 @@ public class PiperScript : MonoBehaviour
     {
         //Find direction Piper needs to move based on WASD
         int dir = findDir();
-        move(dir);
+
+        // Piper is unable to move for 0.5s after getting stunned by ChineseTourist
+        if (piperStunTimer > 0.6f)
+        {
+            Move(dir);
+        }
 
         piperPosition = transform.position;
 
         // Checks if there are enemies in range of Piper's projectiles
-        enemyInRange = Physics2D.OverlapCircle(transform.position, 2f, LayerMask.GetMask("Enemy"));
+        enemyInRange = Physics2D.OverlapCircle(transform.position, 2f, allEnemyMask);
 
         // Make sure Piper remains upright after colliding into other objects
         transform.rotation = Quaternion.Euler(0, 0, 0);
+
+        piperStunTimer += Time.deltaTime;
     }
 
 
@@ -91,7 +104,7 @@ public class PiperScript : MonoBehaviour
         return dir;
     }
 
-    private void move(int dir)
+    private void Move(int dir)
     {
         if (dir == 1) //N
         {
@@ -125,5 +138,11 @@ public class PiperScript : MonoBehaviour
         {
             transform.position += new Vector3(-1, 1, 0).normalized * piperMoveSpeed * Time.deltaTime;
         }
+    }
+
+    // Function to stun Piper by Chinese Tourists. Didn't unsubscribe onDestroy because gameOver when Piper gets destroyed
+    void PiperStunned()
+    {
+        piperStunTimer = 0f;
     }
 }

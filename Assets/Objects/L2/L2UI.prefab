@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2570036113217178490
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8945970806731825261}
+  - component: {fileID: -8146804607821825538}
+  m_Layer: 0
+  m_Name: L2UI
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8945970806731825261
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2570036113217178490}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-8146804607821825538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2570036113217178490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 980d9b3326f26014cbc274013eed1954, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMenu: {fileID: 2995609571182680247, guid: 74ab66e497951dc48a3be96df921451a, type: 3}
+  gameScreenManager: {fileID: 6969220703198510773, guid: fa06ce19a0615d145863325e02a1c64e, type: 3}
+  paperBall: {fileID: 7656084192474370632, guid: 89b5fc3fec2edf247ad89980e7c63c20, type: 3}
+  cleaner: {fileID: 4595520701919560262, guid: de06c16569ca9334d837a42c679097a5, type: 3}
+  enginKid: {fileID: 5774840321483290054, guid: 36c4afd386cbda244b222fd412207f69, type: 3}
+  csMugger: {fileID: 4994354537569844616, guid: bdaeca230f1417943a26bf3b9754a3bc, type: 3}
+  csMuggerCode: {fileID: 2425603647604418709, guid: 4f2017313fa89a741825a185ae8e79aa, type: 3}
+  secondsBetweenPaperBallSpawn: 0
+  secondsBetweenCleanerSpawn: 6
+  secondsBetweenEnginKidSpawn: 5
+  secondsBetweenCSMuggerSpawn: 10
+  maxActivePaperBalls: 1
+  enginKidClusterActive: 0
+  enginKidGatheringCorner: {x: 0, y: 0, z: 0}
