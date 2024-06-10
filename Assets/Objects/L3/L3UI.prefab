@@ -47,7 +47,7 @@ MonoBehaviour:
   chineseTourist: {fileID: 7882280700078892850, guid: 62749edcdfefa954d81c4679b7f9f78a, type: 3}
   landmark: {fileID: 7872631813857052149, guid: d497674e4d5325543954b45e34673b64, type: 3}
   med: {fileID: 0}
-  bizSnake: {fileID: 0}
+  bizSnake: {fileID: 3017437917636378604, guid: 7a6a54810b0a0914f8454df2c45b8810, type: 3}
   paperBall: {fileID: 7656084192474370632, guid: 89b5fc3fec2edf247ad89980e7c63c20, type: 3}
   secondsBetweenPaperBallSpawn: 0
   secondsBetweenChineseTouristSpawn: 5

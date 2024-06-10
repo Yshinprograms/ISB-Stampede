@@ -50,6 +50,11 @@ public class PiperScript : MonoBehaviour
         // Checks if there are enemies in range of Piper's projectiles
         enemyInRange = Physics2D.OverlapCircle(transform.position, 2f, allEnemyMask);
 
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            PiperPush();
+        }
+
         // Make sure Piper remains upright after colliding into other objects
         transform.rotation = Quaternion.Euler(0, 0, 0);
 
@@ -145,4 +150,22 @@ public class PiperScript : MonoBehaviour
     {
         piperStunTimer = 0f;
     }
+
+    // Trigger this upon 'e' for Piper to push away InnocentStudents!
+    void PiperPush()
+    {
+        Collider2D[] innocentStudentsInRange = Physics2D.OverlapCircleAll(transform.position, 2f, LayerMask.GetMask("InnocentStudent"));
+
+        // Loop through the students
+        foreach (Collider2D student in innocentStudentsInRange)
+        {
+            if (Vector2.Distance(student.transform.position, piperPosition) < 3f)
+            {
+                InnocentStudentScript IS = student.GetComponent<InnocentStudentScript>();
+                IS.PushBack();
+                Debug.Log("Pushback");
+            }
+        }
+    }
+
 }

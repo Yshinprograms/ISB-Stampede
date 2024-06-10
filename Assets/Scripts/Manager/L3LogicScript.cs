@@ -27,6 +27,7 @@ public class L3LogicScript : MonoBehaviour
     public GameObject chineseTourist;
     public GameObject landmark;
     public GameObject med;
+    public GameObject innocentStudent;
     public GameObject bizSnake;
     public GameObject paperBall;
 
@@ -34,6 +35,7 @@ public class L3LogicScript : MonoBehaviour
     public float secondsBetweenPaperBallSpawn;
     public float secondsBetweenChineseTouristSpawn = 5f;
     public float secondsBetweenLandmarks = 7;
+    public float secondsBetweenInnocentStudentSpawn = 5f;
     //public float secondsBetweenMedStudentSpawn = 5f;
     public float secondsBetweenBizSnakeSpawn = 8f;
 
@@ -55,6 +57,8 @@ public class L3LogicScript : MonoBehaviour
 
         // Start spawning
         InvokeRepeating(nameof(SpawnChineseTourists), 0f, secondsBetweenChineseTouristSpawn);
+
+        InvokeRepeating(nameof(SpawnInnocentStudent), 0f, secondsBetweenInnocentStudentSpawn);
 
         PaperBallScript.activePaperBalls = 0;
     }
@@ -94,9 +98,9 @@ public class L3LogicScript : MonoBehaviour
             ObjectPoolScript.spawnObject(chineseTourist, SpawnScript.generateSpawnPoint(), Quaternion.identity);
         }
     }
-    void SpawnBizSnake()
+    void SpawnInnocentStudent()
     {
-        ObjectPoolScript.spawnObject(bizSnake, SpawnScript.generateSpawnPoint(), Quaternion.identity);
+        ObjectPoolScript.spawnObject(innocentStudent, SpawnScript.generateSpawnPoint(), Quaternion.identity);
     }
     void SpawnPaperBall()
     {
@@ -108,7 +112,7 @@ public class L3LogicScript : MonoBehaviour
     private void OnDestroy()
     {
         CancelInvoke(nameof(SpawnChineseTourists));
-        CancelInvoke(nameof(SpawnBizSnake));
+        CancelInvoke(nameof(SpawnInnocentStudent));
         //CSMugger.csMuggerCollisionEvent -= csMuggerInflictDamage;
     }
 }

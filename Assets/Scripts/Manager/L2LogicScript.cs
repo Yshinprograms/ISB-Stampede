@@ -132,7 +132,7 @@ public class L2LogicScript : MonoBehaviour
             }
         }
 
-        if (timer > 10)
+        if (timer > 1)
         {
             gameScreenManager.GoToLevel3();
         }

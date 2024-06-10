@@ -43,7 +43,6 @@ public class ChineseTourist : Enemy
         photoTakenTimer = 0f;
         CTCollisionEvent += CTInflictDamage;
         photoTaken = false;
-
     }
 
     // Update is called once per frame
