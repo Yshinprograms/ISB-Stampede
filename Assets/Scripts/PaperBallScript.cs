@@ -30,7 +30,7 @@ public class PaperBallScript : MonoBehaviour
         // If enemy in range, lock onto targetEnemy and get its location
         if (PiperScript.enemyInRange != null && targetEnemy == null)
         {
-            findClosestEnemy();
+            FindClosestEnemy();
             // Play throwing audio
             if (!paperBallThrown)
             {
@@ -44,7 +44,7 @@ public class PaperBallScript : MonoBehaviour
         {
             Debug.DrawLine(transform.position, targetEnemy.transform.position, Color.cyan);
             Vector3 directionToEnemy = targetEnemy.transform.position - gameObject.transform.position; // Vector Addition
-            moveToEnemy(directionToEnemy.normalized); // Normalize for constant speed in all directions
+            MoveToEnemy(directionToEnemy.normalized); // Normalize for constant speed in all directions
         }
         // Otherwise stay beside Piper & keep finding
         else
@@ -53,12 +53,12 @@ public class PaperBallScript : MonoBehaviour
         }
     }
 
-    void moveToEnemy(Vector3 directionToEnemy)
+    void MoveToEnemy(Vector3 directionToEnemy)
     {
         transform.position += directionToEnemy * paperBallSpeed * Time.deltaTime;
     }
 
-    void findClosestEnemy()
+    void FindClosestEnemy()
     {
         {
             // Find all enemies
@@ -86,21 +86,15 @@ public class PaperBallScript : MonoBehaviour
             targetEnemy = closestEnemy;
         }
     }
-
+    //PiperScript.allEnemyMask
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.layer == 6 || collision.gameObject.layer == 11)
         {
             paperBallCollisionEvent();
 
             // Destroy after a single collision and clear targetEnemy
             ObjectPoolScript.returnObjectToPool(gameObject);
-
-            // Clear targetEnemy lockon when we reactivate from object pool
-            targetEnemy = null;
-
-            // Reset paperBall to not thrown when it reactivates
-            paperBallThrown = false;
 
             // Reset paperBall count to zero for next throw on reactivation
             activePaperBalls -= 1;

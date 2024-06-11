@@ -7,7 +7,14 @@ public class MainMenu : MonoBehaviour
 {
     public void playGame()
     {
-        SceneManager.LoadSceneAsync("Level1");
+        //Destroy(Master);
+        SceneManager.LoadScene("Level1");
+        //piper.transform.position = Vector3.zero;
+        TimerScript.remainingTime = TimerScript.initialTime;
+        //Time.timeScale = 1;
+        //pauseMenu.SetActive(false);
+        //gameOverUI.SetActive(false);
+
     }
 
     public void quitGame()

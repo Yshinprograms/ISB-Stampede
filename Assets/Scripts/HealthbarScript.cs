@@ -11,12 +11,10 @@ public class HealthbarScript : MonoBehaviour
     // Import Game Manager Script & Game end conditions
     public GameScreenManager gameScreenManager;
 
-    void Awake()
+    private void Start()
     {
-        // Piper's parameters & projectile interactions
         PiperScript.piperHealth = PiperScript.piperMaxHealth;
         healthbar.setMaxHealth(PiperScript.piperMaxHealth);
-        PaperBallScript.activePaperBalls = 0;
     }
 
     void Update()

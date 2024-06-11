@@ -7,6 +7,7 @@ TagManager:
   - Bollard
   - PaperBall
   - Enemy
+  - InnocentStudent
   layers:
   - Default
   - TransparentFX
@@ -19,8 +20,8 @@ TagManager:
   - Camera
   - Enemy Projectile
   - Border
-  - 
-  - 
+  - ChineseTourist
+  - InnocentStudent
   - 
   - 
   - 

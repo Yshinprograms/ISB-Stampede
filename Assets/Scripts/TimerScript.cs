@@ -7,7 +7,8 @@ public class TimerScript : MonoBehaviour
 {
 
     [SerializeField] TextMeshProUGUI timerText;
-    [SerializeField] float remainingTime;
+    public static float initialTime = 360;
+    public static float remainingTime = initialTime;
 
     // Update is called once per frame
     void Update()
