@@ -27,12 +27,6 @@ public class PiperScript : MonoBehaviour
         allEnemyMask = LayerMask.GetMask("Enemy") | LayerMask.GetMask("ChineseTourist");
     }
 
-    void Awake()
-    {
-        DontDestroyOnLoad(gameObject);
-    }
-
-
     // Update is called once per frame
     void Update()
     {

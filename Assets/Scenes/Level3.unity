@@ -131,6 +131,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 691811430249122934, guid: c7f2c4770977b2a49b8574cfc1bdb85f, type: 3}
+      propertyPath: bizSnake
+      value: 
+      objectReference: {fileID: 2479668723141450711, guid: 799ab48c124e491449945d3250e56fb5, type: 3}
+    - target: {fileID: 691811430249122934, guid: c7f2c4770977b2a49b8574cfc1bdb85f, type: 3}
+      propertyPath: innocentStudent
+      value: 
+      objectReference: {fileID: 1403131362381798990, guid: fe5ded27aae5f5542b72c4badbf5d21a, type: 3}
     - target: {fileID: 2015145924036282648, guid: c7f2c4770977b2a49b8574cfc1bdb85f, type: 3}
       propertyPath: m_Name
       value: L3UI

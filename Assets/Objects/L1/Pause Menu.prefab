@@ -310,8 +310,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: GameManagerScript, Assembly-CSharp
+      - m_Target: {fileID: 6969220703198510773, guid: fa06ce19a0615d145863325e02a1c64e, type: 3}
+        m_TargetAssemblyTypeName: GameScreenManager, Assembly-CSharp
         m_MethodName: restartGame
         m_Mode: 1
         m_Arguments:

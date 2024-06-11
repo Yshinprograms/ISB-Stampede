@@ -20,8 +20,10 @@ public class GameScreenManager : MonoBehaviour
 
     public void restartGame()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene("Level1");
         Time.timeScale = 1;
+        pauseMenu.SetActive(false);
     }
 
     public void GoToLevel2()
