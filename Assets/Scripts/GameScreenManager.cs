@@ -10,6 +10,29 @@ public class GameScreenManager : MonoBehaviour
     public GameObject gameOverUI;
     public GameObject pauseMenu;
     public GameObject gameCompletedUI;
+    public GameObject piper;
+
+    public static bool gameIsPaused = false;
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (gameIsPaused)
+            {
+                pauseMenu.SetActive(false);
+                Time.timeScale = 1;
+                gameIsPaused = false;
+
+            }
+            else
+            {
+                pauseMenu.SetActive(true);
+                Time.timeScale = 0;
+                gameIsPaused = true;
+            }
+        }
+    }
 
     // Game Over Screen will display 
     public void gameOver()
@@ -22,8 +45,12 @@ public class GameScreenManager : MonoBehaviour
     {
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         SceneManager.LoadScene("Level1");
+        PiperScript.piperHealth = PiperScript.piperMaxHealth;
+        piper.transform.position = Vector3.zero;
+        TimerScript.remainingTime = TimerScript.initialTime;
         Time.timeScale = 1;
         pauseMenu.SetActive(false);
+        gameOverUI.SetActive(false);
     }
 
     public void GoToLevel2()
@@ -39,8 +66,12 @@ public class GameScreenManager : MonoBehaviour
 
     public void mainMenu()
     {
+        PiperScript.piperHealth = PiperScript.piperMaxHealth;
+        piper.transform.position = Vector3.zero;
+        gameOverUI.SetActive(false);
+        pauseMenu.SetActive(false);
         SceneManager.LoadScene("MainMenu");
-        Time.timeScale = 1;
+        Time.timeScale = 1;   
     }
 
     public void quitGame()

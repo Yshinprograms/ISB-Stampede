@@ -8,13 +8,8 @@ public class L1LogicScript : MonoBehaviour
 {
     private float timer = 0;
 
-    // Import Pause Menu Game Object and create boolean variable named GameIsPaused
-    public GameObject pauseMenu;
-    public static bool gameIsPaused = false;
-
     // Import Game Manager Script & Game end conditions
     public GameScreenManager gameScreenManager;
-    private bool isAlive;
 
     // Import GameObjects, drag and drop into Inspector
     public GameObject testObject;
@@ -81,35 +76,19 @@ public class L1LogicScript : MonoBehaviour
         InvokeRepeating(nameof(SpawnAunty), 120f, secondsBetweenAuntySpawn);
 
         // Piper's parameters & projectile interactions
-        isAlive = true;
+        //isAlive = true;
         PaperBallScript.activePaperBalls = 0;
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            if (gameIsPaused)
-            {
-                pauseMenu.SetActive(false);
-                Time.timeScale = 1;
-                gameIsPaused = false;
 
-            }
-            else
-            {
-                pauseMenu.SetActive(true);
-                Time.timeScale = 0;
-                gameIsPaused = true;
-            }
-        }
-
-        if (PiperScript.piperHealth <= 0 && isAlive)
+        /*if (PiperScript.piperHealth <= 0 && isAlive)
         {
             isAlive = false;
             gameScreenManager.gameOver();
             Debug.Log("Dead");
-        }
+        }*/
 
         // Piper's projectile interactions
         secondsBetweenPaperBallSpawn += Time.deltaTime;
@@ -120,9 +99,10 @@ public class L1LogicScript : MonoBehaviour
             PaperBallScript.activePaperBalls += 1;
         }
 
-        if (timer > 1)
+        if (timer > 15)
         {
             gameScreenManager.GoToLevel2();
+            //Destroy(master);
             //gameScreenManager.GameCompleted();
         }
 
