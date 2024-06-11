@@ -6,7 +6,61 @@ using UnityEngine.UI;
 public class HealthbarScript : MonoBehaviour
 {
     public Slider slider;
-    
+    public HealthbarScript healthbar;
+
+    // Import Game Manager Script & Game end conditions
+    public GameScreenManager gameScreenManager;
+
+    private void Start()
+    {
+        PiperScript.piperHealth = PiperScript.piperMaxHealth;
+        healthbar.setMaxHealth(PiperScript.piperMaxHealth);
+    }
+
+    void Update()
+    {
+        // Set minimum health to 0
+        healthbar.setHealth(PiperScript.piperHealth);
+
+        if (PiperScript.piperHealth <= 0)
+        {
+            gameScreenManager.gameOver();
+            Debug.Log("Dead");
+        }
+    }
+
+    // Damages
+    /* void bollardInflictDamage()
+    {
+        PiperScript.piperHealth -= 10;
+    }
+    void freshieInflictDamage()
+    {
+        PiperScript.piperHealth -= 20;
+    }
+    void auntyInflictDamage()
+    {
+        PiperScript.piperHealth -= 10;
+    }
+    void cleanerInflictDamage()
+    {
+        PiperScript.piperHealth -= 20;
+    }
+    void handbagInflictDamage()
+    {
+        PiperScript.piperHealth -= 10;
+    }
+
+    void csMuggerInflictDamage()
+    {
+        PiperScript.piperHealth -= 15;
+    }
+
+    void csMuggerCodeInflictDamage()
+    {
+        PiperScript.piperHealth -= 5;
+    } */
+
     public void setMaxHealth(int health)
     {
         slider.maxValue = health;
