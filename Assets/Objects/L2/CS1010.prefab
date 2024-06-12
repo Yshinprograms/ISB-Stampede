@@ -48,7 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: CS1010
   moveSpeed: 0
-  maxHealth: 300
+  maxHealth: 280
   distance: 0
   stages:
   - {fileID: 21300000, guid: 1c4aa8a3367e5634696915737671c4bc, type: 3}
@@ -56,6 +56,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 9e82f012fb5f62143bdb67a1fa7504f6, type: 3}
   - {fileID: 21300000, guid: 089606dbdffafbc4bb339635c846bb00, type: 3}
   cs1010Projectile: {fileID: 1105422565199333048, guid: b336e4cb37972634b98914edf815f178, type: 3}
+  bossHealthbarScript: {fileID: 0}
+  bossHealth: {fileID: 0}
 --- !u!61 &4287777061030102304
 BoxCollider2D:
   m_ObjectHideFlags: 0

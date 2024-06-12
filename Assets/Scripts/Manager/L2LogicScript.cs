@@ -110,7 +110,8 @@ public class L2LogicScript : MonoBehaviour
         if (timer > 1 && !bossBattle)
         {
             bossBattle = true;
-            ObjectPoolScript.spawnObject(cs1010, Vector3.zero, cs1010.transform.rotation);
+            cs1010.SetActive(true);
+            //ObjectPoolScript.spawnObject(cs1010, Vector3.zero, cs1010.transform.rotation);
         }
 
         timer += Time.deltaTime;

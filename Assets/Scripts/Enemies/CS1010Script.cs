@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CS1010Script : Enemy
 {
     public Sprite[] stages;
     public GameObject cs1010Projectile;
-    //public BossHealthbarScript bossHealthbarScript;
+    public BossHealthbarScript bossHealthbarScript;
+    public Text bossHealth;
 
     private SpriteRenderer cs1010renderer;
     private bool stageZero;
@@ -15,6 +17,8 @@ public class CS1010Script : Enemy
     private bool stageThree;
     private bool stageOneinProgress;
     private bool stageTwoinProgress;
+    private Coroutine stageOneCoroutine;
+    private Coroutine stageTwoCoroutine;
     private float projectileTimer;
 
     private float shootDelay = 0.35f;
@@ -23,8 +27,9 @@ public class CS1010Script : Enemy
     // Required for game restart despite only spawing a single CS1010 in the whole game
     private void OnEnable()
     {
-       // bossHealthbarScript.EnableHealthbar();
-       // bossHealthbarScript.SetMaxHealth(maxHealth);
+        //bossHealth = bossHealth.GetComponent<Text>();
+        bossHealthbarScript.EnableHealthbar();
+        bossHealthbarScript.SetMaxHealth(maxHealth);
         cs1010renderer = GetComponent<SpriteRenderer>();
         health = maxHealth;
         stageZero = true;
@@ -39,15 +44,15 @@ public class CS1010Script : Enemy
     // Update is called once per frame
     void Update()
     {
-      //  bossHealthbarScript.SetHealth(health);
+        bossHealthbarScript.SetHealth(health);
         UpdateStage();
         Attack();
 
         if (health <= 0)
         {
-           // bossHealthbarScript.DisableHealthbar();
-           // bossHealthbarScript = null;
-            ObjectPoolScript.returnObjectToPool(gameObject);
+             bossHealthbarScript.DisableHealthbar();
+            // ObjectPoolScript.returnObjectToPool(gameObject);
+            gameObject.SetActive(false);
             L2LogicScript.Instance.bossBattle = false;
             L2LogicScript.Instance.LevelCompleted();
         }
@@ -62,18 +67,21 @@ public class CS1010Script : Enemy
         }
         else if (health >= maxHealth * 0.5f)
         {
+            bossHealth.text = "PE0";
             cs1010renderer.sprite = stages[1];
             stageZero = false;
             stageOne = true;
         }
         else if (health >= maxHealth * 0.25f)
         {
+            bossHealth.text = "PE1";
             cs1010renderer.sprite = stages[2];
             stageOne = false;
             stageTwo = true;
         }
         else
         {
+            bossHealth.text = "PE2";
             cs1010renderer.sprite = stages[3];
             stageTwo = false;
             stageThree = true;
@@ -91,15 +99,17 @@ public class CS1010Script : Enemy
         else if (stageOne && !stageOneinProgress)
         {
             // PE0 will shoot 2 projectiles consecutively every 3 seconds
-            StartCoroutine(StageOneSequence());
+            stageOneCoroutine = StartCoroutine(StageOneSequence());
         }
         else if (stageTwo && !stageTwoinProgress)
         {
+            StopCoroutine(stageOneCoroutine);
             // PE0 will shoot 3 projectiles consecutively every 3 seconds
-            StartCoroutine(StageTwoSequence());
+            stageTwoCoroutine = StartCoroutine(StageTwoSequence());
         }
         else if (stageThree && (projectileTimer > 0.7f))
         {
+            StopCoroutine(stageTwoCoroutine);
             // CS1010 will shoot a projectile every .7 seconds
             ObjectPoolScript.spawnObject(cs1010Projectile, transform.position, Quaternion.identity);
             projectileTimer = 0f;
