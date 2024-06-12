@@ -7,6 +7,7 @@ using UnityEngine;
 public class L2LogicScript : MonoBehaviour
 {
     private float timer = 0;
+    public bool bossBattle;
 
     // Import Game Manager Script & Game end conditions
     public GameScreenManager gameScreenManager;
@@ -17,6 +18,7 @@ public class L2LogicScript : MonoBehaviour
     public GameObject enginKid;
     public GameObject csMugger;
     public GameObject csMuggerCode;
+    public GameObject cs1010;
 
     // Spawn times
     public float secondsBetweenPaperBallSpawn;
@@ -75,10 +77,12 @@ public class L2LogicScript : MonoBehaviour
         // CSMugger interaction and Spawns ; time 120s
         CSMugger.csMuggerCollisionEvent += CSMuggerInflictDamage;
         CSMuggerCode.csMuggerCodeCollisionEvent += CSMuggerCodeInflictDamage;
-        InvokeRepeating(nameof(SpawnCSMugger), 300f, secondsBetweenCSMuggerSpawn);
+        InvokeRepeating(nameof(SpawnCSMugger), 120f, secondsBetweenCSMuggerSpawn);
 
         // Piper's parameters & projectile interactions
         PaperBallScript.activePaperBalls = 0;
+
+        CS1010ProjectileScript.CS1010ProjectileCollisionEvent += CS1010InflictDamage;
     }
 
     void Update()
@@ -102,12 +106,20 @@ public class L2LogicScript : MonoBehaviour
             }
         }
 
-        if (timer > 1)
+        // Boss Spawns 1 time when timer hits 180s
+        if (timer > 1 && !bossBattle)
         {
-            gameScreenManager.GoToLevel3();
+            bossBattle = true;
+            ObjectPoolScript.spawnObject(cs1010, Vector3.zero, cs1010.transform.rotation);
         }
 
         timer += Time.deltaTime;
+    }
+
+    // !!!Call this function when L2 final boss defeated, currently in CS1010Script when boss dies!!!
+    public void LevelCompleted()
+    {
+        gameScreenManager.GoToLevel3();
     }
 
     // Damages
@@ -123,6 +135,10 @@ public class L2LogicScript : MonoBehaviour
     {
         PiperScript.piperHealth -= 5;
     }
+    void CS1010InflictDamage()
+    {
+        PiperScript.piperHealth -= 10;
+    }
     // Spawn Enemies
     void SpawnCleaner()
     {
@@ -133,6 +149,7 @@ public class L2LogicScript : MonoBehaviour
         ObjectPoolScript.spawnObject(enginKid, SpawnScript.generateSpawnPoint(), Quaternion.identity);
         EnginKid.enginKidCount += 1;
     }
+
     void StopEnginKidClusterCoroutine()
     {
         if (EnginKidClusterCoroutine != null)
@@ -159,6 +176,7 @@ public class L2LogicScript : MonoBehaviour
         CSMugger.csMuggerCollisionEvent -= CSMuggerInflictDamage;
         Cleaner.cleanerCollisionEvent -= CleanerInflictDamage;
         EnginKid.enginKidDeathEvent -= StopEnginKidClusterCoroutine;
+        CS1010ProjectileScript.CS1010ProjectileCollisionEvent -= CS1010InflictDamage;
     }
 
     private IEnumerator SpawnEnginKidCluster()

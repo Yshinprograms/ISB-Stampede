@@ -131,6 +131,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8146804607821825538, guid: f93fa8390fed95a48b8467d09a7276c6, type: 3}
+      propertyPath: cs1010
+      value: 
+      objectReference: {fileID: 2498461199665195437, guid: a2ce6f825b0b26145a6399e2d4943c85, type: 3}
     - target: {fileID: 2570036113217178490, guid: f93fa8390fed95a48b8467d09a7276c6, type: 3}
       propertyPath: m_Name
       value: L2UI

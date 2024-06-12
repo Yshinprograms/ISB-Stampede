@@ -7,8 +7,8 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private string enemyName;
     [SerializeField] protected float moveSpeed;
-    protected float health;
-    [SerializeField] public float maxHealth;
+    protected int health;
+    [SerializeField] public int maxHealth;
     [SerializeField] private float distance;
     private SpriteRenderer sp;
 

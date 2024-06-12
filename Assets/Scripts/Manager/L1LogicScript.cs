@@ -99,7 +99,7 @@ public class L1LogicScript : MonoBehaviour
             PaperBallScript.activePaperBalls += 1;
         }
 
-        if (timer > 15)
+        if (timer > 1)
         {
             gameScreenManager.GoToLevel2();
             //Destroy(master);
