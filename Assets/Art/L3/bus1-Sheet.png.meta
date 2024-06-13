@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 8a69608532e6f5f40b929196e3c0421a
+guid: 4d975073735f4be4f973a5a1349c7b63
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -123,13 +123,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Magic_Girl_Idle_animation_0
+      name: bus1-Sheet_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 36
-        height: 44
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -137,20 +137,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ed383e9313fa7f04aa9062fd1344f780
-      internalID: 622674972
+      spriteID: a59f72b0b55e5aa49a339aab8b7eccf2
+      internalID: -783069740
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Magic_Girl_Idle_animation_1
+      name: bus1-Sheet_1
       rect:
         serializedVersion: 2
-        x: 36
+        x: 128
         y: 0
-        width: 36
-        height: 44
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -158,20 +158,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d87d006b6d279ce4091dcc9299b6b57d
-      internalID: -378883042
+      spriteID: 84388f73de5a00045adc818831a4c2a9
+      internalID: 1121831751
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Magic_Girl_Idle_animation_2
+      name: bus1-Sheet_2
       rect:
         serializedVersion: 2
-        x: 72
+        x: 256
         y: 0
-        width: 36
-        height: 44
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -179,20 +179,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2a657911f42b63849b476a2beb2bd175
-      internalID: -250678122
+      spriteID: 04638a34c1d60814d9eef41a6c7b0efc
+      internalID: 909461563
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Magic_Girl_Idle_animation_3
+      name: bus1-Sheet_3
       rect:
         serializedVersion: 2
-        x: 108
+        x: 384
         y: 0
-        width: 36
-        height: 44
+        width: 128
+        height: 128
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -200,92 +200,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 95087624acddf0e4abd854516b7f9676
-      internalID: -1856521133
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Magic_Girl_Idle_animation_4
-      rect:
-        serializedVersion: 2
-        x: 144
-        y: 0
-        width: 36
-        height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 926b3301b30090f44945dcf914b0e462
-      internalID: -1900971237
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Magic_Girl_Idle_animation_5
-      rect:
-        serializedVersion: 2
-        x: 180
-        y: 0
-        width: 36
-        height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 43869da67b9b6c84795504f80ebe73be
-      internalID: 861898112
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Magic_Girl_Idle_animation_6
-      rect:
-        serializedVersion: 2
-        x: 216
-        y: 0
-        width: 36
-        height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 9dc69572d9722324d9896c1b28fc16a0
-      internalID: 353981539
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Magic_Girl_Idle_animation_7
-      rect:
-        serializedVersion: 2
-        x: 252
-        y: 0
-        width: 36
-        height: 44
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 932aae23d8d9dd64a9c01b1eea4c4304
-      internalID: 1159866756
+      spriteID: 6e95fcbb3e887944ea9f26b395ed5ac3
+      internalID: 596734914
       vertices: []
       indices: 
       edges: []
@@ -301,14 +217,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Magic_Girl_Idle_animation_0: 622674972
-      Magic_Girl_Idle_animation_1: -378883042
-      Magic_Girl_Idle_animation_2: -250678122
-      Magic_Girl_Idle_animation_3: -1856521133
-      Magic_Girl_Idle_animation_4: -1900971237
-      Magic_Girl_Idle_animation_5: 861898112
-      Magic_Girl_Idle_animation_6: 353981539
-      Magic_Girl_Idle_animation_7: 1159866756
+      bus1-Sheet_0: -783069740
+      bus1-Sheet_1: 1121831751
+      bus1-Sheet_2: 909461563
+      bus1-Sheet_3: 596734914
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

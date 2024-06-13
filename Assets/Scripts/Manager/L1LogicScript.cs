@@ -101,8 +101,7 @@ public class L1LogicScript : MonoBehaviour
 
         if (timer > 1)
         {
-            gameScreenManager.GoToLevel2();
-            //Destroy(master);
+            gameScreenManager.GoToLevel3();
             //gameScreenManager.GameCompleted();
         }
 

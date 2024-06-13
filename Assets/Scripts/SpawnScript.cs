@@ -18,9 +18,9 @@ public static class SpawnScript
     private static readonly float yInternalLowerBound = -4.4f;
 
     // Position at corners of the map
-    private static readonly float xEnginGatheringCorner = 8f;
-    private static readonly float yUpperEnginGatheringCorner = 9f;
-    private static readonly float yLowerEnginGatheringCorner = -4f;
+    public static readonly float xEnginGatheringCorner = 8f;
+    public static readonly float yUpperEnginGatheringCorner = 9f;
+    public static readonly float yLowerEnginGatheringCorner = -4f;
 
     // Spawn function to spawn enemy randomly around map perimeter
     public static Vector2 generateSpawnPoint()

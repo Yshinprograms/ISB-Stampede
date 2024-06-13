@@ -50,8 +50,7 @@ public class CS1010Script : Enemy
 
         if (health <= 0)
         {
-             bossHealthbarScript.DisableHealthbar();
-            // ObjectPoolScript.returnObjectToPool(gameObject);
+            bossHealthbarScript.DisableHealthbar();
             gameObject.SetActive(false);
             L2LogicScript.Instance.bossBattle = false;
             L2LogicScript.Instance.LevelCompleted();

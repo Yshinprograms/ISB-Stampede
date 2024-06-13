@@ -23,6 +23,9 @@ public class L3LogicScript : MonoBehaviour
         }
     }
 
+    public bool bossBattle;
+    private float levelTimer = 0;
+
     // Import GameObjects, drag and drop into Inspector
     public GameObject chineseTourist;
     public GameObject landmark;
@@ -30,6 +33,7 @@ public class L3LogicScript : MonoBehaviour
     public GameObject innocentStudent;
     public GameObject bizSnake;
     public GameObject paperBall;
+    public GameObject ChineseTourBus;
 
     // Spawn times
     public float secondsBetweenPaperBallSpawn;
@@ -56,9 +60,11 @@ public class L3LogicScript : MonoBehaviour
 
 
         // Start spawning
-        InvokeRepeating(nameof(SpawnChineseTourists), 0f, secondsBetweenChineseTouristSpawn);
+        InvokeRepeating(nameof(SpawnChineseTourists), 110f, secondsBetweenChineseTouristSpawn);
 
-        InvokeRepeating(nameof(SpawnInnocentStudent), 0f, secondsBetweenInnocentStudentSpawn);
+        InvokeRepeating(nameof(SpawnInnocentStudent), 110f, secondsBetweenInnocentStudentSpawn);
+
+        ChineseTourBusScript.BusCollisionEvent += BusInflictDamage;
 
         PaperBallScript.activePaperBalls = 0;
     }
@@ -81,6 +87,16 @@ public class L3LogicScript : MonoBehaviour
             ChineseTourist.landmark = SpawnScript.generateMapPosition();
             secondsBetweenLandmarks = 0;
         }
+
+        // Boss Spawns 1 time when timer hits 180s
+        if (levelTimer > 1 && !bossBattle)
+        {
+            bossBattle = true;
+            ChineseTourBus.SetActive(true);
+        }
+
+
+        levelTimer += Time.deltaTime;
     }
 
     void BizProjectileInflictDamage()
@@ -108,11 +124,20 @@ public class L3LogicScript : MonoBehaviour
         ObjectPoolScript.spawnObject(paperBall, PiperScript.piperPosition + Vector3.right, Quaternion.identity);
     }
 
+    public void LevelCompleted()
+    {
+        //gameScreenManager.GoToLevel3();
+    }
+
+    void BusInflictDamage()
+    {
+        PiperScript.piperHealth -= 10;
+    }
 
     private void OnDestroy()
     {
         CancelInvoke(nameof(SpawnChineseTourists));
         CancelInvoke(nameof(SpawnInnocentStudent));
-        //CSMugger.csMuggerCollisionEvent -= csMuggerInflictDamage;
+        ChineseTourBusScript.BusCollisionEvent -= BusInflictDamage;
     }
 }

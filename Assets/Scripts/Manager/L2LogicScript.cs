@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class L2LogicScript : MonoBehaviour
 {
-    private float timer = 0;
+    private float levelTimer = 0;
     public bool bossBattle;
 
     // Import Game Manager Script & Game end conditions
@@ -98,7 +98,7 @@ public class L2LogicScript : MonoBehaviour
 
         // EnginKid Clustering Logic
         // Cluster spawning coroutine only starts if there are no clusters && enginKids are not in attack phase
-        if (timer > 60)
+        if (levelTimer > 60)
         {
             if (!enginKidClusterActive && !EnginKid.attackPhase)
             {
@@ -106,15 +106,14 @@ public class L2LogicScript : MonoBehaviour
             }
         }
 
-        // Boss Spawns 1 time when timer hits 180s
-        if (timer > 1 && !bossBattle)
+        // Boss Spawns 1 time when levelTimer hits 180s
+        if (levelTimer > 1 && !bossBattle)
         {
             bossBattle = true;
             cs1010.SetActive(true);
-            //ObjectPoolScript.spawnObject(cs1010, Vector3.zero, cs1010.transform.rotation);
         }
 
-        timer += Time.deltaTime;
+        levelTimer += Time.deltaTime;
     }
 
     // !!!Call this function when L2 final boss defeated, currently in CS1010Script when boss dies!!!

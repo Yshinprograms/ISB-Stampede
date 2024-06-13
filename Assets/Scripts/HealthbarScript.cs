@@ -29,38 +29,6 @@ public class HealthbarScript : MonoBehaviour
         }
     }
 
-    // Damages
-    /* void bollardInflictDamage()
-    {
-        PiperScript.piperHealth -= 10;
-    }
-    void freshieInflictDamage()
-    {
-        PiperScript.piperHealth -= 20;
-    }
-    void auntyInflictDamage()
-    {
-        PiperScript.piperHealth -= 10;
-    }
-    void cleanerInflictDamage()
-    {
-        PiperScript.piperHealth -= 20;
-    }
-    void handbagInflictDamage()
-    {
-        PiperScript.piperHealth -= 10;
-    }
-
-    void csMuggerInflictDamage()
-    {
-        PiperScript.piperHealth -= 15;
-    }
-
-    void csMuggerCodeInflictDamage()
-    {
-        PiperScript.piperHealth -= 5;
-    } */
-
     public void setMaxHealth(int health)
     {
         slider.maxValue = health;
