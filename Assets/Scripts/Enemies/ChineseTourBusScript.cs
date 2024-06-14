@@ -4,12 +4,14 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
+// Watch out for overspawning of CT
+
 public class ChineseTourBusScript : Enemy
 {
     public delegate void BusEvent();
     public static event BusEvent BusCollisionEvent;
     public GameObject chineseTourist;
-    public Sprite[] directions;
+    public Sprite[] sprites;
     public BossHealthbarScript bossHealthbarScript;
     public Text bossHealth;
 
@@ -18,8 +20,8 @@ public class ChineseTourBusScript : Enemy
     private int currentCorner;
     private Vector2 destination;
     private bool tourStarted;
-    private Vector3 originalScale = new Vector3(3, 3, 3);
-    private Vector3 flipScale = new Vector3(-3, 3, 3);
+    private Vector3 originalScale = new(3, 3, 3);
+    private Vector3 flipScale = new(-3, 3, 3);
     private float touristSpawnDelay;
 
     private void OnEnable()
@@ -91,22 +93,22 @@ public class ChineseTourBusScript : Enemy
             case 1: // Top Right --> Bottom Left
                 destination = new Vector2(-SpawnScript.xEnginGatheringCorner, SpawnScript.yLowerEnginGatheringCorner);
                 transform.localScale = originalScale;
-                busRenderer.sprite = directions[0];
+                busRenderer.sprite = sprites[0];
                 break;
             case 2: // BL > TL
                 destination = new Vector2(-SpawnScript.xEnginGatheringCorner, SpawnScript.yUpperEnginGatheringCorner);
                 transform.localScale = originalScale;
-                busRenderer.sprite = directions[2];
+                busRenderer.sprite = sprites[2];
                 break;
             case 3: // TL > BR
                 destination = new Vector2(SpawnScript.xEnginGatheringCorner, SpawnScript.yLowerEnginGatheringCorner);
                 transform.localScale = flipScale;
-                busRenderer.sprite = directions[0];
+                busRenderer.sprite = sprites[0];
                 break;
             case 4: // BR > TR
                 destination = new Vector2(SpawnScript.xEnginGatheringCorner, SpawnScript.yUpperEnginGatheringCorner);
                 transform.localScale = flipScale;
-                busRenderer.sprite = directions[2];
+                busRenderer.sprite = sprites[2];
                 break;
             default:
                 Debug.LogError("Invalid side value in generateSpawnPoint()");
@@ -150,7 +152,6 @@ public class ChineseTourBusScript : Enemy
 
         if (collision.gameObject.CompareTag("Player"))
         {
-            // Invokes if not null
             BusCollisionEvent?.Invoke();
         }
     }

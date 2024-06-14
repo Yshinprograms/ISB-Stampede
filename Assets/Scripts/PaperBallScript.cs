@@ -49,13 +49,13 @@ public class PaperBallScript : MonoBehaviour
         // Otherwise stay beside Piper & keep finding
         else
         {
-            transform.position = PiperScript.piperPosition + Vector3.right;
+            transform.position = PiperScript.piperRealPosition + Vector3.right;
         }
     }
 
     void MoveToEnemy(Vector3 directionToEnemy)
     {
-        transform.position += directionToEnemy * paperBallSpeed * Time.deltaTime;
+        transform.position += paperBallSpeed * Time.deltaTime * directionToEnemy;
     }
 
     void FindClosestEnemy()

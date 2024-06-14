@@ -10,12 +10,15 @@ public class PiperScript : MonoBehaviour
     public static int piperMaxHealth = 100;
     public static int piperHealth;
     public static int allEnemyMask;
+    public static bool malaActive = false;
 
     public static float piperMoveSpeed = 5f;
     public static Vector3 piperPosition;
+    public static Vector3 piperRealPosition;
     public static Collider2D enemyInRange;
     private SpriteRenderer sp;
     private float piperStunTimer = 0f;
+
 
     private void Start()
     {
@@ -30,6 +33,7 @@ public class PiperScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        piperRealPosition = transform.position;
         //Find direction Piper needs to move based on WASD
         int dir = findDir();
 
@@ -39,7 +43,10 @@ public class PiperScript : MonoBehaviour
             Move(dir);
         }
 
-        piperPosition = transform.position;
+        if (!malaActive)
+        {
+            piperPosition = transform.position;
+        }
 
         // Checks if there are enemies in range of Piper's projectiles
         enemyInRange = Physics2D.OverlapCircle(transform.position, 2f, allEnemyMask);
@@ -143,6 +150,11 @@ public class PiperScript : MonoBehaviour
     void PiperStunned()
     {
         piperStunTimer = 0f;
+    }
+
+    public static void ApplyHealthBuff(int amount)
+    {
+        piperHealth = Mathf.Clamp(piperHealth + amount, 0, piperMaxHealth);
     }
 
     // Trigger this upon 'e' for Piper to push away InnocentStudents!

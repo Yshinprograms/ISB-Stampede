@@ -123,6 +123,32 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &29364671 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919978002380124009, guid: d0f2a9f44ddac414f9ea203e4ed8e278, type: 3}
+  m_PrefabInstance: {fileID: 3806793190134613296}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &29364675
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 29364671}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a53d6594c5bcee489a06a3380cc4bce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthPowerUp: {fileID: 3802968749208729925, guid: 80ed48fa9e00ce94ca259760fd0bbfb9, type: 3}
+  mala: {fileID: 6554649754085818922, guid: e34a1bad366370042914bcb14a20d4ab, type: 3}
+  friend: {fileID: 1813707068468820916, guid: 8fa03dff0f1af3446867bbe4aa0ded79, type: 3}
+  secondsBetweenHealthPowerUpSpawnMin: 0
+  secondsBetweenHealthPowerUpSpawnMax: 5
+  timeBetweenMalaSpawn: 15
+  timeBetweenFriendSpawn: 20
+  levelTwo: 0
+  levelThree: 0
 --- !u!1 &154394986
 GameObject:
   m_ObjectHideFlags: 0
@@ -1070,7 +1096,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 957589713978490457, guid: d0f2a9f44ddac414f9ea203e4ed8e278, type: 3}
       insertIndex: 0
       addedObject: {fileID: 1118051362}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919978002380124009, guid: d0f2a9f44ddac414f9ea203e4ed8e278, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 29364675}
   m_SourcePrefab: {fileID: 100100000, guid: d0f2a9f44ddac414f9ea203e4ed8e278, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

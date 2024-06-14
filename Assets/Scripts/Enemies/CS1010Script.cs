@@ -61,6 +61,7 @@ public class CS1010Script : Enemy
     {
         if (health >= maxHealth * 0.75f)
         {
+            bossHealth.text = "CS1010";
             cs1010renderer.sprite = stages[0];
             stageZero = true;
         }

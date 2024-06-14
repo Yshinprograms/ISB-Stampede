@@ -60,9 +60,9 @@ public class L3LogicScript : MonoBehaviour
 
 
         // Start spawning
-        InvokeRepeating(nameof(SpawnChineseTourists), 110f, secondsBetweenChineseTouristSpawn);
+        InvokeRepeating(nameof(SpawnChineseTourists), 0f, secondsBetweenChineseTouristSpawn);
 
-        InvokeRepeating(nameof(SpawnInnocentStudent), 110f, secondsBetweenInnocentStudentSpawn);
+        InvokeRepeating(nameof(SpawnInnocentStudent), 30f, secondsBetweenInnocentStudentSpawn);
 
         ChineseTourBusScript.BusCollisionEvent += BusInflictDamage;
 
@@ -89,7 +89,7 @@ public class L3LogicScript : MonoBehaviour
         }
 
         // Boss Spawns 1 time when timer hits 180s
-        if (levelTimer > 1 && !bossBattle)
+        if (levelTimer > 180 && !bossBattle)
         {
             bossBattle = true;
             ChineseTourBus.SetActive(true);
@@ -124,6 +124,7 @@ public class L3LogicScript : MonoBehaviour
         ObjectPoolScript.spawnObject(paperBall, PiperScript.piperPosition + Vector3.right, Quaternion.identity);
     }
 
+    // !!!Change this function for gameend!!!
     public void LevelCompleted()
     {
         //gameScreenManager.GoToLevel3();

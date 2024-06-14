@@ -639,9 +639,29 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 456815731}
     - target: {fileID: 4181911972346321960, guid: 00becd0a7f34d6e478095681618eeb13, type: 3}
+      propertyPath: sprites.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4181911972346321960, guid: 00becd0a7f34d6e478095681618eeb13, type: 3}
       propertyPath: bossHealthbarScript
       value: 
       objectReference: {fileID: 868431417}
+    - target: {fileID: 4181911972346321960, guid: 00becd0a7f34d6e478095681618eeb13, type: 3}
+      propertyPath: sprites.Array.data[0]
+      value: 
+      objectReference: {fileID: -783069740, guid: 4d975073735f4be4f973a5a1349c7b63, type: 3}
+    - target: {fileID: 4181911972346321960, guid: 00becd0a7f34d6e478095681618eeb13, type: 3}
+      propertyPath: sprites.Array.data[1]
+      value: 
+      objectReference: {fileID: 1121831751, guid: 4d975073735f4be4f973a5a1349c7b63, type: 3}
+    - target: {fileID: 4181911972346321960, guid: 00becd0a7f34d6e478095681618eeb13, type: 3}
+      propertyPath: sprites.Array.data[2]
+      value: 
+      objectReference: {fileID: 909461563, guid: 4d975073735f4be4f973a5a1349c7b63, type: 3}
+    - target: {fileID: 4181911972346321960, guid: 00becd0a7f34d6e478095681618eeb13, type: 3}
+      propertyPath: sprites.Array.data[3]
+      value: 
+      objectReference: {fileID: 596734914, guid: 4d975073735f4be4f973a5a1349c7b63, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

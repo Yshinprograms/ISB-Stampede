@@ -18,6 +18,7 @@ public class L1LogicScript : MonoBehaviour
     public GameObject bollard;
     public GameObject freshie;
     public GameObject aunty;
+    
 
     // Spawn times
     //public float secondsBetweenTestObjectSpawn = 10f;
@@ -99,9 +100,10 @@ public class L1LogicScript : MonoBehaviour
             PaperBallScript.activePaperBalls += 1;
         }
 
-        if (timer > 1)
+        if (timer > 180)
         {
-            gameScreenManager.GoToLevel3();
+            gameScreenManager.GoToLevel2();
+            PowerUpManagerScript.Instance.levelTwo = true;
             //gameScreenManager.GameCompleted();
         }
 

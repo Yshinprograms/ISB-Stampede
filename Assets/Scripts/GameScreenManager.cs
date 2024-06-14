@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 // This script consists of the functions used for the Game Over and Pause Script. 
+// Reminder to add delegates in future for easy adjustments:
+// += PowerupManagerScript.instance.RestartScript
 
 public class GameScreenManager : MonoBehaviour
 {

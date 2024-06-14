@@ -77,7 +77,7 @@ public class L2LogicScript : MonoBehaviour
         // CSMugger interaction and Spawns ; time 120s
         CSMugger.csMuggerCollisionEvent += CSMuggerInflictDamage;
         CSMuggerCode.csMuggerCodeCollisionEvent += CSMuggerCodeInflictDamage;
-        InvokeRepeating(nameof(SpawnCSMugger), 120f, secondsBetweenCSMuggerSpawn);
+        InvokeRepeating(nameof(SpawnCSMugger), 30f, secondsBetweenCSMuggerSpawn);
 
         // Piper's parameters & projectile interactions
         PaperBallScript.activePaperBalls = 0;
@@ -107,7 +107,7 @@ public class L2LogicScript : MonoBehaviour
         }
 
         // Boss Spawns 1 time when levelTimer hits 180s
-        if (levelTimer > 1 && !bossBattle)
+        if (levelTimer > 180 && !bossBattle)
         {
             bossBattle = true;
             cs1010.SetActive(true);
@@ -119,6 +119,7 @@ public class L2LogicScript : MonoBehaviour
     // !!!Call this function when L2 final boss defeated, currently in CS1010Script when boss dies!!!
     public void LevelCompleted()
     {
+        PowerUpManagerScript.Instance.levelThree = true;
         gameScreenManager.GoToLevel3();
     }
 
