@@ -6,7 +6,7 @@ public class FriendScript : MonoBehaviour
 {
     public GameObject paperBall;
 
-    private float moveSpeed = 5f;
+    public float moveSpeed = 5f;
     private Vector3 targetPosition;
     public float secondsBetweenPaperBallSpawn;
 

@@ -10,9 +10,9 @@ public class Freshie : Enemy
     public static event FreshieCollision freshieCollisionEvent;
     
     // Movement speed of freshie enemy
-    private float freshieDiagonalSpeed = 1f;
-    private float moveDuration = 1f;  
-    private float stopDuration = 0f;
+    public float freshieDiagonalSpeed = 1f;
+    public float moveDuration = 1f;  
+    public float stopDuration = 0f;
     private bool isMoving = true;
 
 

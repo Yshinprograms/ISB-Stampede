@@ -68,7 +68,7 @@ public class L2LogicScript : MonoBehaviour
 
         // Cleaner interaction and Spawns ; time 0s
         Cleaner.cleanerCollisionEvent += CleanerInflictDamage;
-        InvokeRepeating(nameof(SpawnCleaner), 60f, secondsBetweenCleanerSpawn);
+        InvokeRepeating(nameof(SpawnCleaner), 0f, secondsBetweenCleanerSpawn);
 
         // EnginKid interaction and Spawns
         EnginKid.enginKidDeathEvent += StopEnginKidClusterCoroutine;
@@ -77,7 +77,7 @@ public class L2LogicScript : MonoBehaviour
         // CSMugger interaction and Spawns ; time 120s
         CSMugger.csMuggerCollisionEvent += CSMuggerInflictDamage;
         CSMuggerCode.csMuggerCodeCollisionEvent += CSMuggerCodeInflictDamage;
-        InvokeRepeating(nameof(SpawnCSMugger), 60f, secondsBetweenCSMuggerSpawn);
+        InvokeRepeating(nameof(SpawnCSMugger), 120f, secondsBetweenCSMuggerSpawn);
 
         // Piper's parameters & projectile interactions
         PaperBallScript.activePaperBalls = 0;
@@ -98,7 +98,7 @@ public class L2LogicScript : MonoBehaviour
 
         // EnginKid Clustering Logic
         // Cluster spawning coroutine only starts if there are no clusters && enginKids are not in attack phase
-        if (levelTimer > 60)
+        if (levelTimer > 0)
         {
             if (!enginKidClusterActive && !EnginKid.attackPhase)
             {

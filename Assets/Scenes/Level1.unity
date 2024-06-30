@@ -1054,7 +1054,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2757400112407340644, guid: d0f2a9f44ddac414f9ea203e4ed8e278, type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3011512643016481212, guid: d0f2a9f44ddac414f9ea203e4ed8e278, type: 3}
       propertyPath: piper
@@ -1064,6 +1064,10 @@ PrefabInstance:
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 495901050}
+    - target: {fileID: 3625605611000409459, guid: d0f2a9f44ddac414f9ea203e4ed8e278, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3866555430188779847, guid: d0f2a9f44ddac414f9ea203e4ed8e278, type: 3}
       propertyPath: m_IsActive
       value: 1

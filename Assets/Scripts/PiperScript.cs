@@ -115,7 +115,7 @@ public class PiperScript : MonoBehaviour
         return dir;
     }
 
-    private void Move(int dir)
+    public void Move(int dir)
     {
         if (dir == 1) //N
         {

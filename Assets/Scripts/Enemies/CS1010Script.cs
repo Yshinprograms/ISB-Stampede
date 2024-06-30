@@ -24,7 +24,7 @@ public class CS1010Script : Enemy
     private float shootDelay = 0.35f;
     private float patternDelay = 2.5f;
 
-    // Required for game restart despite only spawing a single CS1010 in the whole game
+    // Required for game restart despite only spawning a single CS1010 in the whole game
     private void OnEnable()
     {
         //bossHealth = bossHealth.GetComponent<Text>();
