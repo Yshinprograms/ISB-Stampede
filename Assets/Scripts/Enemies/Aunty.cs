@@ -44,6 +44,7 @@ public class Aunty : Enemy
 
         // 1. Stop moving
         moveSpeed = 0f;
+        gameObject.GetComponent<Animator>().Play("AuntyIdle");
 
         // 2. Spawn Handbag to the right of the Aunty, both Aunty handbagScript waits for 1s before locking on and throwing
         ObjectPoolScript.spawnObject(handbag, transform.position + Vector3.right, Quaternion.identity);
@@ -57,6 +58,7 @@ public class Aunty : Enemy
         // 4. Resume movement
         hasThrown = false;
         moveSpeed = 0.7f;
+        gameObject.GetComponent<Animator>().Play("AuntyMoving");
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

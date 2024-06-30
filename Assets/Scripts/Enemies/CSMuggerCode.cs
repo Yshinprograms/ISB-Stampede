@@ -7,6 +7,10 @@ public class CSMuggerCode : Enemy
     public delegate void CSMuggerCodeCollision();
     public static event CSMuggerCodeCollision csMuggerCodeCollisionEvent;
 
+    protected override void TurnDirection()
+    {
+
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

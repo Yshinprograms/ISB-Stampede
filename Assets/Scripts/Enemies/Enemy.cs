@@ -7,18 +7,19 @@ public class Enemy : MonoBehaviour
 {
     [SerializeField] private string enemyName;
     [SerializeField] protected float moveSpeed;
-    protected int health;
-    [SerializeField] public int maxHealth;
-    [SerializeField] private float distance;
-    private SpriteRenderer sp;
+    protected float health;
+    [SerializeField] public float maxHealth;
+    //private SpriteRenderer sp;
 
     // The target is Piper
     protected Transform piper;
+    Animator anim;
 
     void OnEnable()
     {
         health = maxHealth;
-        sp = GetComponent<SpriteRenderer>();
+        //sp = GetComponent<SpriteRenderer>();
+        //anim = GetComponent<Animator>();
         gameObject.tag = "Enemy";
         gameObject.layer = 6;
     }
@@ -26,7 +27,8 @@ public class Enemy : MonoBehaviour
     private void Start()
     {
         health = maxHealth;
-        sp = GetComponent<SpriteRenderer>();
+        //sp = GetComponent<SpriteRenderer>();
+        //anim = GetComponent<Animator>();
         gameObject.tag = "Enemy";
         gameObject.layer = 6;
     }
@@ -44,23 +46,18 @@ public class Enemy : MonoBehaviour
 
     protected virtual void Move()
     {
-        // If the piper is within distance range, enemy will follow piper
-        if (Vector2.Distance(transform.position, PiperScript.piperPosition) < distance)
-        {
-            transform.position = Vector2.MoveTowards(transform.position, PiperScript.piperPosition, moveSpeed * Time.deltaTime);
-        }
-       
+        transform.position = Vector2.MoveTowards(transform.position, PiperScript.piperPosition, moveSpeed * Time.deltaTime);
     }
 
     protected virtual void TurnDirection()
     {
         if (transform.position.x > PiperScript.piperPosition.x)
         {
-            sp.flipX = true;
+           transform.localScale = new Vector2(-0.15f, 0.15f);
         }
         else
         {
-            sp.flipX = false;
+            transform.localScale = new Vector2(0.15f, 0.15f);
         }
     }
 

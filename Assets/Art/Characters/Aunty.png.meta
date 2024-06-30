@@ -1,0 +1,344 @@
+fileFormatVersion: 2
+guid: de99f10613a641a408972bff4a589095
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 300
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Aunty_0
+      rect:
+        serializedVersion: 2
+        x: 1599
+        y: 2399
+        width: 535
+        height: 410
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38922352d4518f241b8e90f3cafbdce7
+      internalID: -1653399653
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Aunty_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 799
+        width: 1468
+        height: 1730
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: 400, y: -332}
+        - {x: 400, y: -397}
+        - {x: 333, y: -397}
+        - {x: 333, y: -465}
+        - {x: 266, y: -465}
+        - {x: 266, y: -531}
+        - {x: -200, y: -532}
+        - {x: -200, y: -464}
+        - {x: -335, y: -464}
+        - {x: -335, y: -397}
+        - {x: -400, y: -397}
+        - {x: -400, y: -331}
+        - {x: -466, y: -331}
+        - {x: -467, y: -731}
+        - {x: -533, y: -731}
+        - {x: -533, y: -864}
+        - {x: -600, y: -865}
+        - {x: -599, y: -798}
+        - {x: -667, y: -798}
+        - {x: -667, y: -597}
+        - {x: -731, y: -597}
+        - {x: -734, y: 202}
+        - {x: -665, y: 202}
+        - {x: -665, y: 467}
+        - {x: -602, y: 467}
+        - {x: -602, y: 536}
+        - {x: -533, y: 536}
+        - {x: -533, y: 603}
+        - {x: -469, y: 603}
+        - {x: -469, y: 670}
+        - {x: -399, y: 670}
+        - {x: -400, y: 737}
+        - {x: -334, y: 737}
+        - {x: -334, y: 803}
+        - {x: -266, y: 803}
+        - {x: -266, y: 865}
+        - {x: 399, y: 865}
+        - {x: 399, y: 802}
+        - {x: 466, y: 803}
+        - {x: 465, y: 735}
+        - {x: 535, y: 735}
+        - {x: 533, y: 603}
+        - {x: 600, y: 602}
+        - {x: 599, y: 469}
+        - {x: 667, y: 469}
+        - {x: 667, y: 204}
+        - {x: 734, y: 204}
+        - {x: 734, y: -397}
+        - {x: 666, y: -397}
+        - {x: 666, y: -730}
+        - {x: 599, y: -730}
+        - {x: 599, y: -795}
+        - {x: 535, y: -795}
+        - {x: 535, y: -731}
+        - {x: 467, y: -731}
+        - {x: 467, y: -332}
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 38e4cd79c143b7f438cf8422e14fcc6a
+      internalID: -1680309550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Aunty_3
+      rect:
+        serializedVersion: 2
+        x: 2265
+        y: 2531
+        width: 337
+        height: 338
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94bfc13a92852d24c884fdc936ec02eb
+      internalID: 104895491
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Aunty_6
+      rect:
+        serializedVersion: 2
+        x: 1999
+        y: 1317
+        width: 1001
+        height: 890
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8caca0fa6cf38bd4c8a060958f046c7b
+      internalID: -965215190
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Aunty_11
+      rect:
+        serializedVersion: 2
+        x: 531
+        y: 0
+        width: 739
+        height: 864
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90448e9a03651d54b992acf09f2c75c9
+      internalID: -2021975125
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Aunty_12
+      rect:
+        serializedVersion: 2
+        x: 1931
+        y: 465
+        width: 337
+        height: 408
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 21ef10cd3c24f1645b277f6a43f54023
+      internalID: 1710828180
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Aunty_13
+      rect:
+        serializedVersion: 2
+        x: 2399
+        y: 461
+        width: 335
+        height: 408
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 31538bc4f069a1547a3b234a6be9a1d1
+      internalID: 456207237
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      Aunty_0: -1653399653
+      Aunty_1: 462004540
+      Aunty_10: 1032739293
+      Aunty_11: -2021975125
+      Aunty_12: 1710828180
+      Aunty_13: 456207237
+      Aunty_2: -1680309550
+      Aunty_3: 104895491
+      Aunty_4: -1569958062
+      Aunty_5: 1672100496
+      Aunty_6: -965215190
+      Aunty_7: 431203150
+      Aunty_8: 1644564978
+      Aunty_9: -1313496707
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
