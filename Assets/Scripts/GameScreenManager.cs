@@ -53,6 +53,7 @@ public class GameScreenManager : MonoBehaviour
         Time.timeScale = 1;
         pauseMenu.SetActive(false);
         gameOverUI.SetActive(false);
+        gameCompletedUI.SetActive(false);
     }
 
     public void GoToLevel2()
@@ -72,6 +73,7 @@ public class GameScreenManager : MonoBehaviour
         piper.transform.position = Vector3.zero;
         gameOverUI.SetActive(false);
         pauseMenu.SetActive(false);
+        gameCompletedUI.SetActive(false);
         SceneManager.LoadScene("MainMenu");
         Time.timeScale = 1;   
     }

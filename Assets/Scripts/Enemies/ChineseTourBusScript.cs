@@ -49,7 +49,7 @@ public class ChineseTourBusScript : Enemy
         {
             bossHealthbarScript.DisableHealthbar();
             gameObject.SetActive(false);
-            //L3LogicScript.Instance.bossBattle = false;
+            L3LogicScript.Instance.bossBattle = false;
             L3LogicScript.Instance.LevelCompleted();
         }
     }

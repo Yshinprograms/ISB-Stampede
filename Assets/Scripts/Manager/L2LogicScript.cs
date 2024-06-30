@@ -107,7 +107,7 @@ public class L2LogicScript : MonoBehaviour
         }
 
         // Boss Spawns 1 time when levelTimer hits 180s
-        if (levelTimer > 2 && !bossBattle)
+        if (levelTimer > 180 && !bossBattle)
         {
             bossBattle = true;
             cs1010.SetActive(true);

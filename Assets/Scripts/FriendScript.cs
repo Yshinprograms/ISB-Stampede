@@ -21,7 +21,7 @@ public class FriendScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        targetPosition = PiperScript.piperRealPosition + Vector3.up;
+        targetPosition = PiperScript.piperRealPosition + (2*Vector3.up);
         transform.position = Vector3.MoveTowards(transform.position, targetPosition, Time.deltaTime * moveSpeed);
         
         if (secondsBetweenPaperBallSpawn > 2.4f)

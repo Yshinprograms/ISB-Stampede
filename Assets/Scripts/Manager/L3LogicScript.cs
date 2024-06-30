@@ -25,6 +25,7 @@ public class L3LogicScript : MonoBehaviour
 
     public bool bossBattle;
     private float levelTimer = 0;
+    public GameScreenManager gameScreenManager;
 
     // Import GameObjects, drag and drop into Inspector
     public GameObject chineseTourist;
@@ -58,11 +59,12 @@ public class L3LogicScript : MonoBehaviour
         }
         instance = this;
 
+        gameScreenManager = FindObjectOfType<GameScreenManager>();
 
         // Start spawning
         InvokeRepeating(nameof(SpawnChineseTourists), 0f, secondsBetweenChineseTouristSpawn);
 
-        InvokeRepeating(nameof(SpawnInnocentStudent), 0f, secondsBetweenInnocentStudentSpawn);
+        InvokeRepeating(nameof(SpawnInnocentStudent), 60f, secondsBetweenInnocentStudentSpawn);
 
         ChineseTourBusScript.BusCollisionEvent += BusInflictDamage;
 
@@ -89,7 +91,7 @@ public class L3LogicScript : MonoBehaviour
         }
 
         // Boss Spawns 1 time when timer hits 180s
-        if (levelTimer > 3 && !bossBattle)
+        if (levelTimer > 120 && !bossBattle)
         {
             bossBattle = true;
             ChineseTourBus.SetActive(true);
@@ -97,6 +99,20 @@ public class L3LogicScript : MonoBehaviour
 
 
         levelTimer += Time.deltaTime;
+    }
+
+    // !!!Change this function for gameend!!!
+    public void LevelCompleted()
+    {
+        //gameScreenManager.GoToLevel3();
+        if (gameScreenManager != null)
+        {
+            gameScreenManager.GameCompleted();
+        }
+        else
+        {
+            Debug.LogError("GameScreenManager not found in the scene!");
+        }
     }
 
     void BizProjectileInflictDamage()
@@ -122,12 +138,6 @@ public class L3LogicScript : MonoBehaviour
     {
         // Spawn to the right of Piper
         ObjectPoolScript.spawnObject(paperBall, PiperScript.piperPosition + Vector3.right, Quaternion.identity);
-    }
-
-    // !!!Change this function for gameend!!!
-    public void LevelCompleted()
-    {
-        //gameScreenManager.GoToLevel3();
     }
 
     void BusInflictDamage()
