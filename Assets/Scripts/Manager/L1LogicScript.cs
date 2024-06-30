@@ -12,8 +12,6 @@ public class L1LogicScript : MonoBehaviour
     public GameScreenManager gameScreenManager;
 
     // Import GameObjects, drag and drop into Inspector
-    public GameObject testObject;
-    public GameObject testObject2;
     public GameObject paperBall;
     public GameObject bollard;
     public GameObject freshie;
@@ -159,10 +157,4 @@ public class L1LogicScript : MonoBehaviour
         Handbag.handbagCollisionEvent -= HandbagInflictDamage;
     }
 
-
-
-    void SpawnTest()
-    {
-        ObjectPoolScript.spawnObject(testObject, SpawnScript.generateSpawnPoint(), Quaternion.identity);
-    }
 }
