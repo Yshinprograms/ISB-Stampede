@@ -31,6 +31,7 @@ public class FriendPaperScript : MonoBehaviour
         if (targetEnemy != null && !targetEnemy.activeSelf)
         {
             enemyFound = false;
+            targetEnemy = null;
         }
     }
 

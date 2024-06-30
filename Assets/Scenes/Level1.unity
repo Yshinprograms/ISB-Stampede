@@ -555,6 +555,32 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5a4ba7184b1d3fa45bbbf8779d0a5451, type: 3}
+--- !u!1 &1035245991 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919978002380124009, guid: d0f2a9f44ddac414f9ea203e4ed8e278, type: 3}
+  m_PrefabInstance: {fileID: 3806793190134613296}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1035245993
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1035245991}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a53d6594c5bcee489a06a3380cc4bce, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthPowerUp: {fileID: 3802968749208729925, guid: 80ed48fa9e00ce94ca259760fd0bbfb9, type: 3}
+  mala: {fileID: 6554649754085818922, guid: e34a1bad366370042914bcb14a20d4ab, type: 3}
+  friend: {fileID: 1813707068468820916, guid: 8fa03dff0f1af3446867bbe4aa0ded79, type: 3}
+  secondsBetweenHealthPowerUpSpawnMin: 50
+  secondsBetweenHealthPowerUpSpawnMax: 90
+  timeBetweenMalaSpawn: 15
+  timeBetweenFriendSpawn: 20
+  levelTwo: 0
+  levelThree: 0
 --- !u!1 &1114863374
 GameObject:
   m_ObjectHideFlags: 0
@@ -650,6 +676,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45e653bab7fb20e499bda25e1b646fea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1210913426 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8146391472390664782, guid: 20e5d02c8cf823444a990f48f73842ee, type: 3}
+  m_PrefabInstance: {fileID: 4383656594888658494}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1376663799
 GameObject:
   m_ObjectHideFlags: 0
@@ -993,6 +1024,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1512874827061637748, guid: d0f2a9f44ddac414f9ea203e4ed8e278, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1901479323809304789, guid: d0f2a9f44ddac414f9ea203e4ed8e278, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -1019,16 +1054,20 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2757400112407340644, guid: d0f2a9f44ddac414f9ea203e4ed8e278, type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3011512643016481212, guid: d0f2a9f44ddac414f9ea203e4ed8e278, type: 3}
       propertyPath: piper
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1210913426}
     - target: {fileID: 3347274677104192343, guid: d0f2a9f44ddac414f9ea203e4ed8e278, type: 3}
       propertyPath: m_Follow
       value: 
       objectReference: {fileID: 495901050}
+    - target: {fileID: 3866555430188779847, guid: d0f2a9f44ddac414f9ea203e4ed8e278, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5570535365977965488, guid: d0f2a9f44ddac414f9ea203e4ed8e278, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1063,7 +1102,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 957589713978490457, guid: d0f2a9f44ddac414f9ea203e4ed8e278, type: 3}
       insertIndex: 0
       addedObject: {fileID: 495901050}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919978002380124009, guid: d0f2a9f44ddac414f9ea203e4ed8e278, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1035245993}
   m_SourcePrefab: {fileID: 100100000, guid: d0f2a9f44ddac414f9ea203e4ed8e278, type: 3}
 --- !u!1001 &4383656594888658494
 PrefabInstance:

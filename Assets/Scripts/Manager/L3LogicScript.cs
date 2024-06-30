@@ -39,7 +39,7 @@ public class L3LogicScript : MonoBehaviour
     public float secondsBetweenPaperBallSpawn;
     public float secondsBetweenChineseTouristSpawn = 5f;
     public float secondsBetweenLandmarks = 7;
-    public float secondsBetweenInnocentStudentSpawn = 5f;
+    public float secondsBetweenInnocentStudentSpawn = 8f;
     //public float secondsBetweenMedStudentSpawn = 5f;
     public float secondsBetweenBizSnakeSpawn = 8f;
 
@@ -89,7 +89,7 @@ public class L3LogicScript : MonoBehaviour
         }
 
         // Boss Spawns 1 time when timer hits 180s
-        if (levelTimer > 180 && !bossBattle)
+        if (levelTimer > 3 && !bossBattle)
         {
             bossBattle = true;
             ChineseTourBus.SetActive(true);

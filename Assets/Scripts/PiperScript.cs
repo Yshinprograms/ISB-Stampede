@@ -202,4 +202,8 @@ public class PiperScript : MonoBehaviour
         }
     }
 
+    private void OnDestroy()
+    {
+        ChineseTourist.PhotoEvent -= PiperStunned;
+    }
 }

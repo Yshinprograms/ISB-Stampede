@@ -74,7 +74,11 @@ public class ChineseTourist : Enemy
             if (distToPiper - flashRange <= 0)
             {
                 TakePhoto();
-                PhotoEvent();
+                // PiperStunned is subscribed here
+                if (!PiperScript.malaActive)
+                {
+                    PhotoEvent();
+                }
             }
         }
 
