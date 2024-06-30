@@ -44,11 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 980d9b3326f26014cbc274013eed1954, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseMenu: {fileID: 2995609571182680247, guid: 74ab66e497951dc48a3be96df921451a, type: 3}
   gameScreenManager: {fileID: 6969220703198510773, guid: fa06ce19a0615d145863325e02a1c64e, type: 3}
   paperBall: {fileID: 7656084192474370632, guid: 89b5fc3fec2edf247ad89980e7c63c20, type: 3}
   cleaner: {fileID: 4595520701919560262, guid: de06c16569ca9334d837a42c679097a5, type: 3}
-  enginKid: {fileID: 5774840321483290054, guid: 36c4afd386cbda244b222fd412207f69, type: 3}
+  enginKid: {fileID: 7564392290012295833, guid: b7c675bbcf0e3124d8dfbc7e93e35ba4, type: 3}
   csMugger: {fileID: 4994354537569844616, guid: bdaeca230f1417943a26bf3b9754a3bc, type: 3}
   csMuggerCode: {fileID: 2425603647604418709, guid: 4f2017313fa89a741825a185ae8e79aa, type: 3}
   secondsBetweenPaperBallSpawn: 0

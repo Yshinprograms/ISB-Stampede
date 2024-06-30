@@ -12,8 +12,6 @@ public class L1LogicScript : MonoBehaviour
     public GameScreenManager gameScreenManager;
 
     // Import GameObjects, drag and drop into Inspector
-    public GameObject testObject;
-    public GameObject testObject2;
     public GameObject paperBall;
     public GameObject bollard;
     public GameObject freshie;
@@ -59,9 +57,6 @@ public class L1LogicScript : MonoBehaviour
         }
         instance = this;
 
-        // Test interaction and Spawns ; time 0s
-        //InvokeRepeating(nameof(SpawnTest), 0f, secondsBetweenTestObjectSpawn);
-
         // Bollard interaction and Spawns ; time 0s
         Bollard.bollardCollisionEvent += BollardInflictDamage;
         InvokeRepeating(nameof(SpawnBollard), 0f, secondsBetweenBollardSpawn);
@@ -99,7 +94,7 @@ public class L1LogicScript : MonoBehaviour
             PaperBallScript.activePaperBalls += 1;
         }
 
-        if (timer > 15)
+        if (timer > 1)
         {
             gameScreenManager.GoToLevel2();
             //Destroy(master);
@@ -158,10 +153,4 @@ public class L1LogicScript : MonoBehaviour
         Handbag.handbagCollisionEvent -= HandbagInflictDamage;
     }
 
-
-
-    void SpawnTest()
-    {
-        ObjectPoolScript.spawnObject(testObject, SpawnScript.generateSpawnPoint(), Quaternion.identity);
-    }
 }

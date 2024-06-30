@@ -131,6 +131,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8146804607821825538, guid: f93fa8390fed95a48b8467d09a7276c6, type: 3}
+      propertyPath: cleaner
+      value: 
+      objectReference: {fileID: 6431718167901164198, guid: 4e5f4e2d080d0a440af095bd2c89c742, type: 3}
+    - target: {fileID: -8146804607821825538, guid: f93fa8390fed95a48b8467d09a7276c6, type: 3}
+      propertyPath: csMugger
+      value: 
+      objectReference: {fileID: 2569963695762279836, guid: f13623cd8f571484c98ce824f67492a4, type: 3}
+    - target: {fileID: -8146804607821825538, guid: f93fa8390fed95a48b8467d09a7276c6, type: 3}
+      propertyPath: paperBall
+      value: 
+      objectReference: {fileID: 4773786103454258307, guid: 5ec33467aa40be7418adcd81914f19fd, type: 3}
     - target: {fileID: 2570036113217178490, guid: f93fa8390fed95a48b8467d09a7276c6, type: 3}
       propertyPath: m_Name
       value: L2UI

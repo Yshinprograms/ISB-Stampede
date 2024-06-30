@@ -7,7 +7,7 @@ public class PiperScript : MonoBehaviour
 {
     // Piper's projectile range is 2f
     // Health settings
-    public static int piperMaxHealth = 10;
+    public static int piperMaxHealth = 100;
     public static int piperHealth;
     public static int allEnemyMask;
 
@@ -16,10 +16,12 @@ public class PiperScript : MonoBehaviour
     public static Collider2D enemyInRange;
     private SpriteRenderer sp;
     private float piperStunTimer = 0f;
+    Animator anim;
 
     private void Start()
     {
         sp = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
         ChineseTourist.PhotoEvent += PiperStunned;
         
         // Add future enemy layers here as needed, bitmasking; Note the int size in C#(32 bits / Max layers)
@@ -40,6 +42,7 @@ public class PiperScript : MonoBehaviour
         }
 
         piperPosition = transform.position;
+
 
         // Checks if there are enemies in range of Piper's projectiles
         enemyInRange = Physics2D.OverlapCircle(transform.position, 2f, allEnemyMask);
@@ -65,17 +68,18 @@ public class PiperScript : MonoBehaviour
         if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))
         {
             dir = 2; //NE
+           
         }
         else if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D))
         {
             dir = 4; //SE
-            sp.flipX = true;
+            //sp.flipX = true;   
 
         }
         else if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A))
         {
             dir = 6; //SW
-            sp.flipX = false;
+            //sp.flipX = false;
         }
         else if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.W))
         {
@@ -88,7 +92,8 @@ public class PiperScript : MonoBehaviour
         else if (Input.GetKey(KeyCode.D))
         {
             dir = 3; //E
-            sp.flipX = true;
+            //sp.flipX = true;
+       
         }
         else if (Input.GetKey(KeyCode.S))
         {
@@ -97,7 +102,7 @@ public class PiperScript : MonoBehaviour
         else if (Input.GetKey(KeyCode.A))
         {
             dir = 7; //W
-            sp.flipX = false;
+            //sp.flipX = false;
         }
 
         return dir;
@@ -108,34 +113,57 @@ public class PiperScript : MonoBehaviour
         if (dir == 1) //N
         {
             transform.position += Vector3.up * piperMoveSpeed * Time.deltaTime;
+            transform.localScale = new Vector2(0.15f, 0.15f);
+            anim.Play("PiperMoving");
         }
         if (dir == 2) //NE
         {
             transform.position += new Vector3(1, 1, 0).normalized * piperMoveSpeed * Time.deltaTime;
+            transform.localScale = new Vector2(0.15f, 0.15f);
+            anim.Play("PiperMoving");
         }
         if (dir == 3) //E
         {
             transform.position += Vector3.right * piperMoveSpeed * Time.deltaTime;
+            transform.localScale = new Vector2(0.15f, 0.15f);
+            anim.Play("PiperMoving");
         }
         if (dir == 4) //SE
         {
             transform.position += new Vector3(1, -1, 0).normalized * piperMoveSpeed * Time.deltaTime;
+            transform.localScale = new Vector2(0.15f, 0.15f);
+            anim.Play("PiperMoving");
         }
         if (dir == 5) //S
         {
             transform.position += Vector3.down * piperMoveSpeed * Time.deltaTime;
+            transform.localScale = new Vector2(0.15f, 0.15f);
+            anim.Play("PiperMoving");
         }
         if (dir == 6) //SW
         {
             transform.position += new Vector3(-1, -1, 0).normalized * piperMoveSpeed * Time.deltaTime;
+            transform.localScale = new Vector2(-0.15f, 0.15f);
+            anim.Play("PiperMoving");
+
         }
         if (dir == 7) //W
         {
             transform.position += Vector3.left * piperMoveSpeed * Time.deltaTime;
+            transform.localScale = new Vector2(-0.15f, 0.15f);
+            anim.Play("PiperMoving");
+
         }
         if (dir == 8) //NW
         {
             transform.position += new Vector3(-1, 1, 0).normalized * piperMoveSpeed * Time.deltaTime;
+            transform.localScale = new Vector2(-0.15f, 0.15f);
+            anim.Play("PiperMoving");
+
+        }
+        if (dir == 0) //Not moving
+        {
+            anim.Play("PiperIdle");
         }
     }
 

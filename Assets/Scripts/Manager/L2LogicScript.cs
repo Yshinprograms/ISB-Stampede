@@ -75,7 +75,7 @@ public class L2LogicScript : MonoBehaviour
         // CSMugger interaction and Spawns ; time 120s
         CSMugger.csMuggerCollisionEvent += CSMuggerInflictDamage;
         CSMuggerCode.csMuggerCodeCollisionEvent += CSMuggerCodeInflictDamage;
-        InvokeRepeating(nameof(SpawnCSMugger), 300f, secondsBetweenCSMuggerSpawn);
+        InvokeRepeating(nameof(SpawnCSMugger), 120f, secondsBetweenCSMuggerSpawn);
 
         // Piper's parameters & projectile interactions
         PaperBallScript.activePaperBalls = 0;
@@ -102,7 +102,7 @@ public class L2LogicScript : MonoBehaviour
             }
         }
 
-        if (timer > 1)
+        if (timer > 2)
         {
             gameScreenManager.GoToLevel3();
         }

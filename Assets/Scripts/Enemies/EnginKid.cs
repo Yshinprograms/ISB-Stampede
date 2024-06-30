@@ -43,7 +43,7 @@ public class EnginKid : Enemy
     protected override void TurnDirection()
     {
 
-    }
+    } 
 
     void Update()
     {
@@ -55,15 +55,38 @@ public class EnginKid : Enemy
         {
             transform.position = Vector3.MoveTowards(transform.position, LogicScript.Instance.enginKidGatheringCorner, moveSpeed * Time.deltaTime);
 
+            if (transform.position.x > LogicScript.Instance.enginKidGatheringCorner.x)
+            {
+                transform.localScale = new Vector2(-1, 1);
+            }
+            else
+            {
+                transform.localScale = new Vector2(1, 1);
+            }
+
+            gameObject.GetComponent<Animator>().Play("EnginKidMoving");
+
             if (Vector3.Distance(transform.position, LogicScript.Instance.enginKidGatheringCorner) < 0.6f)
             {
                 reachedGatheringCorner = true;
+                gameObject.GetComponent<Animator>().Play("EnginKidIdle");
             }
         }
         // Go into attackPhase when the cluster of 3 is formed i.e. all 3 reached position
         else if (attackPhase)
         {
             transform.position = Vector3.MoveTowards(transform.position, PiperScript.piperPosition, moveSpeed * Time.deltaTime);
+
+            if (transform.position.x > PiperScript.piperPosition.x)
+            {
+                transform.localScale = new Vector2(-1, 1);
+            }
+            else
+            {
+                transform.localScale = new Vector2(1, 1);
+            }
+
+            gameObject.GetComponent<Animator>().Play("EnginKidMoving");
         }
 
         if (health <= 0)

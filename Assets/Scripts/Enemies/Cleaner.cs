@@ -52,6 +52,7 @@ public class Cleaner : Enemy
             }
             Vector3 directionToPosition = randomMapPosition - transform.position;
             transform.position = Vector3.MoveTowards(transform.position, randomMapPosition, moveSpeed * Time.deltaTime);
+            gameObject.GetComponent<Animator>().Play("CleanerMoving");
         }
 
         // Enraged movement pattern
@@ -72,6 +73,7 @@ public class Cleaner : Enemy
     public IEnumerator enterEnragedMode()
     {
         cleanerEnrageEvent();
+        gameObject.GetComponent<Animator>().Play("CleanerIdle");
         // Get angry and charge up for 2s, then get Piper position and direction
         yield return new WaitForSeconds(2);
         Vector3 targetPosition = PiperScript.piperPosition;
@@ -80,10 +82,12 @@ public class Cleaner : Enemy
         // Charge towards Piper's position
         moveSpeed = 5f;
         Vector3 directionToPiper = (targetPosition - transform.position).normalized;
+        gameObject.GetComponent<Animator>().Play("CleanerRunning");
         while (Vector3.Distance(transform.position, targetPosition) > 0.1f)
         {
             UpdateAimingLine(targetPosition);
             transform.position += moveSpeed * Time.deltaTime * directionToPiper;
+            gameObject.GetComponent<Animator>().Play("CleanerRunning");
             yield return null;
         }
 
@@ -96,12 +100,14 @@ public class Cleaner : Enemy
     public IEnumerator continueCharge()
     {
         // Delay 3s in between each charge
+        gameObject.GetComponent<Animator>().Play("CleanerIdle");
         yield return new WaitForSeconds(3);
 
         // Get Piper position and direction
         moveSpeed = 5f;
         Vector3 targetPosition = PiperScript.piperPosition;
         Vector3 directionToPiper = (targetPosition - transform.position).normalized;
+        gameObject.GetComponent<Animator>().Play("CleanerRunning");
         aimingLine.enabled = true;
 
         // Charge towards Piper's position
