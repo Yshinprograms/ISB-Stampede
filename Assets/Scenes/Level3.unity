@@ -426,6 +426,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2479668723141450711, guid: 799ab48c124e491449945d3250e56fb5, type: 3}
     - target: {fileID: 691811430249122934, guid: c7f2c4770977b2a49b8574cfc1bdb85f, type: 3}
+      propertyPath: paperBall
+      value: 
+      objectReference: {fileID: 4773786103454258307, guid: 5ec33467aa40be7418adcd81914f19fd, type: 3}
+    - target: {fileID: 691811430249122934, guid: c7f2c4770977b2a49b8574cfc1bdb85f, type: 3}
       propertyPath: ChineseTourBus
       value: 
       objectReference: {fileID: 1257167981}

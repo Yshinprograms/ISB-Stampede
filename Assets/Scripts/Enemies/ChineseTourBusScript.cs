@@ -27,7 +27,7 @@ public class ChineseTourBusScript : Enemy
     private void OnEnable()
     {
         bossHealthbarScript.EnableHealthbar();
-        bossHealthbarScript.SetMaxHealth(maxHealth);
+        bossHealthbarScript.SetMaxHealth((int)maxHealth);
         busRenderer = GetComponent<SpriteRenderer>();
         health = maxHealth;
         currentCorner = 1;
@@ -37,7 +37,7 @@ public class ChineseTourBusScript : Enemy
 
     void Update()
     {
-        bossHealthbarScript.SetHealth(health);
+        bossHealthbarScript.SetHealth((int)health);
         UpdateStage();
         GetDestination(currentCorner);
         if (!tourStarted)

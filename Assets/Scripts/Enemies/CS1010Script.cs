@@ -29,7 +29,7 @@ public class CS1010Script : Enemy
     {
         //bossHealth = bossHealth.GetComponent<Text>();
         bossHealthbarScript.EnableHealthbar();
-        bossHealthbarScript.SetMaxHealth(maxHealth);
+        bossHealthbarScript.SetMaxHealth((int)maxHealth);
         cs1010renderer = GetComponent<SpriteRenderer>();
         health = maxHealth;
         stageZero = true;
@@ -44,7 +44,7 @@ public class CS1010Script : Enemy
     // Update is called once per frame
     void Update()
     {
-        bossHealthbarScript.SetHealth(health);
+        bossHealthbarScript.SetHealth((int)health);
         UpdateStage();
         Attack();
 

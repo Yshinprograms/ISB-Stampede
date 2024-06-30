@@ -512,6 +512,26 @@ PrefabInstance:
       propertyPath: cs1010
       value: 
       objectReference: {fileID: 293742206}
+    - target: {fileID: -8146804607821825538, guid: f93fa8390fed95a48b8467d09a7276c6, type: 3}
+      propertyPath: cleaner
+      value: 
+      objectReference: {fileID: 6431718167901164198, guid: 4e5f4e2d080d0a440af095bd2c89c742, type: 3}
+    - target: {fileID: -8146804607821825538, guid: f93fa8390fed95a48b8467d09a7276c6, type: 3}
+      propertyPath: csMugger
+      value: 
+      objectReference: {fileID: 2569963695762279836, guid: f13623cd8f571484c98ce824f67492a4, type: 3}
+    - target: {fileID: -8146804607821825538, guid: f93fa8390fed95a48b8467d09a7276c6, type: 3}
+      propertyPath: enginKid
+      value: 
+      objectReference: {fileID: 7564392290012295833, guid: b7c675bbcf0e3124d8dfbc7e93e35ba4, type: 3}
+    - target: {fileID: -8146804607821825538, guid: f93fa8390fed95a48b8467d09a7276c6, type: 3}
+      propertyPath: paperBall
+      value: 
+      objectReference: {fileID: 4773786103454258307, guid: 5ec33467aa40be7418adcd81914f19fd, type: 3}
+    - target: {fileID: -8146804607821825538, guid: f93fa8390fed95a48b8467d09a7276c6, type: 3}
+      propertyPath: csMuggerCode
+      value: 
+      objectReference: {fileID: 5900483392926563956, guid: 79e22b5c8c92ac4409d2bcc7dd053fe1, type: 3}
     - target: {fileID: 2570036113217178490, guid: f93fa8390fed95a48b8467d09a7276c6, type: 3}
       propertyPath: m_Name
       value: L2UI

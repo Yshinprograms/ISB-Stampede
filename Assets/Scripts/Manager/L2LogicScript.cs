@@ -68,7 +68,7 @@ public class L2LogicScript : MonoBehaviour
 
         // Cleaner interaction and Spawns ; time 0s
         Cleaner.cleanerCollisionEvent += CleanerInflictDamage;
-        InvokeRepeating(nameof(SpawnCleaner), 0f, secondsBetweenCleanerSpawn);
+        InvokeRepeating(nameof(SpawnCleaner), 60f, secondsBetweenCleanerSpawn);
 
         // EnginKid interaction and Spawns
         EnginKid.enginKidDeathEvent += StopEnginKidClusterCoroutine;
@@ -77,7 +77,7 @@ public class L2LogicScript : MonoBehaviour
         // CSMugger interaction and Spawns ; time 120s
         CSMugger.csMuggerCollisionEvent += CSMuggerInflictDamage;
         CSMuggerCode.csMuggerCodeCollisionEvent += CSMuggerCodeInflictDamage;
-        InvokeRepeating(nameof(SpawnCSMugger), 30f, secondsBetweenCSMuggerSpawn);
+        InvokeRepeating(nameof(SpawnCSMugger), 60f, secondsBetweenCSMuggerSpawn);
 
         // Piper's parameters & projectile interactions
         PaperBallScript.activePaperBalls = 0;
@@ -107,7 +107,7 @@ public class L2LogicScript : MonoBehaviour
         }
 
         // Boss Spawns 1 time when levelTimer hits 180s
-        if (levelTimer > 180 && !bossBattle)
+        if (levelTimer > 2 && !bossBattle)
         {
             bossBattle = true;
             cs1010.SetActive(true);
