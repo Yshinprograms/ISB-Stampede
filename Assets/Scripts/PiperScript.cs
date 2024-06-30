@@ -68,7 +68,7 @@ public class PiperScript : MonoBehaviour
 
     // Directions 0-8 indicate Not moving, N,NE,E,...,NW
     // Diagonals first, if not will always execute NSEW only
-    private int findDir()
+    public int findDir()
     {
         int dir = 0; //Not moving
 

@@ -1034,7 +1034,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2452164893359889673, guid: d0f2a9f44ddac414f9ea203e4ed8e278, type: 3}
       propertyPath: m_ChildCameras.Array.size
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2452164893359889673, guid: d0f2a9f44ddac414f9ea203e4ed8e278, type: 3}
       propertyPath: m_ChildCameras.Array.data[0]
