@@ -124,7 +124,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyName: Bollard
-  moveSpeed: 0.7
+  moveSpeed: 0.9
   maxHealth: 10
 --- !u!70 &6824468209108743724
 CapsuleCollider2D:

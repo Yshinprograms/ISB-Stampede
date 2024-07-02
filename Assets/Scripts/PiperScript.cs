@@ -7,7 +7,7 @@ public class PiperScript : MonoBehaviour
 {
     // Piper's projectile range is 2f
     // Health settings
-    public static int piperMaxHealth = 1000;
+    public static int piperMaxHealth = 200;
     public static int piperHealth;
     public static int allEnemyMask;
     public static bool malaActive = false;

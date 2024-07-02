@@ -17,7 +17,7 @@ public class L1LogicScript : MonoBehaviour
     public GameObject freshie;
     public GameObject aunty;
     
-    // !!temporary change for playtesting: spawn times, bollard louder, freshie softer lil,
+    // !!temporary change for playtesting: spawn times, freshie softer ,
 
     // Spawn times
     //public float secondsBetweenTestObjectSpawn = 10f;
@@ -68,12 +68,12 @@ public class L1LogicScript : MonoBehaviour
 
         // Freshie interaction and Spawns ; time 60s
         Freshie.freshieCollisionEvent += FreshieInflictDamage;
-        InvokeRepeating(nameof(SpawnFreshie), 20f, secondsBetweenFreshieSpawn);
+        InvokeRepeating(nameof(SpawnFreshie), 30f, secondsBetweenFreshieSpawn);
 
         // Aunty interactions and spawns ; time 120s
         Aunty.auntyCollisionEvent += AuntyInflictDamage;
         Handbag.handbagCollisionEvent += HandbagInflictDamage;
-        InvokeRepeating(nameof(SpawnAunty), 40f, secondsBetweenAuntySpawn);
+        InvokeRepeating(nameof(SpawnAunty), 60f, secondsBetweenAuntySpawn);
 
         // Piper's parameters & projectile interactions
         //isAlive = true;
@@ -100,7 +100,7 @@ public class L1LogicScript : MonoBehaviour
         }
 
         //timer = 180s
-        if (timer > 60)
+        if (timer > 90)
         {
             gameScreenManager.GoToLevel2();
             PowerUpManagerScript.Instance.levelTwo = true;

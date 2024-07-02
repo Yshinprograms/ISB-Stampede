@@ -64,7 +64,7 @@ public class L3LogicScript : MonoBehaviour
         // Start spawning
         InvokeRepeating(nameof(SpawnChineseTourists), 0f, secondsBetweenChineseTouristSpawn);
 
-        InvokeRepeating(nameof(SpawnInnocentStudent), 50f, secondsBetweenInnocentStudentSpawn);
+        InvokeRepeating(nameof(SpawnInnocentStudent), 30f, secondsBetweenInnocentStudentSpawn);
 
         ChineseTourBusScript.BusCollisionEvent += BusInflictDamage;
 
@@ -91,7 +91,7 @@ public class L3LogicScript : MonoBehaviour
         }
 
         // Boss Spawns 1 time when timer hits 180s
-        if (levelTimer > 100 && !bossBattle)
+        if (levelTimer > 60 && !bossBattle)
         {
             bossBattle = true;
             ChineseTourBus.SetActive(true);
