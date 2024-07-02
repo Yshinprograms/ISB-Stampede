@@ -98,7 +98,8 @@ public class L1LogicScript : MonoBehaviour
             PaperBallScript.activePaperBalls += 1;
         }
 
-        if (timer > 1)
+        //timer = 180s
+        if (timer > 180)
         {
             gameScreenManager.GoToLevel2();
             PowerUpManagerScript.Instance.levelTwo = true;

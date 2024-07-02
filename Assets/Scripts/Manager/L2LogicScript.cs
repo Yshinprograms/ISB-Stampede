@@ -98,7 +98,7 @@ public class L2LogicScript : MonoBehaviour
 
         // EnginKid Clustering Logic
         // Cluster spawning coroutine only starts if there are no clusters && enginKids are not in attack phase
-        if (levelTimer > 0)
+        if (levelTimer > 60)
         {
             if (!enginKidClusterActive && !EnginKid.attackPhase)
             {
@@ -106,12 +106,20 @@ public class L2LogicScript : MonoBehaviour
             }
         }
 
+
         // Boss Spawns 1 time when levelTimer hits 180s
         if (levelTimer > 180 && !bossBattle)
         {
+            CancelInvoke(nameof(SpawnCleaner));
+            CancelInvoke(nameof(SpawnCSMugger));
             bossBattle = true;
             cs1010.SetActive(true);
         }
+
+        /*if (levelTimer > 2)
+        {
+            gameScreenManager.GoToLevel3();
+        }*/
 
         levelTimer += Time.deltaTime;
     }

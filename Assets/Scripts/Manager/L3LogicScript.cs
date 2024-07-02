@@ -91,10 +91,13 @@ public class L3LogicScript : MonoBehaviour
         }
 
         // Boss Spawns 1 time when timer hits 180s
-        if (levelTimer > 120 && !bossBattle)
+        if (levelTimer > 180 && !bossBattle)
         {
             bossBattle = true;
             ChineseTourBus.SetActive(true);
+            CancelInvoke(nameof(SpawnChineseTourists));
+            CancelInvoke(nameof(SpawnInnocentStudent));
+
         }
 
 

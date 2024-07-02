@@ -34,9 +34,14 @@ public class EnginKid : Enemy
         reachedGatheringCorner = false;
         moveSpeed = 2.5f;
         gatheredSuccessfully = false;
+        aura = GetComponent<ParticleSystem>();
     }
     void Start()
     {
+        health = maxHealth;
+        reachedGatheringCorner = false;
+        moveSpeed = 2.5f;
+        gatheredSuccessfully = false;
         aura = GetComponent<ParticleSystem>();
     }
 
@@ -53,9 +58,9 @@ public class EnginKid : Enemy
         // Go to the gathering corner until we get a cluster of 3 enginKids
         if (!attackPhase && !reachedGatheringCorner)
         {
-            transform.position = Vector3.MoveTowards(transform.position, LogicScript.Instance.enginKidGatheringCorner, moveSpeed * Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, L2LogicScript.Instance.enginKidGatheringCorner, moveSpeed * Time.deltaTime);
 
-            if (transform.position.x > LogicScript.Instance.enginKidGatheringCorner.x)
+            if (transform.position.x > L2LogicScript.Instance.enginKidGatheringCorner.x)
             {
                 transform.localScale = new Vector2(-1, 1);
             }
@@ -66,7 +71,7 @@ public class EnginKid : Enemy
 
             gameObject.GetComponent<Animator>().Play("EnginKidMoving");
 
-            if (Vector3.Distance(transform.position, LogicScript.Instance.enginKidGatheringCorner) < 0.6f)
+            if (Vector3.Distance(transform.position, L2LogicScript.Instance.enginKidGatheringCorner) < 0.6f)
             {
                 reachedGatheringCorner = true;
                 gameObject.GetComponent<Animator>().Play("EnginKidIdle");
@@ -97,7 +102,7 @@ public class EnginKid : Enemy
             if (enginKidCount == 0)
             {
                 enginKidDeathEvent();
-                LogicScript.Instance.enginKidClusterActive = false;
+                L2LogicScript.Instance.enginKidClusterActive = false;
                 attackPhase = false;
             }
             // If any one of the enginKid dies before all 3 assemble, stop spawning(coroutine) and the other enginKids enter attack phase

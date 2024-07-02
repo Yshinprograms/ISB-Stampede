@@ -14,11 +14,13 @@ public class MainMenu : MonoBehaviour
         //Time.timeScale = 1;
         //pauseMenu.SetActive(false);
         //gameOverUI.SetActive(false);
+        Debug.Log("Play game");
 
     }
 
     public void quitGame()
     {
         Application.Quit();
+        Debug.Log("Quit game");
     }
 }

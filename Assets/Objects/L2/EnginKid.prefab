@@ -481,7 +481,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyName: Engine Kid
   moveSpeed: 2.5
-  maxHealth: 100
+  maxHealth: 20
 --- !u!198 &8002352194828486890
 ParticleSystem:
   m_ObjectHideFlags: 0
