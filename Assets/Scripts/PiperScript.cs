@@ -7,7 +7,7 @@ public class PiperScript : MonoBehaviour
 {
     // Piper's projectile range is 2f
     // Health settings
-    public static int piperMaxHealth = 100;
+    public static int piperMaxHealth = 1000;
     public static int piperHealth;
     public static int allEnemyMask;
     public static bool malaActive = false;
@@ -177,7 +177,10 @@ public class PiperScript : MonoBehaviour
     // Function to stun Piper by Chinese Tourists. Didn't unsubscribe onDestroy because gameOver when Piper gets destroyed
     void PiperStunned()
     {
-        piperStunTimer = 0f;
+        if (!malaActive)
+        {
+            piperStunTimer = 0f;
+        }
     }
 
     public static void ApplyHealthBuff(int amount)

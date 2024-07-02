@@ -22,9 +22,9 @@ public class L2LogicScript : MonoBehaviour
 
     // Spawn times
     public float secondsBetweenPaperBallSpawn;
-    public float secondsBetweenCleanerSpawn = 6f;
-    public float secondsBetweenEnginKidSpawn = 5f;
-    public float secondsBetweenCSMuggerSpawn = 10f;
+    private float secondsBetweenCleanerSpawn = 5f;
+    private float secondsBetweenEnginKidSpawn = 5f;
+    private float secondsBetweenCSMuggerSpawn = 5f;
 
     // Controls quantity of projectiles on map
     public int maxActivePaperBalls = 1;
@@ -77,7 +77,7 @@ public class L2LogicScript : MonoBehaviour
         // CSMugger interaction and Spawns ; time 120s
         CSMugger.csMuggerCollisionEvent += CSMuggerInflictDamage;
         CSMuggerCode.csMuggerCodeCollisionEvent += CSMuggerCodeInflictDamage;
-        InvokeRepeating(nameof(SpawnCSMugger), 120f, secondsBetweenCSMuggerSpawn);
+        InvokeRepeating(nameof(SpawnCSMugger), 40f, secondsBetweenCSMuggerSpawn);
 
         // Piper's parameters & projectile interactions
         PaperBallScript.activePaperBalls = 0;
@@ -96,22 +96,21 @@ public class L2LogicScript : MonoBehaviour
             PaperBallScript.activePaperBalls += 1;
         }
 
+        // FIX THIS
         // EnginKid Clustering Logic
         // Cluster spawning coroutine only starts if there are no clusters && enginKids are not in attack phase
-        if (levelTimer > 60)
-        {
-            if (!enginKidClusterActive && !EnginKid.attackPhase)
-            {
-                EnginKidClusterCoroutine = StartCoroutine(SpawnEnginKidCluster());
-            }
-        }
+        //if (levelTimer > 60)
+        //{
+        //    if (!enginKidClusterActive && !EnginKid.attackPhase)
+        //    {
+        //        EnginKidClusterCoroutine = StartCoroutine(SpawnEnginKidCluster());
+        //    }
+        //}
 
 
         // Boss Spawns 1 time when levelTimer hits 180s
-        if (levelTimer > 180 && !bossBattle)
+        if (levelTimer > 80 && !bossBattle)
         {
-            CancelInvoke(nameof(SpawnCleaner));
-            CancelInvoke(nameof(SpawnCSMugger));
             bossBattle = true;
             cs1010.SetActive(true);
         }

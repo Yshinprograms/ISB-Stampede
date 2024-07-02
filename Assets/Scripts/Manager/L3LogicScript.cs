@@ -38,11 +38,11 @@ public class L3LogicScript : MonoBehaviour
 
     // Spawn times
     public float secondsBetweenPaperBallSpawn;
-    public float secondsBetweenChineseTouristSpawn = 5f;
+    private float secondsBetweenChineseTouristSpawn = 5f;
     public float secondsBetweenLandmarks = 7;
-    public float secondsBetweenInnocentStudentSpawn = 8f;
+    private float secondsBetweenInnocentStudentSpawn = 10f;
     //public float secondsBetweenMedStudentSpawn = 5f;
-    public float secondsBetweenBizSnakeSpawn = 8f;
+    //public float secondsBetweenBizSnakeSpawn = 8f;
 
     // Controls quantity of projectiles on map
     public int maxActivePaperBalls = 1;
@@ -64,7 +64,7 @@ public class L3LogicScript : MonoBehaviour
         // Start spawning
         InvokeRepeating(nameof(SpawnChineseTourists), 0f, secondsBetweenChineseTouristSpawn);
 
-        InvokeRepeating(nameof(SpawnInnocentStudent), 60f, secondsBetweenInnocentStudentSpawn);
+        InvokeRepeating(nameof(SpawnInnocentStudent), 50f, secondsBetweenInnocentStudentSpawn);
 
         ChineseTourBusScript.BusCollisionEvent += BusInflictDamage;
 
@@ -91,13 +91,10 @@ public class L3LogicScript : MonoBehaviour
         }
 
         // Boss Spawns 1 time when timer hits 180s
-        if (levelTimer > 180 && !bossBattle)
+        if (levelTimer > 100 && !bossBattle)
         {
             bossBattle = true;
             ChineseTourBus.SetActive(true);
-            CancelInvoke(nameof(SpawnChineseTourists));
-            CancelInvoke(nameof(SpawnInnocentStudent));
-
         }
 
 

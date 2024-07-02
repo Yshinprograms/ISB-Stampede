@@ -7,32 +7,55 @@ public class FriendPaperScript : MonoBehaviour
     private GameObject targetEnemy;
     private float speed = 5f;
     private bool enemyFound;
+    private bool paperBallThrown;
+    private bool targetAlive;
 
     // Start is called before the first frame update
     private void OnEnable()
     {
         targetEnemy = null;
         enemyFound = false;
+        paperBallThrown = false;
+        targetAlive = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (!enemyFound)
+        if (!enemyFound && !paperBallThrown)
         {
             FindClosestEnemy();
+            paperBallThrown = true;
         }
 
         if (targetEnemy != null)
         {
-            transform.position = Vector3.MoveTowards(transform.position, targetEnemy.transform.position, Time.deltaTime * speed);
+            CheckIfTargetAlive();
         }
 
-        if (targetEnemy != null && !targetEnemy.activeSelf)
+        if (paperBallThrown)
         {
-            enemyFound = false;
-            targetEnemy = null;
+            if (targetAlive)
+            {
+                Debug.DrawLine(transform.position, targetEnemy.transform.position, Color.cyan);
+                MoveToEnemy();
+            }
+            else
+            {
+                ObjectPoolScript.returnObjectToPool(gameObject);
+            }
         }
+    }
+
+    void CheckIfTargetAlive()
+    {
+        targetAlive = targetEnemy.activeSelf;
+    }
+
+    void MoveToEnemy()
+    {
+        Vector3 directionToEnemy = targetEnemy.transform.position - gameObject.transform.position;
+        transform.position += speed * Time.deltaTime * directionToEnemy.normalized;
     }
 
     void FindClosestEnemy()

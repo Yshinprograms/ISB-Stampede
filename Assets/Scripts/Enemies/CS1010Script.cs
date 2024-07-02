@@ -151,7 +151,7 @@ public class CS1010Script : Enemy
         // Figure out how to put this into the paperBall script instead
         if (collision.gameObject.layer == 7)
         {
-            health -= 10;
+            health -= 15;
         }
     }
 }

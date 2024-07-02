@@ -12,50 +12,97 @@ public class PaperBallScript : MonoBehaviour
     public float paperBallSpeed = 4f;
 
     private GameObject targetEnemy;
-
-    void Start()
-    {
-        targetEnemy = null;
-        paperBallThrown = false;
-    }
+    private bool targetWithinRange;
+    private bool targetAlive;
 
     private void OnEnable()
     {
         targetEnemy = null;
         paperBallThrown = false;
+        targetWithinRange = false;
+        targetAlive = false;
     }
-
+    /*
+     * 1. Spawn
+     * 2. Wait for enemy to enter range
+     *   a. If not entered range,stay beside Piper
+     *   b. If entered range:
+     *     i. Acquire reference to the nearest target only once
+     *     ii. Move towards this target
+     *       1. If this target collides with paperball, destroy paperball
+     *       2. If target is destroyed before paperball collides, destroy paperball as well
+     */
     void Update()
     {
-        // If enemy in range, lock onto targetEnemy and get its location
-        if (PiperScript.enemyInRange != null && targetEnemy == null)
+        // 2. Check if enemies are within range in PiperScript
+        CheckIfAnyTargetWithinRange();
+
+        // 2.a If enemy in range, lock onto targetEnemy and get its location only once
+        if (targetWithinRange && !paperBallThrown)
         {
             FindClosestEnemy();
             // Play throwing audio
-            if (!paperBallThrown)
-            {
-                paperBallThrownEvent();
-                paperBallThrown = true;
-            }
+            PaperBallAudio();
+            paperBallThrown = true;
         }
 
-        // Move to enemy even if no longer within range
         if (targetEnemy != null)
         {
-            Debug.DrawLine(transform.position, targetEnemy.transform.position, Color.cyan);
-            Vector3 directionToEnemy = targetEnemy.transform.position - gameObject.transform.position; // Vector Addition
-            MoveToEnemy(directionToEnemy.normalized); // Normalize for constant speed in all directions
+            // Check if the target is still alive
+            CheckIfTargetAlive();
         }
-        // Otherwise stay beside Piper & keep finding
+
+        if (paperBallThrown)
+        {
+            // 2.b.ii Move to enemy if locked on, else destroyed
+            if (targetAlive)
+            {
+                Debug.DrawLine(transform.position, targetEnemy.transform.position, Color.cyan);
+                MoveToEnemy();
+            }
+            // 2.b.ii.2
+            else
+            {
+                Debug.Log("destroyed");
+                ObjectPoolScript.returnObjectToPool(gameObject);
+                activePaperBalls -= 1;
+            }
+        }
+        // Stay beside Piper & keep finding if not launched
         else
         {
             transform.position = PiperScript.piperRealPosition + Vector3.right;
         }
     }
 
-    void MoveToEnemy(Vector3 directionToEnemy)
+    void CheckIfAnyTargetWithinRange()
     {
-        transform.position += paperBallSpeed * Time.deltaTime * directionToEnemy;
+        if (PiperScript.enemyInRange != null)
+        {
+            targetWithinRange = true;
+        }
+        else
+        {
+            targetWithinRange = false;
+        }
+    }
+    void CheckIfTargetAlive()
+    {
+        targetAlive = targetEnemy.activeSelf;
+    }
+
+    void PaperBallAudio()
+    {
+        if (!paperBallThrown)
+        {
+            paperBallThrownEvent();
+        }
+    }
+
+    void MoveToEnemy()
+    {
+        Vector3 directionToEnemy = targetEnemy.transform.position - gameObject.transform.position;
+        transform.position += paperBallSpeed * Time.deltaTime * directionToEnemy.normalized;
     }
 
     void FindClosestEnemy()
