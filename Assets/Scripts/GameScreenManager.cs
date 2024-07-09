@@ -75,7 +75,7 @@ public class GameScreenManager : MonoBehaviour
         pauseMenu.SetActive(false);
         gameCompletedUI.SetActive(false);
         SceneManager.LoadScene("MainMenu");
-        Time.timeScale = 1;   
+        Time.timeScale = 1;
     }
 
     public void quitGame()

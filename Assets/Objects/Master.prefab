@@ -499,6 +499,7 @@ MonoBehaviour:
   gameOverUI: {fileID: 9044611681239662646}
   pauseMenu: {fileID: 1541848411575355184}
   gameCompletedUI: {fileID: 1920941758445101590}
+  piper: {fileID: 0}
 --- !u!114 &1183210405503777772
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1699,8 +1700,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e5e0d04edd7fac4ead77e8c901dd412, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timerText: {fileID: 3612490328625318475}
-  remainingTime: 360
+  sceneText: {fileID: 0}
 --- !u!1 &3622138597029739869
 GameObject:
   m_ObjectHideFlags: 0
@@ -2708,7 +2708,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 7d2d5b7c67f1e154690c9405b8c1cd86, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 7b6016fd1130bab4db69625534414afd, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 0.251
   m_Pitch: 1
@@ -4672,7 +4672,8 @@ MonoBehaviour:
   m_AnimatedTarget: {fileID: 0}
   m_LayerIndex: 0
   m_ShowDebugText: 0
-  m_ChildCameras: []
+  m_ChildCameras:
+  - {fileID: 3347274677104192343}
   m_Instructions: []
   m_DefaultBlend:
     m_Style: 1
