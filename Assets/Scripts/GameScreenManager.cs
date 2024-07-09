@@ -49,7 +49,7 @@ public class GameScreenManager : MonoBehaviour
         SceneManager.LoadScene("Level1");
         PiperScript.piperHealth = PiperScript.piperMaxHealth;
         piper.transform.position = Vector3.zero;
-        TimerScript.remainingTime = TimerScript.initialTime;
+        TimerScript.remainingTime = L1LogicScript.levelOneDuration;
         Time.timeScale = 1;
         pauseMenu.SetActive(false);
         gameOverUI.SetActive(false);

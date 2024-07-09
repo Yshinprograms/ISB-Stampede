@@ -10,7 +10,7 @@ public class MainMenu : MonoBehaviour
         //Destroy(Master);
         SceneManager.LoadScene("Level1");
         //piper.transform.position = Vector3.zero;
-        TimerScript.remainingTime = TimerScript.initialTime;
+        TimerScript.remainingTime = L1LogicScript.levelOneDuration;
         //Time.timeScale = 1;
         //pauseMenu.SetActive(false);
         //gameOverUI.SetActive(false);

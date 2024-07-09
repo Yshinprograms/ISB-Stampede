@@ -66,6 +66,9 @@ public class L2LogicScript : MonoBehaviour
         }
         instance = this;
 
+        // Set timer for Level 2
+        TimerScript.remainingTime = 10;
+
         // Cleaner interaction and Spawns ; time 0s
         Cleaner.cleanerCollisionEvent += CleanerInflictDamage;
         InvokeRepeating(nameof(SpawnCleaner), 0f, secondsBetweenCleanerSpawn);

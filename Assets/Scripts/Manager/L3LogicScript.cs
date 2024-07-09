@@ -61,6 +61,9 @@ public class L3LogicScript : MonoBehaviour
 
         gameScreenManager = FindObjectOfType<GameScreenManager>();
 
+        // Set timer for Level 3
+        TimerScript.remainingTime = 10;
+
         // Start spawning
         InvokeRepeating(nameof(SpawnChineseTourists), 0f, secondsBetweenChineseTouristSpawn);
 

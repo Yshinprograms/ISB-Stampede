@@ -8,10 +8,9 @@ using UnityEngine.UI;
 public class TimerScript : MonoBehaviour
 {
 
-    [SerializeField] TextMeshProUGUI timerText;
-    public static float initialTime = 360;
-    public static float remainingTime = initialTime;
-    //public Text sceneText;
+    [SerializeField] TextMeshProUGUI sceneText;
+    // public static float initialTime = 360;
+    public static float remainingTime;
 
     // Update is called once per frame
     void Update()
@@ -23,13 +22,13 @@ public class TimerScript : MonoBehaviour
         {
             remainingTime = 0;
         }
-        //int minutes = Mathf.FloorToInt(remainingTime / 60);
-        //int seconds = Mathf.FloorToInt(remainingTime % 60);
 
-        //timerText.text = string.Format("{0:00}:{1:00}", minutes, seconds);
+        int minutes = Mathf.FloorToInt(remainingTime / 60);
+        int seconds = Mathf.FloorToInt(remainingTime % 60);
+
 
         // Ensure the Text component is assigned
-        if (timerText == null)
+        if (sceneText == null)
         {
             Debug.LogError("SceneText is not assigned in the inspector!");
             return;
@@ -41,15 +40,18 @@ public class TimerScript : MonoBehaviour
         // Change the text based on the scene
         if (currentScene.name == "Level1")
         {
-            timerText.text = "LEVEL 1";
+            sceneText.text = "LEVEL 1\n";
+            sceneText.text = sceneText.text + string.Format("{0:00}:{1:00}", minutes, seconds);
         }
         else if (currentScene.name == "Level2")
         {
-            timerText.text = "LEVEL 2";
+            sceneText.text = "LEVEL 2\n";
+            sceneText.text = sceneText.text + string.Format("{0:00}:{1:00}", minutes, seconds);
         }
         else if (currentScene.name == "Level3")
         {
-            timerText.text = "LEVEL 3";
+            sceneText.text = "LEVEL 3\n";
+            sceneText.text = sceneText.text + string.Format("{0:00}:{1:00}", minutes, seconds);
         }
     }
 }

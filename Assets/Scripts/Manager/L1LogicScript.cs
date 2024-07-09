@@ -7,6 +7,7 @@ using UnityEngine;
 public class L1LogicScript : MonoBehaviour
 {
     private float timer = 0;
+    public static float levelOneDuration = 10;
 
     // Import Game Manager Script & Game end conditions
     public GameScreenManager gameScreenManager;
@@ -20,7 +21,6 @@ public class L1LogicScript : MonoBehaviour
     // !!temporary change for playtesting: spawn times, freshie softer ,
 
     // Spawn times
-    //public float secondsBetweenTestObjectSpawn = 10f;
     public float secondsBetweenPaperBallSpawn;
     private float secondsBetweenBollardSpawn = 4f;
     private float secondsBetweenFreshieSpawn = 5f;
@@ -59,8 +59,8 @@ public class L1LogicScript : MonoBehaviour
         }
         instance = this;
 
-        // Test interaction and Spawns ; time 0s
-        //InvokeRepeating(nameof(SpawnTest), 0f, secondsBetweenTestObjectSpawn);
+        // Set timer for Level 1 
+        TimerScript.remainingTime = levelOneDuration;
 
         // Bollard interaction and Spawns ; time 0s
         Bollard.bollardCollisionEvent += BollardInflictDamage;
@@ -100,7 +100,7 @@ public class L1LogicScript : MonoBehaviour
         }
 
         //timer = 180s
-        if (timer > 90)
+        if (timer > 10)
         {
             gameScreenManager.GoToLevel2();
             PowerUpManagerScript.Instance.levelTwo = true;
