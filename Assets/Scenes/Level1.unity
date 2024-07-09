@@ -681,6 +681,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8146391472390664782, guid: 20e5d02c8cf823444a990f48f73842ee, type: 3}
   m_PrefabInstance: {fileID: 4383656594888658494}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1293126236 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3612490328625318475, guid: d0f2a9f44ddac414f9ea203e4ed8e278, type: 3}
+  m_PrefabInstance: {fileID: 3806793190134613296}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1376663799
 GameObject:
   m_ObjectHideFlags: 0
@@ -989,6 +1000,10 @@ PrefabInstance:
       value: 17.037052
       objectReference: {fileID: 0}
     - target: {fileID: 400487445559195935, guid: d0f2a9f44ddac414f9ea203e4ed8e278, type: 3}
+      propertyPath: sceneText
+      value: 
+      objectReference: {fileID: 1293126236}
+    - target: {fileID: 400487445559195935, guid: d0f2a9f44ddac414f9ea203e4ed8e278, type: 3}
       propertyPath: totalTime
       value: 360
       objectReference: {fileID: 0}
@@ -1082,7 +1097,29 @@ PrefabInstance:
       objectReference: {fileID: 495901050}
     - target: {fileID: 3612490328625318475, guid: d0f2a9f44ddac414f9ea203e4ed8e278, type: 3}
       propertyPath: m_text
-      value: LEVEL 1
+      value: 'LEVEL 1
+
+        00:00'
+      objectReference: {fileID: 0}
+    - target: {fileID: 3612490328625318475, guid: d0f2a9f44ddac414f9ea203e4ed8e278, type: 3}
+      propertyPath: m_margin.x
+      value: -50.957886
+      objectReference: {fileID: 0}
+    - target: {fileID: 3612490328625318475, guid: d0f2a9f44ddac414f9ea203e4ed8e278, type: 3}
+      propertyPath: m_margin.z
+      value: -39.45117
+      objectReference: {fileID: 0}
+    - target: {fileID: 3612490328625318475, guid: d0f2a9f44ddac414f9ea203e4ed8e278, type: 3}
+      propertyPath: m_fontStyle
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 3612490328625318475, guid: d0f2a9f44ddac414f9ea203e4ed8e278, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+    - target: {fileID: 3612490328625318475, guid: d0f2a9f44ddac414f9ea203e4ed8e278, type: 3}
+      propertyPath: m_TextStyleHashCode
+      value: -1183493901
       objectReference: {fileID: 0}
     - target: {fileID: 3625605611000409459, guid: d0f2a9f44ddac414f9ea203e4ed8e278, type: 3}
       propertyPath: m_PlayOnAwake
