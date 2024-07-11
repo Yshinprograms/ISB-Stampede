@@ -181,7 +181,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: c868b2c1721b8854ab0a21877b6bd8f8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 2fb50eb95c2f1484eb11d49b21b281e0, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -257,7 +257,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 92ca6d97761c1b14c913db3d0f4d58da, type: 3}
+  m_Sprite: {fileID: 21300000, guid: f76d2063b8798e648b9b5340f08678cc, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -710,7 +710,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: Piper automatically fires a paper ball whenever an enemy gets within range!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1bb7a32340b447245ac6d4744b7e3af1, type: 2}
   m_sharedMaterial: {fileID: -2428236833331846208, guid: 1bb7a32340b447245ac6d4744b7e3af1, type: 2}
@@ -737,8 +737,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 6
-  m_fontSizeBase: 6
+  m_fontSize: 7
+  m_fontSizeBase: 7
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -1185,7 +1185,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6551c1432432ebb4aaded9c7136fbfbb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 76ce738e527aab9469d46f5080bcb2f9, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1522,7 +1522,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8c013ca9fa8ad19429d265a87516e29e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 842e332543cd8a0428971b9a78f5ab5c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
