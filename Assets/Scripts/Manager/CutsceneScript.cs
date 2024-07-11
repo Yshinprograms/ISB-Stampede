@@ -6,6 +6,7 @@ using System.Collections;
 public class CutsceneScript : MonoBehaviour
 {
     public GameObject[] comicPanels; // Assign panel GameObjects in the Inspector
+    public AudioSource beep;
     private int currentPanelIndex = 0;
 
     public float fadeDuration = 1f;
@@ -32,6 +33,7 @@ public class CutsceneScript : MonoBehaviour
         if (Input.anyKeyDown && !isTransitioning)
         {
             AdvanceToNextPanel();
+            beep.Play();
         }
     }
 
@@ -40,7 +42,6 @@ public class CutsceneScript : MonoBehaviour
         // Increment panel index, loop back to the beginning
         currentPanelIndex = (currentPanelIndex + 1) % comicPanels.Length;
 
-        // Fade out the current panel (if any)
         StartCoroutine(FadePanelIn(comicPanels[currentPanelIndex]));
     }
 
@@ -63,7 +64,7 @@ public class CutsceneScript : MonoBehaviour
     void SetPanelOpacity(GameObject panel, float alpha)
     {
         Image panelImage = panel.GetComponent<Image>();
-        TextMeshProUGUI panelText = panel.GetComponentInChildren<TextMeshProUGUI>();
+        TextMeshProUGUI[] panelTexts = panel.GetComponentsInChildren<TextMeshProUGUI>();
 
         if (panelImage != null)
         {
@@ -72,7 +73,7 @@ public class CutsceneScript : MonoBehaviour
             panelImage.color = imageColor;
         }
 
-        if (panelText != null)
+        foreach (TextMeshProUGUI panelText in panelTexts)
         {
             Color textColor = panelText.color;
             textColor.a = alpha;
@@ -81,6 +82,7 @@ public class CutsceneScript : MonoBehaviour
     }
 
     // For possible future use
+    /*
     IEnumerator FadePanelOut(GameObject panel)
     {
         isTransitioning = true;
@@ -96,4 +98,5 @@ public class CutsceneScript : MonoBehaviour
         SetPanelOpacity(panel, 0f);
         StartCoroutine(FadePanelIn(comicPanels[currentPanelIndex])); // Fade in the next panel
     }
+    */
 }
