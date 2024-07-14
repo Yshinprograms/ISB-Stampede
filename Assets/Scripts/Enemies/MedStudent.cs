@@ -26,12 +26,12 @@ public class MedStudent : Enemy
 
     public GameObject chemicalShot;
 
-    void Start()
+    /*void Start()
     {
         health = maxHealth;
         SetNewDestination();
         timeBtwSpray = GenerateRandomNumber(maxTimeBtwSpray, minTimeBtwSpray);
-    }
+    }*/
 
     void OnEnable()
     {

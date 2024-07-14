@@ -72,7 +72,7 @@ public class L2LogicScript : MonoBehaviour
 
         // Cleaner interaction and Spawns ; time 0s
         Cleaner.cleanerCollisionEvent += CleanerInflictDamage;
-        InvokeRepeating(nameof(SpawnCleaner), 0f, secondsBetweenCleanerSpawn);
+        InvokeRepeating(nameof(SpawnCleaner), 600f, secondsBetweenCleanerSpawn);
 
         // EnginKid interaction and Spawns
         EnginKid.enginKidDeathEvent += StopEnginKidClusterCoroutine;
@@ -81,7 +81,7 @@ public class L2LogicScript : MonoBehaviour
         // CSMugger interaction and Spawns ; time 120s
         CSMugger.csMuggerCollisionEvent += CSMuggerInflictDamage;
         CSMuggerCode.csMuggerCodeCollisionEvent += CSMuggerCodeInflictDamage;
-        InvokeRepeating(nameof(SpawnCSMugger), 30f, secondsBetweenCSMuggerSpawn);
+        InvokeRepeating(nameof(SpawnCSMugger), 600f, secondsBetweenCSMuggerSpawn);
 
         // Piper's parameters & projectile interactions
         PaperBallScript.activePaperBalls = 0;
@@ -103,13 +103,13 @@ public class L2LogicScript : MonoBehaviour
         // FIX THIS
         // EnginKid Clustering Logic
         // Cluster spawning coroutine only starts if there are no clusters && enginKids are not in attack phase
-        //if (levelTimer > 60)
-        //{
-        //    if (!enginKidClusterActive && !EnginKid.attackPhase)
-        //    {
-        //        EnginKidClusterCoroutine = StartCoroutine(SpawnEnginKidCluster());
-        //    }
-        //}
+        if (levelTimer > 1)
+        {
+            if (!enginKidClusterActive && !EnginKid.attackPhase)
+            {
+                EnginKidClusterCoroutine = StartCoroutine(SpawnEnginKidCluster());
+            }
+        }
 
 
         // Boss Spawns 1 time when levelTimer hits 180s
@@ -119,7 +119,7 @@ public class L2LogicScript : MonoBehaviour
             cs1010.SetActive(true);
         }
 
-        if (levelTimer > 2)
+        if (levelTimer > 100)
         {
             SceneManager.LoadScene("Cutscene3");
             //gameScreenManager.GoToLevel3();
@@ -202,10 +202,10 @@ public class L2LogicScript : MonoBehaviour
 
         // Spawn an enginKid every 3s
         SpawnEnginKid();
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(secondsBetweenEnginKidSpawn);
 
         SpawnEnginKid();
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(secondsBetweenEnginKidSpawn);
 
         // Manually spawn an enginKid from pool because we want to
         // assign it to a gameObject to keep track of its distance to gathering point to trigger attackPhase

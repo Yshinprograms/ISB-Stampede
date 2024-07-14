@@ -29,7 +29,7 @@ public class SFXSounds : MonoBehaviour
         Aunty.auntyCollisionEvent += auntyCollisionSounds;
         Aunty.auntyThrowEvent += handbagThrownSounds;
         Cleaner.cleanerEnrageEvent += cleanerEnrageSounds;
-        LogicScript.enginKidGatheredEvent += enginKidGatheredSounds;
+        L2LogicScript.EnginKidGatheredEvent += enginKidGatheredSounds;
     }
 
     void freshieSounds()
@@ -89,6 +89,6 @@ public class SFXSounds : MonoBehaviour
         Aunty.auntyCollisionEvent -= auntyCollisionSounds;
         Aunty.auntyThrowEvent -= handbagThrownSounds;
         Cleaner.cleanerEnrageEvent -= cleanerEnrageSounds;
-        LogicScript.enginKidGatheredEvent -= enginKidGatheredSounds;
+        L2LogicScript.EnginKidGatheredEvent -= enginKidGatheredSounds;
     }
 }

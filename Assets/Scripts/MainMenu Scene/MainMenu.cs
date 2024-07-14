@@ -8,14 +8,10 @@ public class MainMenu : MonoBehaviour
 
     public void playGame()
     {
-        //Destroy(Master);
-        //SceneManager.LoadScene("Level1");
-        SceneManager.LoadScene("Cutscene1");
-        //piper.transform.position = Vector3.zero;
+
+        // SceneManager.LoadScene("Cutscene1");
+        SceneManager.LoadScene("Level2");
         TimerScript.remainingTime = L1LogicScript.levelOneDuration;
-        //Time.timeScale = 1;
-        //pauseMenu.SetActive(false);
-        //gameOverUI.SetActive(false);
         Debug.Log("Play game");
 
     }

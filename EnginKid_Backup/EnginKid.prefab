@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 642165158705914352}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.073, y: -0.629, z: 0.01011959}
+  m_LocalPosition: {x: 0.13, y: -0.599, z: 0.010119591}
   m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: -55820981, guid: 3ead46053941b8b40843161a6fe02433, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1.2766666, y: 1.4766666}
@@ -194,7 +194,7 @@ Transform:
   m_GameObject: {fileID: 4052648340026455010}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.184, y: -0.343, z: 0.01011959}
+  m_LocalPosition: {x: 0.294, y: -0.324, z: 0.010119591}
   m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -240,10 +240,10 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 0
   m_Sprite: {fileID: 1551038246, guid: 3ead46053941b8b40843161a6fe02433, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
+  m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1.4399999, y: 1.2333333}
@@ -278,7 +278,7 @@ Transform:
   m_GameObject: {fileID: 4281852489020824310}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.007, y: 0.215, z: 0.01011959}
+  m_LocalPosition: {x: -0.007, y: 0.215, z: 0.010119591}
   m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -327,7 +327,7 @@ SpriteRenderer:
   m_SortingOrder: 2
   m_Sprite: {fileID: 731128436, guid: 3ead46053941b8b40843161a6fe02433, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
+  m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 4.9966664, y: 4.3}
@@ -492,7 +492,7 @@ ParticleSystem:
   serializedVersion: 8
   lengthInSec: 5
   simulationSpeed: 1
-  stopAction: 1
+  stopAction: 0
   cullingMode: 0
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
@@ -5326,7 +5326,7 @@ Transform:
   m_GameObject: {fileID: 7701474914534389581}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.11, y: -0.624, z: 0.01011959}
+  m_LocalPosition: {x: -0.069, y: -0.602, z: 0.010119591}
   m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5375,7 +5375,7 @@ SpriteRenderer:
   m_SortingOrder: 0
   m_Sprite: {fileID: 37786327, guid: 3ead46053941b8b40843161a6fe02433, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
+  m_FlipX: 1
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1.3466667, y: 1.4933332}
@@ -5410,7 +5410,7 @@ Transform:
   m_GameObject: {fileID: 8637865376722954673}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.253, y: -0.327, z: 0.01011959}
+  m_LocalPosition: {x: 0.377, y: -0.335, z: 0.010119591}
   m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5456,7 +5456,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 3
+  m_SortingOrder: 0
   m_Sprite: {fileID: 226464050, guid: 3ead46053941b8b40843161a6fe02433, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -5494,7 +5494,7 @@ Transform:
   m_GameObject: {fileID: 8895053680889037660}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.17, y: -0.325, z: 0.01011959}
+  m_LocalPosition: {x: -0.171, y: -0.317, z: 0.010119591}
   m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5543,7 +5543,7 @@ SpriteRenderer:
   m_SortingOrder: 3
   m_Sprite: {fileID: 1551038246, guid: 3ead46053941b8b40843161a6fe02433, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
+  m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1.4399999, y: 1.2333333}

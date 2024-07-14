@@ -24,14 +24,14 @@ public class Enemy : MonoBehaviour
         gameObject.layer = 6;
     }
 
-    private void Start()
+    /*private void Start()
     {
         health = maxHealth;
         //sp = GetComponent<SpriteRenderer>();
         //anim = GetComponent<Animator>();
         gameObject.tag = "Enemy";
         gameObject.layer = 6;
-    }
+    }*/
 
     private void Update()
     {

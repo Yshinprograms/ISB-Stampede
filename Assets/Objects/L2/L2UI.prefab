@@ -48,14 +48,11 @@ MonoBehaviour:
   gameScreenManager: {fileID: 6969220703198510773, guid: fa06ce19a0615d145863325e02a1c64e, type: 3}
   paperBall: {fileID: 7656084192474370632, guid: 89b5fc3fec2edf247ad89980e7c63c20, type: 3}
   cleaner: {fileID: 4595520701919560262, guid: de06c16569ca9334d837a42c679097a5, type: 3}
-  enginKid: {fileID: 5774840321483290054, guid: 36c4afd386cbda244b222fd412207f69, type: 3}
+  enginKid: {fileID: 7564392290012295833, guid: b7c675bbcf0e3124d8dfbc7e93e35ba4, type: 3}
   csMugger: {fileID: 4994354537569844616, guid: bdaeca230f1417943a26bf3b9754a3bc, type: 3}
   csMuggerCode: {fileID: 2425603647604418709, guid: 4f2017313fa89a741825a185ae8e79aa, type: 3}
   cs1010: {fileID: 2498461199665195437, guid: a2ce6f825b0b26145a6399e2d4943c85, type: 3}
   secondsBetweenPaperBallSpawn: 0
-  secondsBetweenCleanerSpawn: 6
-  secondsBetweenEnginKidSpawn: 5
-  secondsBetweenCSMuggerSpawn: 10
   maxActivePaperBalls: 1
   enginKidClusterActive: 0
   enginKidGatheringCorner: {x: 0, y: 0, z: 0}

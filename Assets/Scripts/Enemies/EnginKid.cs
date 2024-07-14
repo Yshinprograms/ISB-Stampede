@@ -27,23 +27,28 @@ public class EnginKid : Enemy
     private float lastDamageTime = 0;
     private bool piperInAuraRange;
     private ParticleSystem aura;
+    //private SpriteRenderer sp;
 
-    private void OnEnable()
+    void OnEnable()
     {
         health = maxHealth;
         reachedGatheringCorner = false;
         moveSpeed = 2.5f;
         gatheredSuccessfully = false;
         aura = GetComponent<ParticleSystem>();
+        //sp = GetComponent<SpriteRenderer>();
+        // var main = aura.main;
+        // main.scalingMode = ParticleSystemScalingMode.Local;
+        
     }
-    void Start()
+    /*void Start()
     {
         health = maxHealth;
         reachedGatheringCorner = false;
         moveSpeed = 2.5f;
         gatheredSuccessfully = false;
         aura = GetComponent<ParticleSystem>();
-    }
+    }*/
 
     protected override void TurnDirection()
     {
@@ -52,6 +57,9 @@ public class EnginKid : Enemy
 
     void Update()
     {
+        var main = aura.main;
+        main.scalingMode = ParticleSystemScalingMode.Local;
+
         // Constantly check if Piper is in range of the damaging aura
         piperInAuraRange = isInRange();
 
@@ -62,14 +70,18 @@ public class EnginKid : Enemy
 
             if (transform.position.x > L2LogicScript.Instance.enginKidGatheringCorner.x)
             {
-                transform.localScale = new Vector2(-1, 1);
+                //transform.localScale = new Vector2(-1, 1);
+                //sp.flipX = true;
+                gameObject.GetComponent<Animator>().Play("EnginKidMovingLeft");
             }
             else
             {
-                transform.localScale = new Vector2(1, 1);
+                //transform.localScale = new Vector2(1, 1);
+                //sp.flipX = false;
+                gameObject.GetComponent<Animator>().Play("EnginKidMoving");
             }
 
-            gameObject.GetComponent<Animator>().Play("EnginKidMoving");
+            //gameObject.GetComponent<Animator>().Play("EnginKidMoving");
 
             if (Vector3.Distance(transform.position, L2LogicScript.Instance.enginKidGatheringCorner) < 0.6f)
             {
@@ -84,14 +96,18 @@ public class EnginKid : Enemy
 
             if (transform.position.x > PiperScript.piperPosition.x)
             {
-                transform.localScale = new Vector2(-1, 1);
+                //transform.localScale = new Vector2(-1, 1);
+                //sp.flipX = true;
+                gameObject.GetComponent<Animator>().Play("EnginKidMovingLeft");
             }
             else
             {
-                transform.localScale = new Vector2(1, 1);
+                //transform.localScale = new Vector2(1, 1);
+                //sp.flipX = false;
+                gameObject.GetComponent<Animator>().Play("EnginKidMoving");
             }
 
-            gameObject.GetComponent<Animator>().Play("EnginKidMoving");
+            //gameObject.GetComponent<Animator>().Play("EnginKidMoving");
         }
 
         if (health <= 0)
