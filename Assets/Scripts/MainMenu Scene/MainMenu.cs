@@ -9,7 +9,8 @@ public class MainMenu : MonoBehaviour
     public void playGame()
     {
         //Destroy(Master);
-        SceneManager.LoadScene("Level1");
+        //SceneManager.LoadScene("Level1");
+        SceneManager.LoadScene("Cutscene1");
         //piper.transform.position = Vector3.zero;
         TimerScript.remainingTime = L1LogicScript.levelOneDuration;
         //Time.timeScale = 1;

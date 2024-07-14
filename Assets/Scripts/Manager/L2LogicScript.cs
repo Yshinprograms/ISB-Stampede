@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 // Cleaner, EnginKid, CSMugger
 
@@ -120,7 +121,8 @@ public class L2LogicScript : MonoBehaviour
 
         if (levelTimer > 2)
         {
-            gameScreenManager.GoToLevel3();
+            SceneManager.LoadScene("Cutscene3");
+            //gameScreenManager.GoToLevel3();
         }
 
         levelTimer += Time.deltaTime;

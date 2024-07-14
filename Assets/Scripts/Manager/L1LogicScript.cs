@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 // Bollard, Freshie, Aunty
 
@@ -102,7 +103,8 @@ public class L1LogicScript : MonoBehaviour
         //timer = 180s
         if (timer > 1)
         {
-            gameScreenManager.GoToLevel2();
+            SceneManager.LoadScene("Cutscene2");
+            //gameScreenManager.GoToLevel2();
             PowerUpManagerScript.Instance.levelTwo = true;
             //gameScreenManager.GameCompleted();
         }

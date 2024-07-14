@@ -2,19 +2,44 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class CutsceneScript : MonoBehaviour
 {
     public GameObject[] comicPanels; // Assign panel GameObjects in the Inspector
     public AudioSource beep;
     private int currentPanelIndex = 0;
+    private int panelCount;
 
     public float fadeDuration = 1f;
 
     private bool isTransitioning = false; // Prevent multiple key presses during fade
 
-    void Start()
+    // Get the current scene's name
+    string currentSceneName;
+
+    /*void Start()
     {
+        // Initially hide all panels 
+        foreach (GameObject panel in comicPanels)
+        {
+            SetPanelOpacity(panel, 0f);
+        }
+
+        // Fade in the first panel at the start
+        if (comicPanels.Length > 0)
+        {
+            StartCoroutine(FadePanelIn(comicPanels[currentPanelIndex]));
+        }
+    }*/
+
+    private void OnEnable()
+    {
+        panelCount = 0;
+
+        // Get the current scene's name
+        currentSceneName = SceneManager.GetActiveScene().name;
+
         // Initially hide all panels 
         foreach (GameObject panel in comicPanels)
         {
@@ -34,15 +59,42 @@ public class CutsceneScript : MonoBehaviour
         {
             AdvanceToNextPanel();
             beep.Play();
+            panelCount += 1;
+            
         }
+        if (panelCount >= comicPanels.Length)
+        {
+            if (currentSceneName == "Cutscene1")
+            {
+                SceneManager.LoadScene("Level1");
+            }
+
+            if (currentSceneName == "Cutscene2")
+            {
+                SceneManager.LoadScene("Level2");
+            }
+
+            if (currentSceneName == "Cutscene3")
+            {
+                SceneManager.LoadScene("Level3");
+            }
+
+
+        }
+
     }
 
     void AdvanceToNextPanel()
     {
         // Increment panel index, loop back to the beginning
-        currentPanelIndex = (currentPanelIndex + 1) % comicPanels.Length;
+        // currentPanelIndex = (currentPanelIndex + 1) % comicPanels.Length;
 
-        StartCoroutine(FadePanelIn(comicPanels[currentPanelIndex]));
+        if (currentPanelIndex < comicPanels.Length -1)
+        {
+            currentPanelIndex = currentPanelIndex + 1;
+            StartCoroutine(FadePanelIn(comicPanels[currentPanelIndex]));
+        }
+        
     }
 
     IEnumerator FadePanelIn(GameObject panel)

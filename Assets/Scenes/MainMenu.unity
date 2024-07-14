@@ -2211,6 +2211,18 @@ PrefabInstance:
       propertyPath: OutputAudioMixerGroup
       value: 
       objectReference: {fileID: -4817722786328365893, guid: 90e4febe1105520429f83168d3a2dca2, type: 2}
+    - target: {fileID: 4304485939910074189, guid: b07f02f76c7cf8d4aaff53fd5ab78098, type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0.5188679
+      objectReference: {fileID: 0}
+    - target: {fileID: 4304485939910074189, guid: b07f02f76c7cf8d4aaff53fd5ab78098, type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0.3849308
+      objectReference: {fileID: 0}
+    - target: {fileID: 4304485939910074189, guid: b07f02f76c7cf8d4aaff53fd5ab78098, type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0.18845673
+      objectReference: {fileID: 0}
     - target: {fileID: 4304914545588573909, guid: b07f02f76c7cf8d4aaff53fd5ab78098, type: 3}
       propertyPath: m_ChildCameras.Array.size
       value: 0
