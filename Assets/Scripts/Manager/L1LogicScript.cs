@@ -100,7 +100,7 @@ public class L1LogicScript : MonoBehaviour
         }
 
         //timer = 180s
-        if (timer > 10)
+        if (timer > 1)
         {
             gameScreenManager.GoToLevel2();
             PowerUpManagerScript.Instance.levelTwo = true;

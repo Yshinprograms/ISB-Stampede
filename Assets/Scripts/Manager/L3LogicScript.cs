@@ -41,7 +41,7 @@ public class L3LogicScript : MonoBehaviour
     private float secondsBetweenChineseTouristSpawn = 5f;
     public float secondsBetweenLandmarks = 7;
     private float secondsBetweenInnocentStudentSpawn = 10f;
-    //public float secondsBetweenMedStudentSpawn = 5f;
+    public float secondsBetweenMedStudentSpawn = 30f;
     //public float secondsBetweenBizSnakeSpawn = 8f;
 
     // Controls quantity of projectiles on map
@@ -65,9 +65,14 @@ public class L3LogicScript : MonoBehaviour
         TimerScript.remainingTime = 10;
 
         // Start spawning
-        InvokeRepeating(nameof(SpawnChineseTourists), 0f, secondsBetweenChineseTouristSpawn);
+        InvokeRepeating(nameof(SpawnChineseTourists), 600f, secondsBetweenChineseTouristSpawn);
 
-        InvokeRepeating(nameof(SpawnInnocentStudent), 30f, secondsBetweenInnocentStudentSpawn);
+        InvokeRepeating(nameof(SpawnInnocentStudent), 600f, secondsBetweenInnocentStudentSpawn);
+
+        // Med Student and interactions 
+        MedStudent.medCollisionEvent += MedInflictDamage;
+        MedChemicalPuddle.StepOnPuddleEvent += ChemicaPuddlelInflictDamage;
+        InvokeRepeating(nameof(SpawnMed), 0f, secondsBetweenMedStudentSpawn);
 
         ChineseTourBusScript.BusCollisionEvent += BusInflictDamage;
 
@@ -137,6 +142,12 @@ public class L3LogicScript : MonoBehaviour
     {
         ObjectPoolScript.spawnObject(innocentStudent, SpawnScript.generateSpawnPoint(), Quaternion.identity);
     }
+
+    void SpawnMed()
+    {
+        ObjectPoolScript.spawnObject(med, SpawnScript.generateSpawnPoint(), Quaternion.identity);
+    }
+
     void SpawnPaperBall()
     {
         // Spawn to the right of Piper
@@ -146,6 +157,16 @@ public class L3LogicScript : MonoBehaviour
     void BusInflictDamage()
     {
         PiperScript.piperHealth -= 10;
+    }
+
+    void MedInflictDamage()
+    {
+        PiperScript.piperHealth -= 20;
+    }
+
+    void ChemicaPuddlelInflictDamage()
+    {
+        PiperScript.piperHealth -= 5;
     }
 
     private void OnDestroy()

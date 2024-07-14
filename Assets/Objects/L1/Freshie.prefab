@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7113109987222256124}
   - component: {fileID: 4964456035863020575}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Freshie Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9095521497514664269}
   - component: {fileID: 2931618217335857995}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Freshie Head
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2475994812069352090}
   - component: {fileID: 2765059916151047365}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Freshie L Foot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -265,9 +265,9 @@ GameObject:
   - component: {fileID: 2849424977325711749}
   - component: {fileID: 6013545830596399118}
   - component: {fileID: 2290283454612893983}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Freshie
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -429,7 +429,7 @@ GameObject:
   m_Component:
   - component: {fileID: 929093904803486798}
   - component: {fileID: 1643429589559453834}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Freshie R Foot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -513,7 +513,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7909952386323310913}
   - component: {fileID: 3963842691061527958}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Freshie L Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -597,7 +597,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8311579058235235941}
   - component: {fileID: 8132130294171557197}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Freshie R Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}

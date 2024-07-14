@@ -118,10 +118,10 @@ public class L2LogicScript : MonoBehaviour
             cs1010.SetActive(true);
         }
 
-        /*if (levelTimer > 2)
+        if (levelTimer > 2)
         {
             gameScreenManager.GoToLevel3();
-        }*/
+        }
 
         levelTimer += Time.deltaTime;
     }

@@ -437,6 +437,10 @@ PrefabInstance:
       propertyPath: innocentStudent
       value: 
       objectReference: {fileID: 4898664132429511331, guid: d347203a906d1124d883cc79c6c1cce5, type: 3}
+    - target: {fileID: 691811430249122934, guid: c7f2c4770977b2a49b8574cfc1bdb85f, type: 3}
+      propertyPath: secondsBetweenMedStudentSpawn
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 2015145924036282648, guid: c7f2c4770977b2a49b8574cfc1bdb85f, type: 3}
       propertyPath: m_Name
       value: L3UI

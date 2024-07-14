@@ -44,15 +44,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a473464c799d590449972fb65977a26e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bossBattle: 0
+  gameScreenManager: {fileID: 0}
   chineseTourist: {fileID: 7882280700078892850, guid: 62749edcdfefa954d81c4679b7f9f78a, type: 3}
   landmark: {fileID: 7872631813857052149, guid: d497674e4d5325543954b45e34673b64, type: 3}
-  med: {fileID: 0}
+  med: {fileID: 4212299686225935214, guid: 806ed5f341c704643b47a99781d7b79d, type: 3}
   innocentStudent: {fileID: 4898664132429511331, guid: d347203a906d1124d883cc79c6c1cce5, type: 3}
   bizSnake: {fileID: 3017437917636378604, guid: 7a6a54810b0a0914f8454df2c45b8810, type: 3}
   paperBall: {fileID: 7656084192474370632, guid: 89b5fc3fec2edf247ad89980e7c63c20, type: 3}
+  ChineseTourBus: {fileID: 0}
   secondsBetweenPaperBallSpawn: 0
-  secondsBetweenChineseTouristSpawn: 5
   secondsBetweenLandmarks: 7
-  secondsBetweenInnocentStudentSpawn: 5
-  secondsBetweenBizSnakeSpawn: 8
   maxActivePaperBalls: 1
