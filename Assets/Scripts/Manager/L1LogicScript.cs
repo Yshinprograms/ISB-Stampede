@@ -101,7 +101,7 @@ public class L1LogicScript : MonoBehaviour
         }
 
         //timer = 180s
-        if (timer > 1)
+        if (timer > 20)
         {
             SceneManager.LoadScene("Cutscene2");
             //gameScreenManager.GoToLevel2();
