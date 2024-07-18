@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: -7514006842213296853}
   - component: {fileID: 7387044031640110200}
   - component: {fileID: 722136660630515624}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: medChemicalPuddle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

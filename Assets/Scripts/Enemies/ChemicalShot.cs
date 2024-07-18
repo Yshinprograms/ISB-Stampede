@@ -11,12 +11,12 @@ public class ChemicalShot : MonoBehaviour
 
     public GameObject medChemicalPuddle;
 
-    void Start()
+    /*void Start()
     {
         maxSprayDist = 4;
         spraySpeed = 4;
         range = 0.5f;
-    }
+    }*/
 
     void OnEnable()
     {

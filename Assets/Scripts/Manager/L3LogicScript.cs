@@ -41,7 +41,7 @@ public class L3LogicScript : MonoBehaviour
     private float secondsBetweenChineseTouristSpawn = 5f;
     public float secondsBetweenLandmarks = 7;
     private float secondsBetweenInnocentStudentSpawn = 10f;
-    public float secondsBetweenMedStudentSpawn = 30f;
+    public float secondsBetweenMedStudentSpawn = 100f;
     //public float secondsBetweenBizSnakeSpawn = 8f;
 
     // Controls quantity of projectiles on map

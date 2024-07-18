@@ -18,7 +18,7 @@ public class MedStudent : Enemy
 
     private float timeBtwSpray;
     private int maxTimeBtwSpray = 5;
-    private int minTimeBtwSpray = 15;
+    private int minTimeBtwSpray = 2;
     [SerializeField] float followDistance;
     [SerializeField] float range;
     [SerializeField] float maxDistance;
@@ -37,7 +37,7 @@ public class MedStudent : Enemy
     {
         health = maxHealth;
         SetNewDestination();
-        timeBtwSpray = GenerateRandomNumber(maxTimeBtwSpray, minTimeBtwSpray);
+        timeBtwSpray = GenerateRandomNumber(minTimeBtwSpray, maxTimeBtwSpray);
     }
 
     protected override void Move()
@@ -61,7 +61,7 @@ public class MedStudent : Enemy
                 // shoot at a random position 
                 ObjectPoolScript.spawnObject(chemicalShot, transform.position + Vector3.right, Quaternion.identity);
                 // Instantiate(chemicalShot, transform.position + Vector3.right, Quaternion.identity);
-                timeBtwSpray = GenerateRandomNumber(maxTimeBtwSpray, minTimeBtwSpray);
+                timeBtwSpray = GenerateRandomNumber(minTimeBtwSpray, maxTimeBtwSpray);
             }
             else
             {
