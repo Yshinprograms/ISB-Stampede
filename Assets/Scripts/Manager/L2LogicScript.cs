@@ -119,10 +119,10 @@ public class L2LogicScript : MonoBehaviour
             cs1010.SetActive(true);
         }
 
-        if (levelTimer > 100)
+        if (levelTimer > 10)
         {
             SceneManager.LoadScene("Cutscene3");
-            //gameScreenManager.GoToLevel3();
+            
         }
 
         levelTimer += Time.deltaTime;

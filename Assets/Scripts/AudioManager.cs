@@ -20,26 +20,10 @@ public class AudioManager : MonoBehaviour
 {
     // Singleton instance
     public static AudioManager Instance { get; private set; }
+    //public static AudioManager Instance = null;
 
-    public AudioSource musicSource, sfxSource;
-
-    //[Header("---------- Audio Source ----------")]
-    // [SerializeField] AudioSource musicSource;
-    /*public AudioSource paperBallCollisionSFX;
-    public AudioSource bollardCollisionSFX;
-    public AudioSource paperBallThrownSFX;
-    public AudioSource freshieCollisionSFX;
-    public AudioSource csMuggerCollisionSFX;
-    public AudioSource csMuggerCodeCollisionSFX;
-    public AudioSource auntyCollisionSFX;
-    public AudioSource handbagThrownSFX;
-    public AudioSource cleanerEnrageSFX;
-    public AudioSource enginKidGatheredSFX;*/
-
-    // [Header("---------- Audio Clip ----------")]
-    // Just drag and drop wav files into Audio Sources in inspector
-    // Then drag the audio source into Audio Manager script in inspector
-    // public AudioClip background;
+    public AudioSource sfxSource;
+    public AudioSource musicSource;
 
     void Awake()
     {
@@ -53,74 +37,13 @@ public class AudioManager : MonoBehaviour
         {
             Instance = this;
         }
-
-        // Make sure the AudioManager persists between scenes
-        //DontDestroyOnLoad(gameObject);
     }
 
     void Start()
     {
-        // Plays background Music for Level 1
-        // musicSource.clip = background;
-        musicSource.Play();
-
-        // Subscribe to events
-        /*Bollard.bollardCollisionEvent += bollardSounds;
-        PaperBallScript.paperBallCollisionEvent += paperBallCollisionSounds;
-        PaperBallScript.paperBallThrownEvent += paperBallThrownSounds;
-        Freshie.freshieCollisionEvent += freshieSounds;
-        CSMugger.csMuggerCollisionEvent += csMuggerSounds;
-        CSMuggerCode.csMuggerCodeCollisionEvent += csMuggerCodeSounds;
-        Aunty.auntyCollisionEvent += auntyCollisionSounds;
-        Aunty.auntyThrowEvent += handbagThrownSounds;
-        Cleaner.cleanerEnrageEvent += cleanerEnrageSounds;
-        LogicScript.enginKidGatheredEvent += enginKidGatheredSounds;*/
+        // Plays background Music for Main Menu
+        //musicSource.Play();
     }
-
-    /*void freshieSounds()
-    {
-        freshieCollisionSFX.Play();
-    }
-
-    void bollardSounds()
-    {
-        bollardCollisionSFX.Play();
-    }
-
-    void paperBallCollisionSounds()
-    {
-        paperBallCollisionSFX.Play();
-    }
-    void paperBallThrownSounds()
-    {
-        paperBallThrownSFX.Play();
-    }
-    void auntyCollisionSounds()
-    {
-        auntyCollisionSFX.Play();
-    }
-    void handbagThrownSounds()
-    {
-        handbagThrownSFX.Play();
-    }
-    void cleanerEnrageSounds()
-    {
-        cleanerEnrageSFX.Play();
-    }
-    void enginKidGatheredSounds()
-    {
-        enginKidGatheredSFX.Play();
-    }
-
-    void csMuggerSounds()
-    {
-        csMuggerCollisionSFX.Play();
-    }
-
-    void csMuggerCodeSounds()
-    {
-        csMuggerCodeCollisionSFX.Play();
-    }*/
 
     public void ToggleMusic()
     {
@@ -142,18 +65,4 @@ public class AudioManager : MonoBehaviour
         sfxSource.volume = volume;
     }
 
-    // Unsubscribe from events
-    /*private void OnDestroy()
-    {
-        Bollard.bollardCollisionEvent -= bollardSounds;
-        Freshie.freshieCollisionEvent -= freshieSounds;
-        PaperBallScript.paperBallCollisionEvent -= paperBallCollisionSounds;
-        PaperBallScript.paperBallThrownEvent -= paperBallThrownSounds;
-        CSMugger.csMuggerCollisionEvent -= csMuggerSounds;
-        CSMuggerCode.csMuggerCodeCollisionEvent -= csMuggerCodeSounds;
-        Aunty.auntyCollisionEvent -= auntyCollisionSounds;
-        Aunty.auntyThrowEvent -= handbagThrownSounds;
-        Cleaner.cleanerEnrageEvent -= cleanerEnrageSounds;
-        LogicScript.enginKidGatheredEvent -= enginKidGatheredSounds;
-    }*/
 }

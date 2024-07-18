@@ -101,11 +101,12 @@ public class L1LogicScript : MonoBehaviour
         }
 
         //timer = 180s
-        if (timer > 1)
+        if (timer > 10)
         {
             SceneManager.LoadScene("Cutscene2");
             //gameScreenManager.GoToLevel2();
             PowerUpManagerScript.Instance.levelTwo = true;
+       
             //gameScreenManager.GameCompleted();
         }
 

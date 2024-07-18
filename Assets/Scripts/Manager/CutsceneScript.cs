@@ -67,16 +67,19 @@ public class CutsceneScript : MonoBehaviour
             if (currentSceneName == "Cutscene1")
             {
                 SceneManager.LoadScene("Level1");
+          
             }
 
             if (currentSceneName == "Cutscene2")
             {
                 SceneManager.LoadScene("Level2");
+               
             }
 
             if (currentSceneName == "Cutscene3")
             {
                 SceneManager.LoadScene("Level3");
+              
             }
 
 
