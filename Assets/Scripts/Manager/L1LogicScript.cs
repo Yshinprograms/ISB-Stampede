@@ -108,7 +108,7 @@ public class L1LogicScript : MonoBehaviour
         }
 
         // if level completed, move to cutscene 2s
-        if (levelTimer > 100)
+        if (levelTimer > 15)
         {
             gameScreenManager.GoToCutscene2();
         }
