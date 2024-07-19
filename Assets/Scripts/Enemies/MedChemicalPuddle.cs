@@ -29,14 +29,6 @@ public class MedChemicalPuddle : MonoBehaviour
         timeInMap = 7;
     }
 
-    /*void Start()
-    {
-        fadeDuration = 7;
-        sp = GetComponent<SpriteRenderer>();
-        fadeSpeed = 1 / fadeDuration;
-        timeInMap = 7;
-    }*/
-
     void Update()
     {
         // Puddle fades

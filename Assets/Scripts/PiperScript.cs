@@ -120,57 +120,57 @@ public class PiperScript : MonoBehaviour
         if (dir == 1) //N
         {
             transform.position += Vector3.up * piperMoveSpeed * Time.deltaTime;
-            transform.localScale = new Vector2(0.15f, 0.15f);
-            anim.Play("PiperMoving");
+            transform.localScale = new Vector2(0.18f, 0.18f);
+            anim.Play("PiperV2Moving");
         }
         if (dir == 2) //NE
         {
             transform.position += new Vector3(1, 1, 0).normalized * piperMoveSpeed * Time.deltaTime;
-            transform.localScale = new Vector2(0.15f, 0.15f);
-            anim.Play("PiperMoving");
+            transform.localScale = new Vector2(0.18f, 0.18f);
+            anim.Play("PiperV2Moving");
         }
         if (dir == 3) //E
         {
             transform.position += Vector3.right * piperMoveSpeed * Time.deltaTime;
-            transform.localScale = new Vector2(0.15f, 0.15f);
-            anim.Play("PiperMoving");
+            transform.localScale = new Vector2(0.18f, 0.18f);
+            anim.Play("PiperV2Moving");
         }
         if (dir == 4) //SE
         {
             transform.position += new Vector3(1, -1, 0).normalized * piperMoveSpeed * Time.deltaTime;
-            transform.localScale = new Vector2(0.15f, 0.15f);
-            anim.Play("PiperMoving");
+            transform.localScale = new Vector2(0.18f, 0.18f);
+            anim.Play("PiperV2Moving");
         }
         if (dir == 5) //S
         {
             transform.position += Vector3.down * piperMoveSpeed * Time.deltaTime;
-            transform.localScale = new Vector2(0.15f, 0.15f);
-            anim.Play("PiperMoving");
+            transform.localScale = new Vector2(0.18f, 0.18f);
+            anim.Play("PiperV2Moving");
         }
         if (dir == 6) //SW
         {
             transform.position += new Vector3(-1, -1, 0).normalized * piperMoveSpeed * Time.deltaTime;
-            transform.localScale = new Vector2(-0.15f, 0.15f);
-            anim.Play("PiperMoving");
+            transform.localScale = new Vector2(-0.18f, 0.18f);
+            anim.Play("PiperV2Moving");
 
         }
         if (dir == 7) //W
         {
             transform.position += Vector3.left * piperMoveSpeed * Time.deltaTime;
-            transform.localScale = new Vector2(-0.15f, 0.15f);
-            anim.Play("PiperMoving");
+            transform.localScale = new Vector2(-0.18f, 0.18f);
+            anim.Play("PiperV2Moving");
 
         }
         if (dir == 8) //NW
         {
             transform.position += new Vector3(-1, 1, 0).normalized * piperMoveSpeed * Time.deltaTime;
-            transform.localScale = new Vector2(-0.15f, 0.15f);
-            anim.Play("PiperMoving");
+            transform.localScale = new Vector2(-0.18f, 0.18f);
+            anim.Play("PiperV2Moving");
 
         }
         if (dir == 0) //Not moving
         {
-            anim.Play("PiperIdle");
+            anim.Play("PiperV2Idle");
         }
     }
 

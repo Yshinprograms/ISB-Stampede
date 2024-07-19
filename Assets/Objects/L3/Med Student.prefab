@@ -101,7 +101,7 @@ MonoBehaviour:
   enemyName: Med Student
   moveSpeed: 1
   maxHealth: 100
-  followDistance: 3
+  followDistance: 4
   range: 0.5
   maxDistance: 6
   chemicalShot: {fileID: 1879797740925472668, guid: ee0c47b8a16cc8c4c88c52b92014c175, type: 3}

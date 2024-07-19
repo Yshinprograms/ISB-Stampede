@@ -4,7 +4,7 @@ using UnityEngine;
 
 /* 
 1. Med Student will wander around
-2. If Piper is in range, Med Student will attack piper (move towards Piper x2 speed)
+2. If Piper is in range, Med Student will attack piper (move towards Piper x1.5 speed)
 3. If Piper is not in range, Med student will shoot poisonous chemical around in random intervals 
 
 Poisonous chemical
@@ -26,15 +26,9 @@ public class MedStudent : Enemy
 
     public GameObject chemicalShot;
 
-    /*void Start()
-    {
-        health = maxHealth;
-        SetNewDestination();
-        timeBtwSpray = GenerateRandomNumber(maxTimeBtwSpray, minTimeBtwSpray);
-    }*/
-
     void OnEnable()
     {
+
         health = maxHealth;
         SetNewDestination();
         timeBtwSpray = GenerateRandomNumber(minTimeBtwSpray, maxTimeBtwSpray);
