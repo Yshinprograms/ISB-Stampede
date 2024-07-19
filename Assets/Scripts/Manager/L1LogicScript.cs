@@ -77,19 +77,11 @@ public class L1LogicScript : MonoBehaviour
         InvokeRepeating(nameof(SpawnAunty), 60f, secondsBetweenAuntySpawn);
 
         // Piper's parameters & projectile interactions
-        //isAlive = true;
         PaperBallScript.activePaperBalls = 0;
     }
 
     void Update()
     {
-
-        /*if (PiperScript.piperHealth <= 0 && isAlive)
-        {
-            isAlive = false;
-            gameScreenManager.gameOver();
-            Debug.Log("Dead");
-        }*/
 
         // Piper's projectile interactions
         secondsBetweenPaperBallSpawn += Time.deltaTime;
@@ -108,7 +100,7 @@ public class L1LogicScript : MonoBehaviour
         }
 
         // if level completed, move to cutscene 2s
-        if (levelTimer > 15)
+        if (levelTimer > 100)
         {
             gameScreenManager.GoToCutscene2();
         }

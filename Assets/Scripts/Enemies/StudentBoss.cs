@@ -3,6 +3,15 @@ using System.Collections.Generic;
 using System.Net.Sockets;
 using UnityEngine;
 
+/* Boss will move from Point A to B to C to D, then
+ * Boss will stop for 5 seconds and shoot objects hexagonally
+ * Boss will then move from Point D to E to F to G
+ * Boss will move from Point G to F to E to D
+ * Boss will stop for 5 seconds and shoot objects hexagonally
+ * Boss will move from Point D to C to B to A 
+ * This will repeat 
+*/
+
 public class StudentBoss : Enemy
 {
     public BossHealthbarScript bossHealthbarScript;
@@ -20,6 +29,8 @@ public class StudentBoss : Enemy
     public GameObject p9;
 
     private Transform currentPoint;
+    public bool isAtStartPosition;
+    public float tolerance = 0.01f;
 
 
     private void OnEnable()
@@ -27,13 +38,36 @@ public class StudentBoss : Enemy
         bossHealthbarScript.EnableHealthbar();
         bossHealthbarScript.SetMaxHealth((int)maxHealth);
         health = maxHealth;
+        isAtStartPosition = false;
 
     }
 
     void Update()
     {
         bossHealthbarScript.SetHealth((int)health);
-        Move();
+        
+        // Boss goes to start position
+        if (!isAtStartPosition)
+        {
+            // Debug.Log("this is okay");
+            GoToStartPosition();
+        }
+
+        Vector2 currentPosition = transform.position;
+        Vector2 targetPosition = p0.transform.position;
+
+        if (Vector2.Distance(currentPosition, targetPosition) < tolerance)
+        {
+            isAtStartPosition = true;
+        }
+
+        if (isAtStartPosition)
+        {
+            //transform.position = Vector2.MoveTowards(transform.position, p1.transform.position, moveSpeed * Time.deltaTime);
+            //Moving();
+            StartCoroutine(BossMovementRoutine());
+        }
+        //Move();
 
         if (health <= 0)
         {
@@ -44,26 +78,44 @@ public class StudentBoss : Enemy
         }
     }
 
-    protected override void Move()
+    void GoToStartPosition()
     {
         transform.position = Vector2.MoveTowards(transform.position, p0.transform.position, moveSpeed * Time.deltaTime);
-        //Vector2 point = currentPoint.position - transform.position;
-        if (currentPoint == p0)
+        if (transform.position == p0.transform.position)
         {
-            transform.position = Vector2.MoveTowards(transform.position, p1.transform.position, moveSpeed * Time.deltaTime);
+            Debug.Log("startpos is true");
+            isAtStartPosition = true;
         }
+    }
+
+    /*void MoveToNextPoint()
+    {
+        transform.position = Vector2.MoveTowards(transform.position, currentPoint.position, moveSpeed * Time.deltaTime);
+    }*/
+
+    IEnumerator BossMovementRoutine()
+    {
+        currentPoint = p1.transform;
+        // Move to Point B
+        transform.position = Vector2.MoveTowards(transform.position, currentPoint.position, moveSpeed * Time.deltaTime);
+        //MoveToNextPoint();
+        if (transform.position ==  p1.transform.position)
+        {
+            currentPoint = p2.transform;
+            transform.position = Vector2.MoveTowards(transform.position, currentPoint.position, moveSpeed * Time.deltaTime);
+        }
+        yield return null;
+    }
+
+
+    protected override void Move()
+    {
+
     }
 
     protected override void TurnDirection()
     {
-        if (transform.position.x > PiperScript.piperPosition.x)
-        {
-            transform.localScale = new Vector2(-0.35f, 0.35f);
-        }
-        else
-        {
-            transform.localScale = new Vector2(0.35f, 0.35f);
-        }
+
     }
 
 
