@@ -52,8 +52,8 @@ public class CS1010Script : Enemy
         {
             bossHealthbarScript.DisableHealthbar();
             gameObject.SetActive(false);
-            L2LogicScript.Instance.bossBattle = false;
-            L2LogicScript.Instance.LevelCompleted();
+            L1LogicScript.Instance.bossBattle = false;
+            L1LogicScript.Instance.LevelCompleted();
         }
     }
 

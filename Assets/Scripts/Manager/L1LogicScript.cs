@@ -7,8 +7,9 @@ using UnityEngine.SceneManagement;
 
 public class L1LogicScript : MonoBehaviour
 {
-    private float timer = 0;
-    public static float levelOneDuration = 10;
+    public bool bossBattle;
+    private float levelTimer = 0;
+    public static float levelOneDuration = 100;
 
     // Import Game Manager Script & Game end conditions
     public GameScreenManager gameScreenManager;
@@ -18,8 +19,7 @@ public class L1LogicScript : MonoBehaviour
     public GameObject bollard;
     public GameObject freshie;
     public GameObject aunty;
-    
-    // !!temporary change for playtesting: spawn times, freshie softer ,
+    public GameObject studentBoss;
 
     // Spawn times
     public float secondsBetweenPaperBallSpawn;
@@ -100,18 +100,27 @@ public class L1LogicScript : MonoBehaviour
             PaperBallScript.activePaperBalls += 1;
         }
 
-        //timer = 180s
-        if (timer > 10)
+        // Boss Spawns 1 time when timer hits 180s
+        if (levelTimer > 3 && !bossBattle)
         {
-            SceneManager.LoadScene("Cutscene2");
-            //gameScreenManager.GoToLevel2();
-            PowerUpManagerScript.Instance.levelTwo = true;
-       
-            //gameScreenManager.GameCompleted();
+            bossBattle = true;
+            studentBoss.SetActive(true);
+        }
+
+        // if level completed, move to cutscene 2s
+        if (levelTimer > 100)
+        {
+            gameScreenManager.GoToCutscene2();
         }
 
         secondsBetweenPaperBallSpawn += Time.deltaTime;
-        timer += Time.deltaTime;
+        levelTimer += Time.deltaTime;
+    }
+
+    public void LevelCompleted()
+    {
+        PowerUpManagerScript.Instance.levelTwo = true;
+        gameScreenManager.GoToCutscene2();
     }
 
     // Damages

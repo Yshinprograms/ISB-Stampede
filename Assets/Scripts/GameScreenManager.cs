@@ -56,6 +56,21 @@ public class GameScreenManager : MonoBehaviour
         gameCompletedUI.SetActive(false);
     }
 
+    public void GoToCutscene1()
+    {
+        SceneManager.LoadScene("Cutscene1");
+    }
+
+    public void GoToCutscene2()
+    {
+        SceneManager.LoadScene("Cutscene2");
+    }
+
+    public void GoToCutscene3()
+    {
+        SceneManager.LoadScene("Cutscene3");
+    }
+
     public void GoToLevel2()
     {
         SceneManager.LoadScene("Level2");
