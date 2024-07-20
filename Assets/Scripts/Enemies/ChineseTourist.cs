@@ -19,6 +19,7 @@ public class ChineseTourist : Enemy
     public delegate void CTEvent();
     public static event CTEvent PhotoEvent;
     public static event CTEvent CTCollisionEvent;
+
     public static int touristCount;
     public static Vector3 landmark;
 

@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class FriendScript : MonoBehaviour
 {
+
+    public delegate void FriendEvent();
+    public static event FriendEvent FriendSpawnEvent;
+    public static event FriendEvent FriendPaperSpawnEvent;
     public GameObject paperBall;
 
     public float moveSpeed = 5f;
@@ -14,6 +18,7 @@ public class FriendScript : MonoBehaviour
 
     private void OnEnable()
     {
+        FriendSpawnEvent();
         secondsBetweenPaperBallSpawn = 0f;
         activeDuration = 0f;
     }
@@ -26,6 +31,7 @@ public class FriendScript : MonoBehaviour
         
         if (secondsBetweenPaperBallSpawn > 2.4f)
         {
+            FriendPaperSpawnEvent();
             ObjectPoolScript.spawnObject(paperBall, transform.position + Vector3.right, paperBall.transform.rotation);
             secondsBetweenPaperBallSpawn = 0f;
         }

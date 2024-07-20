@@ -5,6 +5,13 @@ using UnityEngine.UI;
 
 public class CS1010Script : Enemy
 {
+    public delegate void CS1010Event();
+    public static event CS1010Event CS1010SpawnEvent;
+    public static event CS1010Event PE0SpawnEvent;
+    public static event CS1010Event PE1SpawnEvent;
+    public static event CS1010Event PE2SpawnEvent;
+    public static event CS1010Event CS1010ShootEvent;
+
     public Sprite[] stages;
     public GameObject cs1010Projectile;
     public BossHealthbarScript bossHealthbarScript;
@@ -63,6 +70,10 @@ public class CS1010Script : Enemy
         {
             bossHealth.text = "CS1010";
             cs1010renderer.sprite = stages[0];
+            if (!stageZero)
+            {
+                CS1010SpawnEvent();
+            }
             stageZero = true;
         }
         else if (health >= maxHealth * 0.5f)
@@ -70,6 +81,10 @@ public class CS1010Script : Enemy
             bossHealth.text = "PE0";
             cs1010renderer.sprite = stages[1];
             stageZero = false;
+            if (!stageOne)
+            {
+                PE0SpawnEvent();
+            }
             stageOne = true;
         }
         else if (health >= maxHealth * 0.25f)
@@ -77,6 +92,10 @@ public class CS1010Script : Enemy
             bossHealth.text = "PE1";
             cs1010renderer.sprite = stages[2];
             stageOne = false;
+            if (!stageTwo)
+            {
+                PE1SpawnEvent();
+            }
             stageTwo = true;
         }
         else
@@ -84,6 +103,10 @@ public class CS1010Script : Enemy
             bossHealth.text = "PE2";
             cs1010renderer.sprite = stages[3];
             stageTwo = false;
+            if (!stageThree)
+            {
+                PE2SpawnEvent();
+            }
             stageThree = true;
         }
     }
@@ -111,7 +134,7 @@ public class CS1010Script : Enemy
         {
             StopCoroutine(stageTwoCoroutine);
             // CS1010 will shoot a projectile every .7 seconds
-            ObjectPoolScript.spawnObject(cs1010Projectile, transform.position, Quaternion.identity);
+            Shoot();
             projectileTimer = 0f;
         }
         projectileTimer += Time.deltaTime;
@@ -122,10 +145,10 @@ public class CS1010Script : Enemy
         stageOneinProgress = true;
         yield return new WaitForSeconds(patternDelay);
 
-        ObjectPoolScript.spawnObject(cs1010Projectile, transform.position, Quaternion.identity);
+        Shoot();
         yield return new WaitForSeconds(shootDelay);
 
-        ObjectPoolScript.spawnObject(cs1010Projectile, transform.position, Quaternion.identity);
+        Shoot();
 
         stageOneinProgress = false;
     }
@@ -135,15 +158,21 @@ public class CS1010Script : Enemy
         stageTwoinProgress = true;
         yield return new WaitForSeconds(patternDelay);
 
-        ObjectPoolScript.spawnObject(cs1010Projectile, transform.position, Quaternion.identity);
+        Shoot();
         yield return new WaitForSeconds(shootDelay);
 
-        ObjectPoolScript.spawnObject(cs1010Projectile, transform.position, Quaternion.identity);
+        Shoot();
         yield return new WaitForSeconds(shootDelay);
 
-        ObjectPoolScript.spawnObject(cs1010Projectile, transform.position, Quaternion.identity);
+        Shoot();
 
         stageTwoinProgress = false;
+    }
+
+    void Shoot()
+    {
+        CS1010ShootEvent();
+        ObjectPoolScript.spawnObject(cs1010Projectile, transform.position, Quaternion.identity);
     }
 
     private void OnCollisionEnter2D(Collision2D collision)

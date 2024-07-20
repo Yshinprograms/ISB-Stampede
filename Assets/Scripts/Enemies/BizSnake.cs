@@ -27,12 +27,16 @@ using UnityEngine;
 
 public class BizSnake : Enemy
 {
+    public delegate void BizSnakeEvent();
+    public static event BizSnakeEvent TransformEvent;
+
     public GameObject bizSnakeProjectile;
 
     private float throwTimer = 0f;
 
     private void OnEnable()
     {
+        TransformEvent();
         health = maxHealth;
     }
 

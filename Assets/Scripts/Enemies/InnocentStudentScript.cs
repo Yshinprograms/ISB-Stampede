@@ -20,6 +20,9 @@ using UnityEngine;
 // No need for maxHealth, because only dies upon collision with other enemies
 public class InnocentStudentScript : MonoBehaviour
 {
+    public delegate void ISEvent();
+    public static event ISEvent ISLatchOnEvent;
+
     public GameObject bizSnake;
 
     private float moveSpeed = 1f;
@@ -89,6 +92,7 @@ public class InnocentStudentScript : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("Player"))
             {
+                ISLatchOnEvent();
                 collidedWithPiper = true;
                 latchedOn = true;
                 PiperScript.piperMoveSpeed = 3f;

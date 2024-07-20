@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static ChineseTourist;
 
 public class L3LogicScript : MonoBehaviour
 {
@@ -22,6 +23,8 @@ public class L3LogicScript : MonoBehaviour
             return instance;
         }
     }
+
+    public static event CTEvent LandmarkChangeEvent;
 
     public bool bossBattle;
     private float levelTimer = 0;
@@ -94,6 +97,7 @@ public class L3LogicScript : MonoBehaviour
         secondsBetweenLandmarks += Time.deltaTime;
         if (secondsBetweenLandmarks > 7)
         {
+            LandmarkChangeEvent();
             ChineseTourist.landmark = SpawnScript.generateMapPosition();
             secondsBetweenLandmarks = 0;
         }

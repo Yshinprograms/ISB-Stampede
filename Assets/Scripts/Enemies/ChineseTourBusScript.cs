@@ -10,6 +10,7 @@ public class ChineseTourBusScript : Enemy
 {
     public delegate void BusEvent();
     public static event BusEvent BusCollisionEvent;
+    public static event BusEvent BusMoveEvent;
     public GameObject chineseTourist;
     public Sprite[] sprites;
     public BossHealthbarScript bossHealthbarScript;
@@ -118,6 +119,7 @@ public class ChineseTourBusScript : Enemy
 
     IEnumerator StartTour()
     {
+        BusMoveEvent();
         tourStarted = true;
         //travelling = true;
         while (Vector3.Distance(transform.position, destination) > 0.1f)
