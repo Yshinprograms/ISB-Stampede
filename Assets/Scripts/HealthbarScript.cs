@@ -25,7 +25,7 @@ public class HealthbarScript : MonoBehaviour
         if (PiperScript.piperHealth <= 0)
         {
             gameScreenManager.gameOver();
-            Debug.Log("Dead");
+            //Debug.Log("Dead");
         }
     }
 

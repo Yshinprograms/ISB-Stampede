@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 // This script consists of the functions used for the Game Over and Pause Script. 
 // Reminder to add delegates in future for easy adjustments:
@@ -13,6 +14,7 @@ public class GameScreenManager : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject gameCompletedUI;
     public GameObject piper;
+    public GameObject lowHealthOverlay;
 
     public static bool gameIsPaused = false;
 
@@ -33,6 +35,15 @@ public class GameScreenManager : MonoBehaviour
                 Time.timeScale = 0;
                 gameIsPaused = true;
             }
+        }
+
+        if (PiperScript.piperHealth <= PiperScript.piperLowHealthTrigger)
+        {
+            lowHealthOverlay.SetActive(true);
+        }
+        else
+        {
+            lowHealthOverlay.SetActive(false);
         }
     }
 
