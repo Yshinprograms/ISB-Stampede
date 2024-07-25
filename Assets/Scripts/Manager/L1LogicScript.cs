@@ -65,11 +65,11 @@ public class L1LogicScript : MonoBehaviour
 
         // Bollard interaction and Spawns ; time 0s
         Bollard.bollardCollisionEvent += BollardInflictDamage;
-        InvokeRepeating(nameof(SpawnBollard), 100f, secondsBetweenBollardSpawn);
+        InvokeRepeating(nameof(SpawnBollard), 0f, secondsBetweenBollardSpawn);
 
         // Freshie interaction and Spawns ; time 60s
         Freshie.freshieCollisionEvent += FreshieInflictDamage;
-        InvokeRepeating(nameof(SpawnFreshie), 100f, secondsBetweenFreshieSpawn);
+        InvokeRepeating(nameof(SpawnFreshie), 0f, secondsBetweenFreshieSpawn);
 
         // Aunty interactions and spawns ; time 120s
         Aunty.auntyCollisionEvent += AuntyInflictDamage;
