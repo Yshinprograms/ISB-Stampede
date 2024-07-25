@@ -65,31 +65,32 @@ public class L1LogicScript : MonoBehaviour
 
         // Bollard interaction and Spawns ; time 0s
         Bollard.bollardCollisionEvent += BollardInflictDamage;
-        InvokeRepeating(nameof(SpawnBollard), 0f, secondsBetweenBollardSpawn);
+        InvokeRepeating(nameof(SpawnBollard), 100f, secondsBetweenBollardSpawn);
 
         // Freshie interaction and Spawns ; time 60s
         Freshie.freshieCollisionEvent += FreshieInflictDamage;
-        InvokeRepeating(nameof(SpawnFreshie), 30f, secondsBetweenFreshieSpawn);
+        InvokeRepeating(nameof(SpawnFreshie), 100f, secondsBetweenFreshieSpawn);
 
         // Aunty interactions and spawns ; time 120s
         Aunty.auntyCollisionEvent += AuntyInflictDamage;
         Handbag.handbagCollisionEvent += HandbagInflictDamage;
-        InvokeRepeating(nameof(SpawnAunty), 60f, secondsBetweenAuntySpawn);
+        InvokeRepeating(nameof(SpawnAunty), 100f, secondsBetweenAuntySpawn);
+
+        // Student Boss interactions
+        StudentBoss.SBCollisionEvent += StudentBossInflictDamage;
+        SBBullet1.sbBullet1CollisionEvent += SBBulletInflictDamage;
+        SBBullet2.sbBullet2CollisionEvent += SBBulletInflictDamage;
+        SBBullet3.sbBullet3CollisionEvent += SBBulletInflictDamage;
+        SBBullet4.sbBullet4CollisionEvent += SBBulletInflictDamage;
+        SBBullet5.sbBullet5CollisionEvent += SBBulletInflictDamage;
+        SBBullet6.sbBullet6CollisionEvent += SBBulletInflictDamage;
 
         // Piper's parameters & projectile interactions
-        //isAlive = true;
         PaperBallScript.activePaperBalls = 0;
     }
 
     void Update()
     {
-
-        /*if (PiperScript.piperHealth <= 0 && isAlive)
-        {
-            isAlive = false;
-            gameScreenManager.gameOver();
-            Debug.Log("Dead");
-        }*/
 
         // Piper's projectile interactions
         secondsBetweenPaperBallSpawn += Time.deltaTime;
@@ -108,7 +109,7 @@ public class L1LogicScript : MonoBehaviour
         }
 
         // if level completed, move to cutscene 2s
-        if (levelTimer > 1500)
+        if (levelTimer > 100)
         {
             gameScreenManager.GoToCutscene2();
         }
@@ -140,6 +141,17 @@ public class L1LogicScript : MonoBehaviour
     {
         PiperScript.piperHealth -= 10;
     }
+
+    void StudentBossInflictDamage()
+    {
+        PiperScript.piperHealth -= 10;
+    }
+
+    void SBBulletInflictDamage()
+    {
+        PiperScript.piperHealth -= 10;
+    }
+
     // Spawn Enemies
     void SpawnBollard()
     {
