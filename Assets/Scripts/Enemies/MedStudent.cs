@@ -15,6 +15,7 @@ public class MedStudent : Enemy
 {
     public delegate void MedCollision();
     public static event MedCollision medCollisionEvent;
+    public static event MedCollision medSpillsChemicalEvent;
 
     private float timeBtwSpray;
     private int maxTimeBtwSpray = 5;
@@ -25,6 +26,7 @@ public class MedStudent : Enemy
     Vector2 wayPoint;
 
     public GameObject chemicalShot;
+    //Animator animMed;
 
     void OnEnable()
     {
@@ -32,6 +34,7 @@ public class MedStudent : Enemy
         health = maxHealth;
         SetNewDestination();
         timeBtwSpray = GenerateRandomNumber(minTimeBtwSpray, maxTimeBtwSpray);
+        //animMed = GetComponent<Animator>();
     }
 
     protected override void Move()
@@ -40,10 +43,36 @@ public class MedStudent : Enemy
         if (Vector2.Distance(transform.position, PiperScript.piperPosition) < followDistance)
         {
             transform.position = Vector2.MoveTowards(transform.position, PiperScript.piperPosition, moveSpeed*1.5f * Time.deltaTime);
+
+            if (transform.position.x > PiperScript.piperPosition.x)
+            {
+                transform.localScale = new Vector2(-0.15f, 0.15f);
+            }
+            else
+            {
+                transform.localScale = new Vector2(0.15f, 0.15f);
+            }
+            gameObject.GetComponent<Animator>().Play("MedStudentWalking");
+            //animMed.Play("MedStudentWalking");
+
         } else
         {
             // med student wanders around 
             transform.position = Vector2.MoveTowards(transform.position, wayPoint, moveSpeed * Time.deltaTime);
+
+            if (transform.position.x > wayPoint.x)
+            {
+                transform.localScale = new Vector2(-0.15f, 0.15f);
+            }
+            else
+            {
+                transform.localScale = new Vector2(0.15f, 0.15f);
+            }
+
+            //animMed.Play("MedStudentWalking");
+            gameObject.GetComponent<Animator>().Play("MedStudentWalking");
+            
+
             if (Vector2.Distance(transform.position, wayPoint) < range)
             {
                 SetNewDestination();
@@ -52,9 +81,12 @@ public class MedStudent : Enemy
             // med student shoot chemicals from syringe
             if (timeBtwSpray <= 0)
             {
+                medSpillsChemicalEvent();
                 // shoot at a random position 
+                StartCoroutine(MedStudentShoots());
+                //gameObject.GetComponent<Animator>().Play("MedStudentShooting");
+                //animMed.Play("MedStudentShooting");
                 ObjectPoolScript.spawnObject(chemicalShot, transform.position + Vector3.right, Quaternion.identity);
-                // Instantiate(chemicalShot, transform.position + Vector3.right, Quaternion.identity);
                 timeBtwSpray = GenerateRandomNumber(minTimeBtwSpray, maxTimeBtwSpray);
             }
             else
@@ -64,6 +96,12 @@ public class MedStudent : Enemy
 
         }
 
+    }
+
+    IEnumerator MedStudentShoots()
+    {
+        gameObject.GetComponent<Animator>().Play("MedStudentShooting");
+        yield return new WaitForSeconds(2f);
     }
 
     void SetNewDestination()

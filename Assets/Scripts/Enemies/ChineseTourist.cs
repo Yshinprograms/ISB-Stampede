@@ -29,12 +29,15 @@ public class ChineseTourist : Enemy
     private float photoTakenTimer;
     private bool photoTaken;
 
+    Animator animCT; 
+
     private void OnEnable()
     {
         health = maxHealth;
         moveSpeed = 2f;
         photoTakenTimer = 0f;
         photoTaken = false;
+        animCT = GetComponent<Animator>();
     }
     void Start()
     {
@@ -49,8 +52,15 @@ public class ChineseTourist : Enemy
     // Update is called once per frame
     void Update()
     {
+
+        if (Vector3.Distance(transform.position, landmark) < 1.5f)
+        {
+            animCT.Play("ChineseTouristIdle");
+        }
+
         // Find distance between Aunty and Piper
         distToPiper = Vector3.Distance(transform.position, PiperScript.piperPosition);
+        animCT.Play("ChineseTouristWalking");
 
         if (photoTaken && (photoTakenTimer > 1.8f))
         {
@@ -64,11 +74,29 @@ public class ChineseTourist : Enemy
             if (distToPiper - touristToPiperRange <= 0)
             {
                 transform.position = Vector3.MoveTowards(transform.position, PiperScript.piperPosition, moveSpeed * Time.deltaTime);
+                if (transform.position.x > PiperScript.piperPosition.x)
+                {
+                    transform.localScale = new Vector2(-0.15f, 0.15f);
+                }
+                else
+                {
+                    transform.localScale = new Vector2(0.15f, 0.15f);
+                }
+                animCT.Play("ChineseTouristWalking");
             }
             // Ensures CT doesn't cluster together
             else if (Vector3.Distance(transform.position, landmark) > 1.2f)
             {
                 transform.position = Vector3.MoveTowards(transform.position, landmark, moveSpeed * Time.deltaTime);
+                if (transform.position.x > landmark.x)
+                {
+                    transform.localScale = new Vector2(-0.15f, 0.15f);
+                }
+                else
+                {
+                    transform.localScale = new Vector2(0.15f, 0.15f);
+                }
+                animCT.Play("ChineseTouristWalking");
             }
 
             // Trigger flash sequence when distance <= 1
@@ -80,7 +108,10 @@ public class ChineseTourist : Enemy
                 {
                     PhotoEvent();
                 }
+                animCT.Play("ChineseTouristTakingPhoto");
+
             }
+
         }
 
         transform.rotation = Quaternion.Euler(0, 0, 0);

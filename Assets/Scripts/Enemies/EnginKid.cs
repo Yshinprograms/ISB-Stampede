@@ -27,7 +27,6 @@ public class EnginKid : Enemy
     private float lastDamageTime = 0;
     private bool piperInAuraRange;
     private ParticleSystem aura;
-    //private SpriteRenderer sp;
 
     void OnEnable()
     {
@@ -36,19 +35,7 @@ public class EnginKid : Enemy
         moveSpeed = 2.5f;
         gatheredSuccessfully = false;
         aura = GetComponent<ParticleSystem>();
-        //sp = GetComponent<SpriteRenderer>();
-        // var main = aura.main;
-        // main.scalingMode = ParticleSystemScalingMode.Local;
-        
     }
-    /*void Start()
-    {
-        health = maxHealth;
-        reachedGatheringCorner = false;
-        moveSpeed = 2.5f;
-        gatheredSuccessfully = false;
-        aura = GetComponent<ParticleSystem>();
-    }*/
 
     protected override void TurnDirection()
     {
@@ -80,8 +67,6 @@ public class EnginKid : Enemy
                 //sp.flipX = false;
                 gameObject.GetComponent<Animator>().Play("EnginKidMoving");
             }
-
-            //gameObject.GetComponent<Animator>().Play("EnginKidMoving");
 
             if (Vector3.Distance(transform.position, L2LogicScript.Instance.enginKidGatheringCorner) < 0.6f)
             {

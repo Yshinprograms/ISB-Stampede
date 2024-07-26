@@ -65,12 +65,12 @@ public class L3LogicScript : MonoBehaviour
         gameScreenManager = FindObjectOfType<GameScreenManager>();
 
         // Set timer for Level 3
-        TimerScript.remainingTime = 10;
+        TimerScript.remainingTime = 180;
 
         // Start spawning
-        InvokeRepeating(nameof(SpawnChineseTourists), 600f, secondsBetweenChineseTouristSpawn);
+        InvokeRepeating(nameof(SpawnChineseTourists), 0f, secondsBetweenChineseTouristSpawn);
 
-        InvokeRepeating(nameof(SpawnInnocentStudent), 600f, secondsBetweenInnocentStudentSpawn);
+        InvokeRepeating(nameof(SpawnInnocentStudent), 0f, secondsBetweenInnocentStudentSpawn);
 
         // Med Student and interactions 
         MedStudent.medCollisionEvent += MedInflictDamage;

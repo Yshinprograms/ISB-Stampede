@@ -39,6 +39,7 @@ public class SBBullet1 : MonoBehaviour
         transform.position = Vector2.MoveTowards(transform.position, target1, bulletSpeed * Time.deltaTime);
     }
 
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))

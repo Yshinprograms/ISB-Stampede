@@ -33,6 +33,7 @@ public class BizSnake : Enemy
     public GameObject bizSnakeProjectile;
 
     private float throwTimer = 0f;
+    //Animator animBiz;
 
     private void OnEnable()
     {
@@ -54,7 +55,9 @@ public class BizSnake : Enemy
         }
 
         throwTimer += Time.deltaTime;
+
     }
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {

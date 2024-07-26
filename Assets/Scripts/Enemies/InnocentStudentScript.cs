@@ -32,6 +32,7 @@ public class InnocentStudentScript : MonoBehaviour
     private bool latchedOn = false;
     private bool collidedWithPiper = false;
     private Vector2 pushBackDir;
+    Animator animIS;
 
     private void OnEnable()
     {
@@ -40,6 +41,7 @@ public class InnocentStudentScript : MonoBehaviour
         collidedWithPiper = false;
         transformationTimer = 0f;
         pushBackTimer = 3f;
+        animIS = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -48,6 +50,7 @@ public class InnocentStudentScript : MonoBehaviour
         // Move alongside Piper if latchedOn
         if (latchedOn)
         {
+            animIS.Play("InnocentStudentLatchOn");
             if (Vector2.Distance(transform.position, PiperScript.piperPosition) > 0.8f)
             {
                 moveSpeed = PiperScript.piperMoveSpeed;
@@ -75,11 +78,25 @@ public class InnocentStudentScript : MonoBehaviour
         {
             // stunned animation
             stunTimer += Time.deltaTime;
+            animIS.Play("InnocentStudentStunned");
         }
         // Regular movement towards Piper
         else
         {
             transform.position = Vector2.MoveTowards(transform.position, PiperScript.piperPosition, Time.deltaTime * moveSpeed);
+
+            if (transform.position.x > PiperScript.piperPosition.x)
+            {
+                transform.localScale = new Vector2(-0.15f, 0.15f);
+                //anim.Play("InnocentStudentWalking");
+            }
+            else
+            {
+                transform.localScale = new Vector2(0.15f, 0.15f);
+                //anim.Play("InnocentStudentWalking");
+            }
+            
+            animIS.Play("InnocentStudentWalking");
         }
 
         transform.rotation = Quaternion.Euler(0, 0, 0);

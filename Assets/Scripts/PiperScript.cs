@@ -19,13 +19,13 @@ public class PiperScript : MonoBehaviour
     public static Collider2D enemyInRange;
     private SpriteRenderer sp;
     private float piperStunTimer = 0f;
-    Animator anim;
+    Animator piperAnim;
 
 
     private void Start()
     {
         sp = GetComponent<SpriteRenderer>();
-        anim = GetComponent<Animator>();
+        piperAnim = GetComponent<Animator>();
         ChineseTourist.PhotoEvent += PiperStunned;
         
         // Add future enemy layers here as needed, bitmasking; Note the int size in C#(32 bits / Max layers)
@@ -64,6 +64,7 @@ public class PiperScript : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, 0);
 
         piperStunTimer += Time.deltaTime;
+        
     }
 
 
@@ -122,56 +123,56 @@ public class PiperScript : MonoBehaviour
         {
             transform.position += Vector3.up * piperMoveSpeed * Time.deltaTime;
             transform.localScale = new Vector2(0.18f, 0.18f);
-            anim.Play("PiperV2Moving");
+            piperAnim.Play("PiperV2Moving");
         }
         if (dir == 2) //NE
         {
             transform.position += new Vector3(1, 1, 0).normalized * piperMoveSpeed * Time.deltaTime;
             transform.localScale = new Vector2(0.18f, 0.18f);
-            anim.Play("PiperV2Moving");
+            piperAnim.Play("PiperV2Moving");
         }
         if (dir == 3) //E
         {
             transform.position += Vector3.right * piperMoveSpeed * Time.deltaTime;
             transform.localScale = new Vector2(0.18f, 0.18f);
-            anim.Play("PiperV2Moving");
+            piperAnim.Play("PiperV2Moving");
         }
         if (dir == 4) //SE
         {
             transform.position += new Vector3(1, -1, 0).normalized * piperMoveSpeed * Time.deltaTime;
             transform.localScale = new Vector2(0.18f, 0.18f);
-            anim.Play("PiperV2Moving");
+            piperAnim.Play("PiperV2Moving");
         }
         if (dir == 5) //S
         {
             transform.position += Vector3.down * piperMoveSpeed * Time.deltaTime;
             transform.localScale = new Vector2(0.18f, 0.18f);
-            anim.Play("PiperV2Moving");
+            piperAnim.Play("PiperV2Moving");
         }
         if (dir == 6) //SW
         {
             transform.position += new Vector3(-1, -1, 0).normalized * piperMoveSpeed * Time.deltaTime;
             transform.localScale = new Vector2(-0.18f, 0.18f);
-            anim.Play("PiperV2Moving");
+            piperAnim.Play("PiperV2Moving");
 
         }
         if (dir == 7) //W
         {
             transform.position += Vector3.left * piperMoveSpeed * Time.deltaTime;
             transform.localScale = new Vector2(-0.18f, 0.18f);
-            anim.Play("PiperV2Moving");
+            piperAnim.Play("PiperV2Moving");
 
         }
         if (dir == 8) //NW
         {
             transform.position += new Vector3(-1, 1, 0).normalized * piperMoveSpeed * Time.deltaTime;
             transform.localScale = new Vector2(-0.18f, 0.18f);
-            anim.Play("PiperV2Moving");
+            piperAnim.Play("PiperV2Moving");
 
         }
         if (dir == 0) //Not moving
         {
-            anim.Play("PiperV2Idle");
+            piperAnim.Play("PiperV2Idle");
         }
     }
 
@@ -182,6 +183,7 @@ public class PiperScript : MonoBehaviour
         {
             piperStunTimer = 0f;
         }
+        piperAnim.Play("PiperV2Stunned");
     }
 
     public static void ApplyHealthBuff(int amount)

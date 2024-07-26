@@ -43,12 +43,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 300
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -108,7 +108,133 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: BizSnake_1
+      rect:
+        serializedVersion: 2
+        x: 1530
+        y: 2551
+        width: 451
+        height: 387
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1ea4d231f0ca2174dac68ccac835c7e3
+      internalID: 185324263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BizSnake_2
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 893
+        width: 1406
+        height: 1662
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 181aad9b0b601224ead6f6c29cf76298
+      internalID: -390854910
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BizSnake_3
+      rect:
+        serializedVersion: 2
+        x: 1785
+        y: 1019
+        width: 1215
+        height: 1299
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b0a06c284f64203488d07d963c2e6e1e
+      internalID: 1781487624
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BizSnake_4
+      rect:
+        serializedVersion: 2
+        x: 636
+        y: 62
+        width: 643
+        height: 769
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a395372bc861e5419c58bb4a4b20c74
+      internalID: 116652980
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BizSnake_6
+      rect:
+        serializedVersion: 2
+        x: 1914
+        y: 572
+        width: 385
+        height: 324
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 172143240cc1ffa45a2dfe6415243258
+      internalID: -669571171
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: BizSnake_7
+      rect:
+        serializedVersion: 2
+        x: 2424
+        y: 572
+        width: 386
+        height: 324
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 960f19035b09f8a47a2a6aea3f50ad7a
+      internalID: -1843245080
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -119,7 +245,17 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      BizSnake_0: 8582243
+      BizSnake_1: 185324263
+      BizSnake_2: -390854910
+      BizSnake_3: 1781487624
+      BizSnake_4: 116652980
+      BizSnake_5: -1999409482
+      BizSnake_6: -669571171
+      BizSnake_7: -1843245080
+      BizSnake_8: -1674432477
+      BizSnake_9: 885889944
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -71,6 +71,11 @@ public class SFXSounds : MonoBehaviour
     public AudioSource landmarkChangeSFX;
     public AudioSource chineseTourBusMoveSFX;
     public AudioSource chineseTouristFlashSFX;
+    public AudioSource medStudentCollisionSFX;
+    public AudioSource piperStepOnPuddleSFX;
+    public AudioSource SBCollisionSFX;
+    public AudioSource SBShootsSFX;
+    public AudioSource MedSpillsChemicalsSFX;
 
     void Start()
     {
@@ -100,6 +105,33 @@ public class SFXSounds : MonoBehaviour
         ChineseTourist.PhotoEvent += CTFlashSounds;
         L3LogicScript.LandmarkChangeEvent += LandmarkChangeSounds;
         ChineseTourBusScript.BusMoveEvent += CTBusMovingSounds;
+
+        MedStudent.medCollisionEvent += medStudentCollisionSounds;
+        MedChemicalPuddle.StepOnPuddleEvent += piperStepOnPuddleSounds;
+        StudentBoss.SBCollisionEvent += SBCollisionSounds;
+        StudentBoss.SBShootsEvent += SBShootsSounds;
+        SBBullet1.sbBullet1CollisionEvent += piperStepOnPuddleSounds;
+        SBBullet2.sbBullet2CollisionEvent += piperStepOnPuddleSounds;
+        SBBullet3.sbBullet3CollisionEvent += piperStepOnPuddleSounds;
+        SBBullet4.sbBullet4CollisionEvent += piperStepOnPuddleSounds;
+        SBBullet5.sbBullet5CollisionEvent += piperStepOnPuddleSounds;
+        SBBullet6.sbBullet6CollisionEvent += piperStepOnPuddleSounds;
+        MedStudent.medSpillsChemicalEvent += MedSpillsChemicalsSounds;
+    }
+
+    void MedSpillsChemicalsSounds()
+    {
+        MedSpillsChemicalsSFX.Play();
+    }
+
+    void SBShootsSounds()
+    {
+        SBShootsSFX.Play();
+    }
+
+    void SBCollisionSounds()
+    {
+        SBCollisionSFX.Play();
     }
 
     void MalaSounds()
@@ -158,7 +190,6 @@ public class SFXSounds : MonoBehaviour
         chineseTouristFlashSFX.Play();
     }
 
-
     void freshieSounds()
     {
         freshieCollisionSFX.Play();
@@ -204,6 +235,16 @@ public class SFXSounds : MonoBehaviour
         csMuggerCodeCollisionSFX.Play();
     }
 
+    void medStudentCollisionSounds()
+    {
+        medStudentCollisionSFX.Play();
+    }
+
+    void piperStepOnPuddleSounds()
+    {
+        piperStepOnPuddleSFX.Play();
+    }
+
     // Unsubscribe from events
     private void OnDestroy()
     {
@@ -231,5 +272,19 @@ public class SFXSounds : MonoBehaviour
         ChineseTourist.PhotoEvent -= CTFlashSounds;
         L3LogicScript.LandmarkChangeEvent -= LandmarkChangeSounds;
         ChineseTourBusScript.BusMoveEvent -= CTBusMovingSounds;
+
+        MedStudent.medCollisionEvent -= medStudentCollisionSounds;
+        MedChemicalPuddle.StepOnPuddleEvent -= piperStepOnPuddleSounds;
+        StudentBoss.SBCollisionEvent -= SBCollisionSounds;
+        StudentBoss.SBShootsEvent -= SBShootsSounds;
+        SBBullet1.sbBullet1CollisionEvent -= piperStepOnPuddleSounds;
+        SBBullet2.sbBullet2CollisionEvent -= piperStepOnPuddleSounds;
+        SBBullet3.sbBullet3CollisionEvent -= piperStepOnPuddleSounds;
+        SBBullet4.sbBullet4CollisionEvent -= piperStepOnPuddleSounds;
+        SBBullet5.sbBullet5CollisionEvent -= piperStepOnPuddleSounds;
+        SBBullet6.sbBullet6CollisionEvent -= piperStepOnPuddleSounds;
+        MedStudent.medSpillsChemicalEvent -= MedSpillsChemicalsSounds;
+
+
     }
 }

@@ -14,14 +14,15 @@ public class ChemicalShot : MonoBehaviour
     void OnEnable()
     {
         maxSprayDist = 6;
-        spraySpeed = 4;
-        range = 0.5f;
+        spraySpeed = 8;
+        range = 1f;
     }
 
     void Update()
     {
         ChemicalSprayVector();
         transform.position = Vector2.MoveTowards(transform.position, sprayPoint, spraySpeed * Time.deltaTime);
+
         if (Vector2.Distance(transform.position, sprayPoint) < range)
         {
             ObjectPoolScript.spawnObject(medChemicalPuddle, transform.position, Quaternion.identity);

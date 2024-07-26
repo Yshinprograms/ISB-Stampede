@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 6323410b6196aa24cb86e571b6ae0a1f
+guid: f67a3c6ff17ef5e459dfb18f9cd332cc
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -43,12 +43,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 300
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -108,7 +108,154 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: ChineseTourist_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 1039
+        width: 1471
+        height: 1472
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 51605af0af084f04dbe0ae671dd2b5ab
+      internalID: 1531518459
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChineseTourist_1
+      rect:
+        serializedVersion: 2
+        x: 1590
+        y: 2387
+        width: 432
+        height: 369
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3eba7fb15578eb4c9df5d655d7e3cab
+      internalID: 778285364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChineseTourist_5
+      rect:
+        serializedVersion: 2
+        x: 1836
+        y: 1039
+        width: 1164
+        height: 1106
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c659ceb33128ea42a75d7771465c194
+      internalID: 719703477
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChineseTourist_6
+      rect:
+        serializedVersion: 2
+        x: 59
+        y: 226
+        width: 448
+        height: 579
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 63082e4ac9d3287438c9f519a7df136b
+      internalID: 1902234399
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChineseTourist_9
+      rect:
+        serializedVersion: 2
+        x: 795
+        y: 244
+        width: 738
+        height: 737
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d3c459f2e4b0d8a4f95fdaeb47a00a77
+      internalID: -511465712
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChineseTourist_10
+      rect:
+        serializedVersion: 2
+        x: 2018
+        y: 610
+        width: 310
+        height: 428
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cdd10d48988e2e4429a0a8ae1fc0c472
+      internalID: -1472699994
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: ChineseTourist_11
+      rect:
+        serializedVersion: 2
+        x: 2447
+        y: 610
+        width: 309
+        height: 372
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c63fbf8f1adf8224b85b2dcc14bf66ba
+      internalID: 734695115
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -119,7 +266,20 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      ChineseTourist_0: 1531518459
+      ChineseTourist_1: 778285364
+      ChineseTourist_10: -1472699994
+      ChineseTourist_11: 734695115
+      ChineseTourist_12: 1621110307
+      ChineseTourist_2: -1397439171
+      ChineseTourist_3: 95400897
+      ChineseTourist_4: -663670912
+      ChineseTourist_5: 719703477
+      ChineseTourist_6: 1902234399
+      ChineseTourist_7: -760244264
+      ChineseTourist_8: 2094540535
+      ChineseTourist_9: -511465712
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

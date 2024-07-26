@@ -15,29 +15,42 @@ public class MedChemicalPuddle : MonoBehaviour
     private float timeInMap;
 
     private float fadeDuration;
-    private SpriteRenderer sp;
     private float fadeSpeed;
-    private Color color;
+    public Color puddleColor;
+    Animator animPuddle;
+    
 
     void OnEnable()
     {
-        sp = GetComponent<SpriteRenderer>();
-        color = sp.color;
-        color.a = 255;
+
+        // Get all SpriteRenderer components in the children 
+        SpriteRenderer[] spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
+        foreach (SpriteRenderer sr in spriteRenderers)
+        {
+            Color color = sr.color;
+            color.a = 255;
+            sr.color = color;
+        }
+
         fadeDuration = 7;
         fadeSpeed = 1 / fadeDuration;
         timeInMap = 7;
+        animPuddle = GetComponent<Animator>();
     }
 
     void Update()
     {
+        SpriteRenderer[] spriteRenderers = GetComponentsInChildren<SpriteRenderer>();
         // Puddle fades
-        if (sp.color.a > 0)
+        if (timeInMap > 0)
         {
-            //color = sp.color;
-            color.a -= fadeSpeed * Time.deltaTime;
-            color.a = Mathf.Clamp01(color.a); // Ensure alpha value is clamped between 0 and 1
-            sp.color = color;
+            foreach (SpriteRenderer sr in spriteRenderers)
+            {
+                Color color = sr.color;
+                color.a -= fadeSpeed * Time.deltaTime;
+                color.a = Mathf.Clamp01(color.a);
+                sr.color = color;
+            }
         }
        
         // Puddle stays in map for 5s, after 5s puddle disappears
@@ -46,6 +59,8 @@ public class MedChemicalPuddle : MonoBehaviour
         {
             ObjectPoolScript.returnObjectToPool(gameObject);
         }
+
+        //animPuddle.Play("ChemicalPuddleIdle");
 
     }
 

@@ -68,11 +68,11 @@ public class L2LogicScript : MonoBehaviour
         instance = this;
 
         // Set timer for Level 2
-        TimerScript.remainingTime = 10;
+        TimerScript.remainingTime = 180;
 
         // Cleaner interaction and Spawns ; time 0s
         Cleaner.cleanerCollisionEvent += CleanerInflictDamage;
-        InvokeRepeating(nameof(SpawnCleaner), 600f, secondsBetweenCleanerSpawn);
+        InvokeRepeating(nameof(SpawnCleaner), 0f, secondsBetweenCleanerSpawn);
 
         // EnginKid interaction and Spawns
         EnginKid.enginKidDeathEvent += StopEnginKidClusterCoroutine;
@@ -81,7 +81,7 @@ public class L2LogicScript : MonoBehaviour
         // CSMugger interaction and Spawns ; time 120s
         CSMugger.csMuggerCollisionEvent += CSMuggerInflictDamage;
         CSMuggerCode.csMuggerCodeCollisionEvent += CSMuggerCodeInflictDamage;
-        InvokeRepeating(nameof(SpawnCSMugger), 600f, secondsBetweenCSMuggerSpawn);
+        InvokeRepeating(nameof(SpawnCSMugger), 0f, secondsBetweenCSMuggerSpawn);
 
         // Piper's parameters & projectile interactions
         PaperBallScript.activePaperBalls = 0;
@@ -103,7 +103,7 @@ public class L2LogicScript : MonoBehaviour
         // FIX THIS
         // EnginKid Clustering Logic
         // Cluster spawning coroutine only starts if there are no clusters && enginKids are not in attack phase
-        if (levelTimer > 1)
+        if (levelTimer > 0)
         {
             if (!enginKidClusterActive && !EnginKid.attackPhase)
             {
@@ -113,13 +113,13 @@ public class L2LogicScript : MonoBehaviour
 
 
         // Boss Spawns 1 time when levelTimer hits 180s
-        if (levelTimer > 60 && !bossBattle)
+        if (levelTimer > 100 && !bossBattle)
         {
             bossBattle = true;
             cs1010.SetActive(true);
         }
 
-        if (levelTimer > 10)
+        if (levelTimer > 60)
         {
             SceneManager.LoadScene("Cutscene3");
             
@@ -184,8 +184,8 @@ public class L2LogicScript : MonoBehaviour
     // Unsubscribe from Events
     private void OnDestroy()
     {
-        CancelInvoke("spawnCSMugger");
-        CancelInvoke("spawnCleaner");
+        CancelInvoke(nameof(SpawnCSMugger));
+        CancelInvoke(nameof(SpawnCleaner));
         CSMugger.csMuggerCollisionEvent -= CSMuggerInflictDamage;
         Cleaner.cleanerCollisionEvent -= CleanerInflictDamage;
         EnginKid.enginKidDeathEvent -= StopEnginKidClusterCoroutine;

@@ -9,7 +9,11 @@ public class L1LogicScript : MonoBehaviour
 {
     public bool bossBattle;
     private float levelTimer = 0;
-    public static float levelOneDuration = 100;
+    public static float levelOneDuration = 180;
+
+    // Get Piper Animation
+    //public GameObject piper; 
+    private Animator piperAnimator;
 
     // Import Game Manager Script & Game end conditions
     public GameScreenManager gameScreenManager;
@@ -60,6 +64,11 @@ public class L1LogicScript : MonoBehaviour
         }
         instance = this;
 
+        // Get Piper Animation
+        
+        //GameObject piper = GameObject.FindWithTag("Player");
+        //piperAnimator = piper.GetComponent<Animator>();
+
         // Set timer for Level 1 
         TimerScript.remainingTime = levelOneDuration;
 
@@ -102,14 +111,14 @@ public class L1LogicScript : MonoBehaviour
         }
 
         // Boss Spawns 1 time when timer hits 180s
-        if (levelTimer > 3 && !bossBattle)
+        if (levelTimer > 2 && !bossBattle)
         {
             bossBattle = true;
             studentBoss.SetActive(true);
         }
 
         // if level completed, move to cutscene 2s
-        if (levelTimer > 100)
+        if (levelTimer > 1000)
         {
             gameScreenManager.GoToCutscene2();
         }
@@ -127,11 +136,12 @@ public class L1LogicScript : MonoBehaviour
     // Damages
     void BollardInflictDamage()
     {
+        //piperAnimator.Play("PiperV2DealsDamage");
         PiperScript.piperHealth -= 10;
     }
     void FreshieInflictDamage()
     {
-        PiperScript.piperHealth -= 20;
+        PiperScript.piperHealth -= 10;
     }
     void AuntyInflictDamage()
     {

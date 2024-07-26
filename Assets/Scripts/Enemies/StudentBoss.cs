@@ -18,6 +18,7 @@ public class StudentBoss : Enemy
     public BossHealthbarScript bossHealthbarScript;
     public delegate void SBEvent();
     public static event SBEvent SBCollisionEvent;
+    public static event SBEvent SBShootsEvent;
 
     // Points
     public GameObject p0;
@@ -53,9 +54,9 @@ public class StudentBoss : Enemy
 
     private float timeBtwShot;
     private float levelTimeBtwShot;
-    private float L1Speed = 4f;
+    private float L1Speed = 3f;
     private float L1ShootInterval = 1;
-    private float L2Speed = 5f;
+    private float L2Speed = 4f;
     private float L2ShootInterval = 0.7f;
     private float L3Speed = 5f;
     private float L3ShootInterval = 0.5f;
@@ -63,7 +64,8 @@ public class StudentBoss : Enemy
     private float L4ShootInterval = 0.5f;
     private float currentSpeed;
 
-
+    Animator animSB;
+    
 
     private void OnEnable()
     {      
@@ -84,6 +86,7 @@ public class StudentBoss : Enemy
         isAtP8 = false;
         timeBtwShot = L1ShootInterval;
         currentSpeed = L1Speed;
+        animSB = GetComponent<Animator>();
 
     }
 
@@ -246,55 +249,67 @@ public class StudentBoss : Enemy
     void GoToStartPosition()
     {
         transform.position = Vector2.MoveTowards(transform.position, p0.transform.position, moveSpeed * Time.deltaTime);
+        animSB.Play("StudentBossWalking");
     }
 
     void MoveToP1()
     {
         transform.position = Vector2.MoveTowards(transform.position, p1.transform.position, moveSpeed * Time.deltaTime);
+        animSB.Play("StudentBossWalking");
     }
 
     void MoveToP2()
     {
         transform.position = Vector2.MoveTowards(transform.position, p2.transform.position, moveSpeed * Time.deltaTime);
+        animSB.Play("StudentBossWalking");
     }
 
     void MoveToP3()
     {
         transform.position = Vector2.MoveTowards(transform.position, p3.transform.position, moveSpeed * Time.deltaTime);
+        animSB.Play("StudentBossWalking");
     }
 
     void MoveToP4()
     {
         transform.position = Vector2.MoveTowards(transform.position, p4.transform.position, moveSpeed * Time.deltaTime);
+        animSB.Play("StudentBossWalking");
     }
 
     void MoveToP5()
     {
         transform.position = Vector2.MoveTowards(transform.position, p5.transform.position, moveSpeed * Time.deltaTime);
+        animSB.Play("StudentBossWalking");
     }
 
     void MoveToP6()
     {
         transform.position = Vector2.MoveTowards(transform.position, p6.transform.position, moveSpeed * Time.deltaTime);
+        animSB.Play("StudentBossWalking");
     }
 
     void MoveToP7()
     {
         transform.position = Vector2.MoveTowards(transform.position, p7.transform.position, moveSpeed * Time.deltaTime);
+        animSB.Play("StudentBossWalking");
     }
 
     void MoveToP8()
     {
         transform.position = Vector2.MoveTowards(transform.position, p8.transform.position, moveSpeed * Time.deltaTime);
+        animSB.Play("StudentBossWalking");
     }
 
     IEnumerator BossAttack()
     {
         moveSpeed = 0;
-        
+
+        animSB.Play("StudentBossIdle");
+
         if (timeBtwShot <= 0)
         {
             // shoot 
+            SBShootsEvent();
             ObjectPoolScript.spawnObject(bullet1, transform.position, Quaternion.identity);
             ObjectPoolScript.spawnObject(bullet2, transform.position, Quaternion.identity);
             ObjectPoolScript.spawnObject(bullet3, transform.position, Quaternion.identity);
@@ -310,6 +325,7 @@ public class StudentBoss : Enemy
 
         yield return new WaitForSeconds(5f);
         bossHasAttacked = true;
+        yield return null;
     }
 
     void UpdateStage()
