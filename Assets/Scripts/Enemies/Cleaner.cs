@@ -19,7 +19,7 @@ public class Cleaner : Enemy
     public static event CleanerEvent cleanerEnrageEvent;
     
     // Cleaner's aim line when charging towards Piper, adjust accordingly in coroutines
-    public LineRenderer aimingLine;
+    //public LineRenderer aimingLine;
 
     private bool enraged = false;
     private int projectileHitCount = 0;
@@ -37,7 +37,7 @@ public class Cleaner : Enemy
         enraged = false;
         completedEnrage = false;
         isCharging = false;
-        aimingLine.enabled = false;
+        //aimingLine.enabled = false;
     }
 
     protected override void Move()
@@ -77,7 +77,7 @@ public class Cleaner : Enemy
         // Get angry and charge up for 2s, then get Piper position and direction
         yield return new WaitForSeconds(2);
         Vector3 targetPosition = PiperScript.piperPosition;
-        aimingLine.enabled = true;
+        //aimingLine.enabled = true;
 
         // Charge towards Piper's position
         moveSpeed = 5f;
@@ -85,7 +85,7 @@ public class Cleaner : Enemy
         gameObject.GetComponent<Animator>().Play("CleanerRunning");
         while (Vector3.Distance(transform.position, targetPosition) > 0.1f)
         {
-            UpdateAimingLine(targetPosition);
+            //UpdateAimingLine(targetPosition);
             transform.position += moveSpeed * Time.deltaTime * directionToPiper;
             gameObject.GetComponent<Animator>().Play("CleanerRunning");
             yield return null;
@@ -94,7 +94,7 @@ public class Cleaner : Enemy
         // Stop, wait for next charge, completedEnrage sequence
         moveSpeed = 0;
         completedEnrage = true;
-        aimingLine.enabled = false; // Hide the aiming line after charging
+        //aimingLine.enabled = false; // Hide the aiming line after charging
     }
 
     public IEnumerator continueCharge()
@@ -108,13 +108,13 @@ public class Cleaner : Enemy
         Vector3 targetPosition = PiperScript.piperPosition;
         Vector3 directionToPiper = (targetPosition - transform.position).normalized;
         gameObject.GetComponent<Animator>().Play("CleanerRunning");
-        aimingLine.enabled = true;
+        //aimingLine.enabled = true;
 
         // Charge towards Piper's position
         while (Vector3.Distance(transform.position, targetPosition) > 0.1f)
         //while (transform.position != targetPosition)
         {
-            UpdateAimingLine(targetPosition);
+            //UpdateAimingLine(targetPosition);
             transform.position += moveSpeed * Time.deltaTime * directionToPiper;
             yield return null;
         }
@@ -122,7 +122,7 @@ public class Cleaner : Enemy
         // Stop after reaching and reset coroutine
         moveSpeed = 0;
         isCharging = false;
-        aimingLine.enabled = false; // Hide the aiming line after charging
+        //aimingLine.enabled = false; // Hide the aiming line after charging
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -148,13 +148,13 @@ public class Cleaner : Enemy
     }
 
     // Function to update the aiming line renderer
-    private void UpdateAimingLine(Vector3 targetPosition)
-    {
-        // Calculate the direction to the target
-        Vector3 directionToPiper = (targetPosition - transform.position).normalized;
+    //private void UpdateAimingLine(Vector3 targetPosition)
+    //{
+    //    // Calculate the direction to the target
+    //    Vector3 directionToPiper = (targetPosition - transform.position).normalized;
 
-        // Set the aiming line's position
-        aimingLine.SetPosition(0, transform.position);
-        aimingLine.SetPosition(1, transform.position + (directionToPiper * Vector3.Distance(transform.position, targetPosition) ) );
-    }
+    //    // Set the aiming line's position
+    //    aimingLine.SetPosition(0, transform.position);
+    //    aimingLine.SetPosition(1, transform.position + (directionToPiper * Vector3.Distance(transform.position, targetPosition) ) );
+    //}
 }
