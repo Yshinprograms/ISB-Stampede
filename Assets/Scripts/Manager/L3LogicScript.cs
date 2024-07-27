@@ -41,10 +41,10 @@ public class L3LogicScript : MonoBehaviour
 
     // Spawn times
     public float secondsBetweenPaperBallSpawn;
-    private float secondsBetweenChineseTouristSpawn = 5f;
+    private float secondsBetweenChineseTouristSpawn = 6f;
     public float secondsBetweenLandmarks = 7;
     private float secondsBetweenInnocentStudentSpawn = 10f;
-    public float secondsBetweenMedStudentSpawn = 100f;
+    private float secondsBetweenMedStudentSpawn = 10f;
     //public float secondsBetweenBizSnakeSpawn = 8f;
 
     // Controls quantity of projectiles on map
@@ -68,14 +68,17 @@ public class L3LogicScript : MonoBehaviour
         TimerScript.remainingTime = 180;
 
         // Start spawning
-        InvokeRepeating(nameof(SpawnChineseTourists), 100f, secondsBetweenChineseTouristSpawn);
+        // Chinese Tourist Start Spawn at 0s
+        InvokeRepeating(nameof(SpawnChineseTourists), 0f, secondsBetweenChineseTouristSpawn);
 
-        InvokeRepeating(nameof(SpawnInnocentStudent), 100f, secondsBetweenInnocentStudentSpawn);
+        // Innocent Student Start Spawn at 40s
+        InvokeRepeating(nameof(SpawnInnocentStudent), 40f, secondsBetweenInnocentStudentSpawn);
 
         // Med Student and interactions 
+        // Med Student start spawn at 80s
         MedStudent.medCollisionEvent += MedInflictDamage;
         MedChemicalPuddle.StepOnPuddleEvent += ChemicaPuddlelInflictDamage;
-        InvokeRepeating(nameof(SpawnMed), 100f, secondsBetweenMedStudentSpawn);
+        InvokeRepeating(nameof(SpawnMed), 80f, secondsBetweenMedStudentSpawn);
 
         ChineseTourBusScript.BusCollisionEvent += BusInflictDamage;
 
@@ -103,10 +106,22 @@ public class L3LogicScript : MonoBehaviour
         }
 
         // Boss Spawns 1 time when timer hits 180s
-        if (levelTimer > 1 && !bossBattle)
+        if (levelTimer > 180 && !bossBattle)
         {
             bossBattle = true;
             ChineseTourBus.SetActive(true);
+
+            // Change spawn time from 7s to 20s
+            CancelInvoke(nameof(SpawnChineseTourists));
+            InvokeRepeating(nameof(SpawnChineseTourists), 0f, 20f);
+
+            // Change spawn time from 10s to 25s
+            CancelInvoke(nameof(SpawnInnocentStudent));
+            InvokeRepeating(nameof(SpawnInnocentStudent), 0f, 25f);
+
+            // Change spawn time from 10s to 25s
+            CancelInvoke(nameof(SpawnMed));
+            InvokeRepeating(nameof(SpawnMed), 0f, 25f);
         }
 
 
@@ -129,7 +144,7 @@ public class L3LogicScript : MonoBehaviour
 
     void BizProjectileInflictDamage()
     {
-        PiperScript.piperHealth -= 10;
+        PiperScript.piperHealth -= 5;
     }
 
     // Spawn 2 ChineseTourists every 5s, max 6 tourists

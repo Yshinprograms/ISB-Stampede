@@ -65,7 +65,7 @@ public class PowerUpManagerScript : MonoBehaviour
         Debug.Log("Spawn Friends");
 
         //levelTwo
-        if (levelTwo)
+        if (true)
         {
             ObjectPoolScript.spawnObject(friend, SpawnScript.generateSpawnPoint(), friend.transform.rotation);
         }
@@ -73,7 +73,8 @@ public class PowerUpManagerScript : MonoBehaviour
     }
     public void SpawnMala()
     {
-        if (levelThree)
+        //levelThree
+        if (true)
         {
             PiperScript.malaActive = true;
             ObjectPoolScript.spawnObject(mala, PiperScript.piperPosition + (4 * Vector3.up), mala.transform.rotation);

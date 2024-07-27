@@ -5649,6 +5649,10 @@ PrefabInstance:
       propertyPath: innocentStudentLatchOnSFX
       value: 
       objectReference: {fileID: 1948123765}
+    - target: {fileID: 221090180282182090, guid: b07f02f76c7cf8d4aaff53fd5ab78098, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 647081799953357235, guid: b07f02f76c7cf8d4aaff53fd5ab78098, type: 3}
       propertyPath: OutputAudioMixerGroup
       value: 
@@ -5763,6 +5767,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3211154304163771692, guid: b07f02f76c7cf8d4aaff53fd5ab78098, type: 3}
       propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3334887408359065762, guid: b07f02f76c7cf8d4aaff53fd5ab78098, type: 3}
+      propertyPath: m_Color.a
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3491130605591466592, guid: b07f02f76c7cf8d4aaff53fd5ab78098, type: 3}
@@ -5904,6 +5912,11 @@ PrefabInstance:
     - target: {fileID: 6122487993069488236, guid: b07f02f76c7cf8d4aaff53fd5ab78098, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6728873990600413500, guid: b07f02f76c7cf8d4aaff53fd5ab78098, type: 3}
+      propertyPath: m_text
+      value: "Piper successfully fends for herself and completes a fruitful day in
+        school.\nYou have completed the game! \nCongratulations!\n"
       objectReference: {fileID: 0}
     - target: {fileID: 6832641686137920924, guid: b07f02f76c7cf8d4aaff53fd5ab78098, type: 3}
       propertyPath: m_IsActive
