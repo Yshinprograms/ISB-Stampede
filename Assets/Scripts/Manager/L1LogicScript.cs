@@ -11,10 +11,6 @@ public class L1LogicScript : MonoBehaviour
     private float levelTimer = 0;
     public static float levelOneDuration = 180;
 
-    // Get Piper Animation
-    //public GameObject piper; 
-    private Animator piperAnimator;
-
     // Import Game Manager Script & Game end conditions
     public GameScreenManager gameScreenManager;
 
@@ -64,11 +60,6 @@ public class L1LogicScript : MonoBehaviour
         }
         instance = this;
 
-        // Get Piper Animation
-        
-        //GameObject piper = GameObject.FindWithTag("Player");
-        //piperAnimator = piper.GetComponent<Animator>();
-
         // Set timer for Level 1 
         TimerScript.remainingTime = levelOneDuration;
 
@@ -78,12 +69,12 @@ public class L1LogicScript : MonoBehaviour
 
         // Freshie interaction and Spawns ; time 60s
         Freshie.freshieCollisionEvent += FreshieInflictDamage;
-        InvokeRepeating(nameof(SpawnFreshie), 0f, secondsBetweenFreshieSpawn);
+        InvokeRepeating(nameof(SpawnFreshie), 60f, secondsBetweenFreshieSpawn);
 
         // Aunty interactions and spawns ; time 120s
         Aunty.auntyCollisionEvent += AuntyInflictDamage;
         Handbag.handbagCollisionEvent += HandbagInflictDamage;
-        InvokeRepeating(nameof(SpawnAunty), 100f, secondsBetweenAuntySpawn);
+        InvokeRepeating(nameof(SpawnAunty), 120f, secondsBetweenAuntySpawn);
 
         // Student Boss interactions
         StudentBoss.SBCollisionEvent += StudentBossInflictDamage;
@@ -111,7 +102,7 @@ public class L1LogicScript : MonoBehaviour
         }
 
         // Boss Spawns 1 time when timer hits 180s
-        if (levelTimer > 2 && !bossBattle)
+        if (levelTimer > 180 && !bossBattle)
         {
             bossBattle = true;
             studentBoss.SetActive(true);
@@ -136,7 +127,6 @@ public class L1LogicScript : MonoBehaviour
     // Damages
     void BollardInflictDamage()
     {
-        //piperAnimator.Play("PiperV2DealsDamage");
         PiperScript.piperHealth -= 10;
     }
     void FreshieInflictDamage()
@@ -191,6 +181,13 @@ public class L1LogicScript : MonoBehaviour
         Freshie.freshieCollisionEvent -= FreshieInflictDamage;
         Aunty.auntyCollisionEvent -= AuntyInflictDamage;
         Handbag.handbagCollisionEvent -= HandbagInflictDamage;
+        StudentBoss.SBCollisionEvent -= StudentBossInflictDamage;
+        SBBullet1.sbBullet1CollisionEvent -= SBBulletInflictDamage;
+        SBBullet2.sbBullet2CollisionEvent -= SBBulletInflictDamage;
+        SBBullet3.sbBullet3CollisionEvent -= SBBulletInflictDamage;
+        SBBullet4.sbBullet4CollisionEvent -= SBBulletInflictDamage;
+        SBBullet5.sbBullet5CollisionEvent -= SBBulletInflictDamage;
+        SBBullet6.sbBullet6CollisionEvent -= SBBulletInflictDamage;
     }
 
 }

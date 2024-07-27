@@ -173,6 +173,7 @@ public class PiperScript : MonoBehaviour
         if (dir == 0) //Not moving
         {
             piperAnim.Play("PiperV2Idle");
+            
         }
     }
 
@@ -207,6 +208,7 @@ public class PiperScript : MonoBehaviour
             }
         }
     }
+
 
     private void OnDestroy()
     {

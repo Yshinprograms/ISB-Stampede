@@ -63,6 +63,8 @@ public class PowerUpManagerScript : MonoBehaviour
     public void SpawnFriends()
     {
         Debug.Log("Spawn Friends");
+
+        //levelTwo
         if (levelTwo)
         {
             ObjectPoolScript.spawnObject(friend, SpawnScript.generateSpawnPoint(), friend.transform.rotation);

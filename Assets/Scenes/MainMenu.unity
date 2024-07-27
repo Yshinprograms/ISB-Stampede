@@ -1948,6 +1948,11 @@ RectTransform:
   m_AnchoredPosition: {x: -5, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!1 &1406877163 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 868804090969305598, guid: 956d441e58867594992bf6bd8f0d119b, type: 3}
+  m_PrefabInstance: {fileID: 63448092918212427}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1421230528
 GameObject:
   m_ObjectHideFlags: 0
@@ -5756,6 +5761,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3491130605591466592, guid: b07f02f76c7cf8d4aaff53fd5ab78098, type: 3}
+      propertyPath: piper
+      value: 
+      objectReference: {fileID: 1406877163}
     - target: {fileID: 3491130605591466592, guid: b07f02f76c7cf8d4aaff53fd5ab78098, type: 3}
       propertyPath: lowHealthOverlay
       value: 

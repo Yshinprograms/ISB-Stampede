@@ -157,8 +157,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.25}
   m_AnchorMax: {x: 1, y: 0.75}
-  m_AnchoredPosition: {x: -1, y: 9.750122}
-  m_SizeDelta: {x: 2, y: 27.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &435942398
 MonoBehaviour:
@@ -686,7 +686,7 @@ RectTransform:
   m_Father: {fileID: 868431416}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0.12142857, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -751,8 +751,16 @@ PrefabInstance:
       value: ChineseTourBus
       objectReference: {fileID: 0}
     - target: {fileID: 1068720139470827427, guid: 00becd0a7f34d6e478095681618eeb13, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 1068720139470827427, guid: 00becd0a7f34d6e478095681618eeb13, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1068720139470827427, guid: 00becd0a7f34d6e478095681618eeb13, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
       objectReference: {fileID: 0}
     - target: {fileID: 4109435576494259445, guid: 00becd0a7f34d6e478095681618eeb13, type: 3}
       propertyPath: m_LocalPosition.x
@@ -798,6 +806,10 @@ PrefabInstance:
       propertyPath: bossHealth
       value: 
       objectReference: {fileID: 456815731}
+    - target: {fileID: 4181911972346321960, guid: 00becd0a7f34d6e478095681618eeb13, type: 3}
+      propertyPath: chineseTourist
+      value: 
+      objectReference: {fileID: 8253298358415646836, guid: 0cc8f705c9738ea4eb1042e1557d555b, type: 3}
     - target: {fileID: 4181911972346321960, guid: 00becd0a7f34d6e478095681618eeb13, type: 3}
       propertyPath: sprites.Array.size
       value: 4
