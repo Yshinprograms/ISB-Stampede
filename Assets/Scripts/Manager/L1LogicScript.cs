@@ -70,7 +70,7 @@ public class L1LogicScript : MonoBehaviour
 
         // Bollard interaction and Spawns ; time 0s
         Bollard.bollardCollisionEvent += BollardInflictDamage;
-        InvokeRepeating(nameof(SpawnBollard), 100f, secondsBetweenBollardSpawn);
+        InvokeRepeating(nameof(SpawnBollard), 0f, secondsBetweenBollardSpawn);
 
         // Freshie interaction and Spawns ; time 50s
         Freshie.freshieCollisionEvent += FreshieInflictDamage;
@@ -127,11 +127,11 @@ public class L1LogicScript : MonoBehaviour
         }
 
         // if level completed, move to cutscene 2s
-        if (levelTimer > 1)
+        /*if (levelTimer > 1)
         {
             ResetPiperPosition();
             gameScreenManager.GoToLevel2();
-        }
+        }*/
 
         secondsBetweenPaperBallSpawn += Time.deltaTime;
         levelTimer += Time.deltaTime;
