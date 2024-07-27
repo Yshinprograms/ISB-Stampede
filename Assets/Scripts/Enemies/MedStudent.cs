@@ -8,7 +8,7 @@ using UnityEngine;
 3. If Piper is not in range, Med student will shoot poisonous chemical around in random intervals 
 
 Poisonous chemical
-- will stay in the map for 5s and disappear 
+- will stay in the map for 7s and disappear 
 */
 
 public class MedStudent : Enemy
