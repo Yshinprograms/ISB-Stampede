@@ -68,14 +68,14 @@ public class L3LogicScript : MonoBehaviour
         TimerScript.remainingTime = 180;
 
         // Start spawning
-        InvokeRepeating(nameof(SpawnChineseTourists), 0f, secondsBetweenChineseTouristSpawn);
+        InvokeRepeating(nameof(SpawnChineseTourists), 100f, secondsBetweenChineseTouristSpawn);
 
-        InvokeRepeating(nameof(SpawnInnocentStudent), 60f, secondsBetweenInnocentStudentSpawn);
+        InvokeRepeating(nameof(SpawnInnocentStudent), 100f, secondsBetweenInnocentStudentSpawn);
 
         // Med Student and interactions 
         MedStudent.medCollisionEvent += MedInflictDamage;
         MedChemicalPuddle.StepOnPuddleEvent += ChemicaPuddlelInflictDamage;
-        InvokeRepeating(nameof(SpawnMed), 120f, secondsBetweenMedStudentSpawn);
+        InvokeRepeating(nameof(SpawnMed), 100f, secondsBetweenMedStudentSpawn);
 
         ChineseTourBusScript.BusCollisionEvent += BusInflictDamage;
 
@@ -103,7 +103,7 @@ public class L3LogicScript : MonoBehaviour
         }
 
         // Boss Spawns 1 time when timer hits 180s
-        if (levelTimer > 180 && !bossBattle)
+        if (levelTimer > 1 && !bossBattle)
         {
             bossBattle = true;
             ChineseTourBus.SetActive(true);

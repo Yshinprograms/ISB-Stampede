@@ -10,7 +10,7 @@ public class MainMenu : MonoBehaviour
     {
 
         SceneManager.LoadScene("Cutscene1");
-        //SceneManager.LoadScene("Level1");
+        //SceneManager.LoadScene("Level3");
         TimerScript.remainingTime = L1LogicScript.levelOneDuration;
         Debug.Log("Play game");
 

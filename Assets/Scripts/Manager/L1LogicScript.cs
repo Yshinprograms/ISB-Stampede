@@ -65,16 +65,16 @@ public class L1LogicScript : MonoBehaviour
 
         // Bollard interaction and Spawns ; time 0s
         Bollard.bollardCollisionEvent += BollardInflictDamage;
-        InvokeRepeating(nameof(SpawnBollard), 0f, secondsBetweenBollardSpawn);
+        InvokeRepeating(nameof(SpawnBollard), 100f, secondsBetweenBollardSpawn);
 
         // Freshie interaction and Spawns ; time 60s
         Freshie.freshieCollisionEvent += FreshieInflictDamage;
-        InvokeRepeating(nameof(SpawnFreshie), 60f, secondsBetweenFreshieSpawn);
+        InvokeRepeating(nameof(SpawnFreshie), 100f, secondsBetweenFreshieSpawn);
 
         // Aunty interactions and spawns ; time 120s
         Aunty.auntyCollisionEvent += AuntyInflictDamage;
         Handbag.handbagCollisionEvent += HandbagInflictDamage;
-        InvokeRepeating(nameof(SpawnAunty), 120f, secondsBetweenAuntySpawn);
+        InvokeRepeating(nameof(SpawnAunty), 100f, secondsBetweenAuntySpawn);
 
         // Student Boss interactions
         StudentBoss.SBCollisionEvent += StudentBossInflictDamage;
@@ -102,7 +102,7 @@ public class L1LogicScript : MonoBehaviour
         }
 
         // Boss Spawns 1 time when timer hits 180s
-        if (levelTimer > 180 && !bossBattle)
+        if (levelTimer > 1 && !bossBattle)
         {
             bossBattle = true;
             studentBoss.SetActive(true);
