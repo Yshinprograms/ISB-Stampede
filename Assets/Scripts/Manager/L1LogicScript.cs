@@ -52,6 +52,7 @@ public class L1LogicScript : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+
         secondsBetweenBollardSpawn = 2f;
         secondsBetweenFreshieSpawn = 3f;
         secondsBetweenAuntySpawn = 7f;
@@ -71,11 +72,11 @@ public class L1LogicScript : MonoBehaviour
         Bollard.bollardCollisionEvent += BollardInflictDamage;
         InvokeRepeating(nameof(SpawnBollard), 100f, secondsBetweenBollardSpawn);
 
-        // Freshie interaction and Spawns ; time 60s
+        // Freshie interaction and Spawns ; time 50s
         Freshie.freshieCollisionEvent += FreshieInflictDamage;
         InvokeRepeating(nameof(SpawnFreshie), 50f, secondsBetweenFreshieSpawn);
 
-        // Aunty interactions and spawns ; time 120s
+        // Aunty interactions and spawns ; time 100s
         Aunty.auntyCollisionEvent += AuntyInflictDamage;
         Handbag.handbagCollisionEvent += HandbagInflictDamage;
         InvokeRepeating(nameof(SpawnAunty), 100f, secondsBetweenAuntySpawn);
@@ -95,7 +96,7 @@ public class L1LogicScript : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(secondsBetweenBollardSpawn.ToString());
+        //Debug.Log(secondsBetweenBollardSpawn.ToString());
 
         // Piper's projectile interactions
         secondsBetweenPaperBallSpawn += Time.deltaTime;
@@ -107,7 +108,7 @@ public class L1LogicScript : MonoBehaviour
         }
 
         // Boss Spawns 1 time when timer hits 180s
-        if (levelTimer > 1 && !bossBattle)
+        if (levelTimer > 180 && !bossBattle)
         {
             bossBattle = true;
             studentBoss.SetActive(true);
@@ -126,10 +127,11 @@ public class L1LogicScript : MonoBehaviour
         }
 
         // if level completed, move to cutscene 2s
-        //if (levelTimer > 1000)
-        //{
-        //    gameScreenManager.GoToCutscene2();
-        //}
+        if (levelTimer > 1)
+        {
+            ResetPiperPosition();
+            gameScreenManager.GoToLevel2();
+        }
 
         secondsBetweenPaperBallSpawn += Time.deltaTime;
         levelTimer += Time.deltaTime;
@@ -138,7 +140,21 @@ public class L1LogicScript : MonoBehaviour
     public void LevelCompleted()
     {
         PowerUpManagerScript.Instance.levelTwo = true;
+        ResetPiperPosition();
         gameScreenManager.GoToCutscene2();
+    }
+
+    void ResetPiperPosition()
+    {
+        GameObject piper = GameObject.FindWithTag("Player");
+        if (piper != null)
+        {
+            piper.transform.position = Vector3.zero;
+        }
+        else
+        {
+            Debug.LogWarning("Player with tag 'Player' not found!");
+        }
     }
 
     // Damages

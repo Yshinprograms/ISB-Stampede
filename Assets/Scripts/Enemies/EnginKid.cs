@@ -32,7 +32,7 @@ public class EnginKid : Enemy
     {
         health = maxHealth;
         reachedGatheringCorner = false;
-        moveSpeed = 2.5f;
+        moveSpeed = 3f;
         gatheredSuccessfully = false;
         aura = GetComponent<ParticleSystem>();
     }

@@ -465,7 +465,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0.044784546, y: -0.08249748}
-  m_Size: {x: 0.5329993, y: 1.2121365}
+  m_Size: {x: 0.44, y: 1.2121365}
   m_Direction: 0
 --- !u!114 &1697703373943793198
 MonoBehaviour:
@@ -480,8 +480,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyName: Engine Kid
-  moveSpeed: 2.5
-  maxHealth: 20
+  moveSpeed: 3
+  maxHealth: 10
 --- !u!198 &8002352194828486890
 ParticleSystem:
   m_ObjectHideFlags: 0

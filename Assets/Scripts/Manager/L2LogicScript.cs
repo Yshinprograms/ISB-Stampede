@@ -23,9 +23,9 @@ public class L2LogicScript : MonoBehaviour
 
     // Spawn times
     public float secondsBetweenPaperBallSpawn;
-    private float secondsBetweenCleanerSpawn = 5f;
-    private float secondsBetweenEnginKidSpawn = 5f;
-    private float secondsBetweenCSMuggerSpawn = 5f;
+    private float secondsBetweenCleanerSpawn;
+    private float secondsBetweenEnginKidSpawn;
+    private float secondsBetweenCSMuggerSpawn;
 
     // Controls quantity of projectiles on map
     public int maxActivePaperBalls = 1;
@@ -59,6 +59,10 @@ public class L2LogicScript : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        secondsBetweenCleanerSpawn = 5f;
+        secondsBetweenEnginKidSpawn = 2f;
+        secondsBetweenCSMuggerSpawn = 6f;
+
         // Ensure only one instance exists
         if (instance != null && instance != this)
         {
@@ -72,13 +76,13 @@ public class L2LogicScript : MonoBehaviour
 
         // Cleaner interaction and Spawns ; time 0s
         Cleaner.cleanerCollisionEvent += CleanerInflictDamage;
-        InvokeRepeating(nameof(SpawnCleaner), 100f, secondsBetweenCleanerSpawn);
+        InvokeRepeating(nameof(SpawnCleaner), 0f, secondsBetweenCleanerSpawn);
 
         // EnginKid interaction and Spawns
         EnginKid.enginKidDeathEvent += StopEnginKidClusterCoroutine;
         enginKidClusterActive = false;
 
-        // CSMugger interaction and Spawns ; time 120s
+        // CSMugger interaction and Spawns ; time 100s
         CSMugger.csMuggerCollisionEvent += CSMuggerInflictDamage;
         CSMuggerCode.csMuggerCodeCollisionEvent += CSMuggerCodeInflictDamage;
         InvokeRepeating(nameof(SpawnCSMugger), 100f, secondsBetweenCSMuggerSpawn);
@@ -100,10 +104,9 @@ public class L2LogicScript : MonoBehaviour
             PaperBallScript.activePaperBalls += 1;
         }
 
-        // FIX THIS
         // EnginKid Clustering Logic
         // Cluster spawning coroutine only starts if there are no clusters && enginKids are not in attack phase
-        if (levelTimer > 100)
+        if (levelTimer > 40)
         {
             if (!enginKidClusterActive && !EnginKid.attackPhase)
             {
@@ -113,17 +116,26 @@ public class L2LogicScript : MonoBehaviour
 
 
         // Boss Spawns 1 time when levelTimer hits 180s
-        if (levelTimer > 1 && !bossBattle)
+        if (levelTimer > 180 && !bossBattle)
         {
             bossBattle = true;
             cs1010.SetActive(true);
+
+            //secondsBetweenCleanerSpawn = 10f;
+            //secondsBetweenCSMuggerSpawn = 12f;
+            secondsBetweenEnginKidSpawn = 8f;
+
+            CancelInvoke(nameof(SpawnCleaner));
+            //InvokeRepeating(nameof(SpawnCleaner), 0f, secondsBetweenCleanerSpawn);
+            CancelInvoke(nameof(SpawnCSMugger));
+            //InvokeRepeating(nameof(SpawnCSMugger), 0f, secondsBetweenCSMuggerSpawn);
         }
 
-        if (levelTimer > 1000)
-        {
-            SceneManager.LoadScene("Cutscene3");
-            
-        }
+        //if (levelTimer > 1000)
+        //{
+        //    SceneManager.LoadScene("Cutscene3");
+
+        //}
 
         levelTimer += Time.deltaTime;
     }
@@ -132,17 +144,31 @@ public class L2LogicScript : MonoBehaviour
     public void LevelCompleted()
     {
         PowerUpManagerScript.Instance.levelThree = true;
+        ResetPiperPosition();
         gameScreenManager.GoToLevel3();
+    }
+
+    void ResetPiperPosition()
+    {
+        GameObject piper = GameObject.FindWithTag("Player");
+        if (piper != null)
+        {
+            piper.transform.position = Vector3.zero;
+        }
+        else
+        {
+            Debug.LogWarning("Player with tag 'Player' not found!");
+        }
     }
 
     // Damages
     void CleanerInflictDamage()
     {
-        PiperScript.piperHealth -= 20;
+        PiperScript.piperHealth -= 10;
     }
     void CSMuggerInflictDamage()
     {
-        PiperScript.piperHealth -= 15;
+        PiperScript.piperHealth -= 10;
     }
     void CSMuggerCodeInflictDamage()
     {

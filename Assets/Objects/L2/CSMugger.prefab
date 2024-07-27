@@ -143,8 +143,8 @@ MonoBehaviour:
   enemyName: CS Mugger
   moveSpeed: 0.7
   maxHealth: 20
-  startTimeBtwCode: 3
-  maxCodeProduce: 3
+  startTimeBtwCode: 6
+  maxCodeProduce: 2
   csMuggerCode: {fileID: 5900483392926563956, guid: 79e22b5c8c92ac4409d2bcc7dd053fe1, type: 3}
 --- !u!95 &7281625918954917198
 Animator:
