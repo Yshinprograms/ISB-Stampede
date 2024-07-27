@@ -1,9 +1,4 @@
-using log4net.Core;
 using System.Collections;
-using System.Collections.Generic;
-using System.IO;
-using System.Net.Sockets;
-using TMPro;
 using UnityEngine;
 
 /* Boss will move from Point 0 to 1 to 2 to 3 to 4, then
@@ -65,10 +60,10 @@ public class StudentBoss : Enemy
     private float currentSpeed;
 
     Animator animSB;
-    
+
 
     private void OnEnable()
-    {      
+    {
         bossHealthbarScript.EnableHealthbar();
         bossHealthbarScript.SetMaxHealth((int)maxHealth);
         health = maxHealth;
@@ -129,7 +124,7 @@ public class StudentBoss : Enemy
                 MoveToP1();
                 bossHasAttacked = false;
             }
-            
+
             if (Vector2.Distance(transform.position, p1.transform.position) < tolerance)
             {
                 isAtP1 = true;
@@ -189,7 +184,7 @@ public class StudentBoss : Enemy
             }
 
             if (Vector2.Distance(transform.position, p5.transform.position) < tolerance)
-            { 
+            {
                 isAtP5 = true;
                 isAtP4 = false;
                 isAtP6 = false;

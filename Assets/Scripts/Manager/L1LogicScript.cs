@@ -55,7 +55,7 @@ public class L1LogicScript : MonoBehaviour
 
         secondsBetweenBollardSpawn = 2f;
         secondsBetweenFreshieSpawn = 3f;
-        secondsBetweenAuntySpawn = 7f;
+        secondsBetweenAuntySpawn = 8f;
 
         // Ensure only one instance exists
         if (instance != null && instance != this)

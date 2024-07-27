@@ -145,7 +145,7 @@ public class L2LogicScript : MonoBehaviour
     {
         PowerUpManagerScript.Instance.levelThree = true;
         ResetPiperPosition();
-        gameScreenManager.GoToLevel3();
+        gameScreenManager.GoToCutscene3();
     }
 
     void ResetPiperPosition()
