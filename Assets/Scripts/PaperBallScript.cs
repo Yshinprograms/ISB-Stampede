@@ -9,7 +9,7 @@ public class PaperBallScript : MonoBehaviour
     public static event PaperBallEvent paperBallCollisionEvent;
     public static event PaperBallEvent paperBallThrownEvent;
     public static bool paperBallThrown;
-    public float paperBallSpeed = 4f;
+    public float paperBallSpeed = 5f;
 
     private GameObject targetEnemy;
     private bool targetWithinRange;

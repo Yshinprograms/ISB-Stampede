@@ -393,9 +393,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyName: Freshie
-  moveSpeed: 1.6
+  moveSpeed: 1.4
   maxHealth: 20
-  freshieDiagonalSpeed: 1.8
+  freshieDiagonalSpeed: 1.5
   moveDuration: 1
   stopDuration: 0
 --- !u!95 &2290283454612893983

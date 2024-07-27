@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8691603341183976029}
   - component: {fileID: 1587217550468470475}
   - component: {fileID: 7663343305315193182}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Obstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -229,7 +229,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 7
-      m_TileSpriteIndex: 7
+      m_TileSpriteIndex: 9
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -279,7 +279,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 6
-      m_TileSpriteIndex: 6
+      m_TileSpriteIndex: 7
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -442,14 +442,14 @@ Tilemap:
     m_Data: {fileID: 130051725, guid: 84c0198357e6cc9469dd5d85c269835f, type: 3}
   - m_RefCount: 4
     m_Data: {fileID: -1447140241, guid: 84c0198357e6cc9469dd5d85c269835f, type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: 64988444, guid: 84c0198357e6cc9469dd5d85c269835f, type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: -1859620110, guid: 84c0198357e6cc9469dd5d85c269835f, type: 3}
-  - m_RefCount: 6
-    m_Data: {fileID: 394349825, guid: 3811b8f2cbb42c14c9547e3889837c13, type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 64988444, guid: 84c0198357e6cc9469dd5d85c269835f, type: 3}
+  - m_RefCount: 6
+    m_Data: {fileID: 394349825, guid: 3811b8f2cbb42c14c9547e3889837c13, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: -1859620110, guid: 84c0198357e6cc9469dd5d85c269835f, type: 3}
   - m_RefCount: 6
     m_Data: {fileID: -1773331332, guid: 3811b8f2cbb42c14c9547e3889837c13, type: 3}
   m_TileMatrixArray:

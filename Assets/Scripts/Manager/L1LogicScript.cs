@@ -23,9 +23,9 @@ public class L1LogicScript : MonoBehaviour
 
     // Spawn times
     public float secondsBetweenPaperBallSpawn;
-    private float secondsBetweenBollardSpawn = 4f;
-    private float secondsBetweenFreshieSpawn = 5f;
-    private float secondsBetweenAuntySpawn = 6f;
+    public float secondsBetweenBollardSpawn;
+    public float secondsBetweenFreshieSpawn;
+    public float secondsBetweenAuntySpawn;
 
     // Controls quantity of projectiles on map
     public int maxActivePaperBalls = 1;
@@ -52,6 +52,10 @@ public class L1LogicScript : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        secondsBetweenBollardSpawn = 2f;
+        secondsBetweenFreshieSpawn = 3f;
+        secondsBetweenAuntySpawn = 7f;
+
         // Ensure only one instance exists
         if (instance != null && instance != this)
         {
@@ -69,12 +73,12 @@ public class L1LogicScript : MonoBehaviour
 
         // Freshie interaction and Spawns ; time 60s
         Freshie.freshieCollisionEvent += FreshieInflictDamage;
-        InvokeRepeating(nameof(SpawnFreshie), 60f, secondsBetweenFreshieSpawn);
+        InvokeRepeating(nameof(SpawnFreshie), 50f, secondsBetweenFreshieSpawn);
 
         // Aunty interactions and spawns ; time 120s
         Aunty.auntyCollisionEvent += AuntyInflictDamage;
         Handbag.handbagCollisionEvent += HandbagInflictDamage;
-        InvokeRepeating(nameof(SpawnAunty), 120f, secondsBetweenAuntySpawn);
+        InvokeRepeating(nameof(SpawnAunty), 100f, secondsBetweenAuntySpawn);
 
         // Student Boss interactions
         StudentBoss.SBCollisionEvent += StudentBossInflictDamage;
@@ -91,6 +95,7 @@ public class L1LogicScript : MonoBehaviour
 
     void Update()
     {
+        Debug.Log(secondsBetweenBollardSpawn.ToString());
 
         // Piper's projectile interactions
         secondsBetweenPaperBallSpawn += Time.deltaTime;
@@ -106,13 +111,25 @@ public class L1LogicScript : MonoBehaviour
         {
             bossBattle = true;
             studentBoss.SetActive(true);
+
+
+            secondsBetweenBollardSpawn = 10f;
+            secondsBetweenFreshieSpawn = 11f;
+            secondsBetweenAuntySpawn = 15f;
+
+            CancelInvoke(nameof(SpawnBollard));
+            InvokeRepeating(nameof(SpawnBollard), 0f, secondsBetweenBollardSpawn);
+            CancelInvoke(nameof(SpawnFreshie));
+            InvokeRepeating(nameof(SpawnFreshie), 0f, secondsBetweenFreshieSpawn);
+            CancelInvoke(nameof(SpawnAunty));
+            InvokeRepeating(nameof(SpawnAunty), 0f, secondsBetweenAuntySpawn);
         }
 
         // if level completed, move to cutscene 2s
-        if (levelTimer > 1000)
-        {
-            gameScreenManager.GoToCutscene2();
-        }
+        //if (levelTimer > 1000)
+        //{
+        //    gameScreenManager.GoToCutscene2();
+        //}
 
         secondsBetweenPaperBallSpawn += Time.deltaTime;
         levelTimer += Time.deltaTime;
@@ -139,7 +156,7 @@ public class L1LogicScript : MonoBehaviour
     }
     void HandbagInflictDamage()
     {
-        PiperScript.piperHealth -= 10;
+        PiperScript.piperHealth -= 5;
     }
 
     void StudentBossInflictDamage()

@@ -2983,6 +2983,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5005155254034930447, guid: ab0b78215ff992746adb1fedb1f45971, type: 3}
+      propertyPath: secondsBetweenPaperBallSpawn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8052086324844093994, guid: ab0b78215ff992746adb1fedb1f45971, type: 3}
+      propertyPath: moveSpeed
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8618720646980064707, guid: ab0b78215ff992746adb1fedb1f45971, type: 3}
       propertyPath: m_Name
       value: L1UI

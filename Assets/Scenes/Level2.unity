@@ -852,6 +852,10 @@ PrefabInstance:
       propertyPath: csMuggerCode
       value: 
       objectReference: {fileID: 5900483392926563956, guid: 79e22b5c8c92ac4409d2bcc7dd053fe1, type: 3}
+    - target: {fileID: -8146804607821825538, guid: f93fa8390fed95a48b8467d09a7276c6, type: 3}
+      propertyPath: secondsBetweenPaperBallSpawn
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2570036113217178490, guid: f93fa8390fed95a48b8467d09a7276c6, type: 3}
       propertyPath: m_Name
       value: L2UI
