@@ -27,8 +27,8 @@ public class PowerUpManagerScript : MonoBehaviour
     public GameObject mala;
     public GameObject friend;
 
-    public float secondsBetweenHealthPowerUpSpawnMin = 50f;
-    public float secondsBetweenHealthPowerUpSpawnMax = 90f;
+    public float secondsBetweenHealthPowerUpSpawnMin = 20f;
+    public float secondsBetweenHealthPowerUpSpawnMax = 50f;
     public float timeBetweenMalaSpawn = 15f;
     public float timeBetweenFriendSpawn = 20f;
     public bool levelTwo;
